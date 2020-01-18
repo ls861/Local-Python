@@ -26,6 +26,12 @@ print(c)
 
 # this is a test for GIT
 
+# does a new commit happen on every save?
+
+# I guess not, that seems reasonable...
+
+###
+
 print(c.dtype.names)
 
 test = [0, 1, 2, 3, 4, 5, 6, 7]
