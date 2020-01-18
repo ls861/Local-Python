@@ -1,0 +1,19 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov  5 14:09:04 2019
+
+@author: lester
+"""
+from decimal import Decimal
+
+
+
+test = '%.2e' % Decimal(5450000.00000100)
+
+print(test)
+
+
+
+
+
