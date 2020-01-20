@@ -11,11 +11,11 @@ import matplotlib.colors as mcolors
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.72}
 cosmo = cd.set_omega_k_0(cosmo)
 
-size        = np.int(1E6)
+size        = np.int(1E2)
 z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
 
 age_z_15    = cd.age(15, **cosmo)/cc.yr_s                                       # yr, age of universe at z=15
-age_galaxy  = 10**np.random.uniform(low=6, high=12, size=size)                  # yr, age of galaxy
+age_galaxy  = 10**np.random.uniform(low=6, high=10, size=size)                  # yr, age of galaxy
 
 t_arr       = cd.age(z, **cosmo)/cc.yr_s                                        # yr, age of Universe
 t0_arr      = t_arr-age_galaxy                                                  # yr, start of star formation
@@ -104,14 +104,19 @@ plt.show()
 
 ### ### ### ### ###
 
+10**np.random.uniform(low=7.5, high=10, size=size)
+tau_calc_arr = 10**np.arange(7.5, 10, 0.01)
+mass_calc_arr = np.zeros(size)
+
+A = 1
+t = 2E9
+t0 = t - 5E8
+
+mass_calc_arr = A*(-tau_calc_arr* ( ((np.exp(-(t-t0)/tau_calc_arr))*(-t0+tau_calc_arr+t)) - tau_calc_arr) )
 
 
 
-
-
-
-
-
+plt.plot(tau_calc_arr, mass_calc_arr)
 
 
 
