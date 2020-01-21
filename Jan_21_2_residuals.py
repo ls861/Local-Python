@@ -45,13 +45,17 @@ b = tau_size
 c = 0
 d = 0
 
+ind = (wl > 500) & (wl < 20000)
+
 for i in range(msa_size):
     
     for j in np.arange(a, b):
         
+        r = np.arange(a, b)[7] # residual
+        
         axs1[c,d].set_xlim(0, 20000)
-        axs1[c,d].set_ylim(-24, -16)
-        axs1[c,d].plot(wl, np.log10(f[j]), label=r'$\tau$ = %.1g' % (tau[j]) )
+        #axs1[c,d].set_ylim(-24, -16)
+        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/f[r][ind]), label=r'$\tau$ = %.1g' % (tau[j]) )
         axs1[c,d].set_title('t = %.1g' % (msa[a]))
     
     a += tau_size
@@ -65,6 +69,10 @@ for i in range(msa_size):
 axs1[1,3].axis('off')
 axs1[0,3].legend()    
 fig1.show()  
+
+
+
+
 
 ### ### constant tau, vary t ### ### SHAPE OF PLOT to 4x4
     
@@ -80,9 +88,11 @@ for i in range(tau_size):
     
     for j in np.arange(a, len(z), b):
         
+        r = np.arange(a, len(z), b)[3] # residual
+        
         axs2[c,d].set_xlim(0, 20000)
-        axs2[c,d].set_ylim(-24, -16)
-        axs2[c,d].plot(wl, np.log10(f[j]), label=r't = %.1g' % (msa[j]) )
+        #axs2[c,d].set_ylim(-24, -16)
+        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/f[r][ind]), label=r't = %.1g' % (msa[j]) )
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
 
     a += 1
