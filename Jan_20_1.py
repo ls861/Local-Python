@@ -41,3 +41,5 @@ plt.show()
 
 
 data_fits.close()
+
+print(len(f))
