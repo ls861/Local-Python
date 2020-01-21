@@ -20,7 +20,7 @@ import math
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.72}
 cosmo = cd.set_omega_k_0(cosmo)
 
-size        = np.int(1E4)
+size        = np.int(1E5)
 z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
 
 age_z_15    = cd.age(15, **cosmo)/cc.yr_s                                       # yr, age of universe at z=15
@@ -72,6 +72,8 @@ mass_used = []
 
 ssfr_arr = []
 tau_log10_arr = []
+alpha_log10_arr = []
+beta_log10_arr = []
 
 for i in range(size):
 
@@ -95,7 +97,8 @@ for i in range(size):
         
         ssfr_arr.append(np.log10(sfr/m))
         tau_log10_arr.append(np.log10(tau))
-
+        alpha_log10_arr.append(np.log10(alpha))
+        beta_log10_arr.append(np.log10(beta))
         
         xax = (10**9)*np.arange(0.1, 15, 0.01)
         upper = max(A / (((xax/tau)**alpha)+((xax/tau)**-beta)))
@@ -134,7 +137,7 @@ plt.plot(massArr, np.log10(10**massArr/(1E6)))
 
 plt.show()
 
-### ### ### ### ###
+### ### ### ### ### TAU
 
 plt.figure(figsize=(7, 5))
 plt.hist2d(ssfr_arr, tau_log10_arr, bins=[np.arange(-10.5, -7.6, 0.05), np.arange(9, 10.1, 0.05)], cmap='Blues', normed=True)
@@ -145,6 +148,34 @@ plt.ylabel("log tau")
 
 plt.xlim(-10.5,-7.5)
 plt.ylim(9,10)
+
+plt.show()
+
+### ### ### ### ### ALPHA
+
+plt.figure(figsize=(7, 5))
+plt.hist2d(ssfr_arr, alpha_log10_arr, bins=[500, 100], cmap='Blues', normed=True)
+c=plt.colorbar()
+c.set_label("weighting in prior")
+plt.xlabel("log ssfr")
+plt.ylabel("log alpha")
+
+plt.xlim(-10.5,-7.5)
+#plt.ylim(9,10)
+
+plt.show()
+
+### ### ### ### ### BETA
+
+plt.figure(figsize=(7, 5))
+plt.hist2d(ssfr_arr, beta_log10_arr, bins=[500, 100], cmap='Blues', normed=True)
+c=plt.colorbar()
+c.set_label("weighting in prior")
+plt.xlabel("log ssfr")
+plt.ylabel("log beta")
+
+plt.xlim(-10.5,-7.5)
+#plt.ylim(9,10)
 
 plt.show()
 

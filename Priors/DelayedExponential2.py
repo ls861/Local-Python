@@ -11,7 +11,7 @@ import matplotlib.colors as mcolors
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.72}
 cosmo = cd.set_omega_k_0(cosmo)
 
-size        = np.int(1E2)
+size        = np.int(1E5)
 z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
 
 age_z_15    = cd.age(15, **cosmo)/cc.yr_s                                       # yr, age of universe at z=15
@@ -117,12 +117,6 @@ mass_calc_arr = A*(-tau_calc_arr* ( ((np.exp(-(t-t0)/tau_calc_arr))*(-t0+tau_cal
 
 
 plt.plot(tau_calc_arr, mass_calc_arr)
-
-
-
-
-
-
 
 
 
