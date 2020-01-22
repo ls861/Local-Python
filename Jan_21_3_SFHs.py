@@ -38,8 +38,8 @@ time = 1E9*np.linspace(0, 3, len(msa))
 time_now = 1.12 * 1E9
 
 
-'''
-### ### constant t, vary tau ### ###
+
+### ### constant t, vary tau, plotting SFH ### ###
 
 fig1, axs1 = plt.subplots(2, 4, figsize=(20,10))
 
@@ -49,17 +49,29 @@ b = tau_size
 c = 0
 d = 0
 
+max_y = 0
+
 for i in range(msa_size):
     
     for j in np.arange(a, b):
         
-        r = np.arange(a, b)[7] # residual
+        t0 = time_now-msa[a]
+        tau0 = tau[j]
         
-        axs1[c,d].set_xlim(0, 20000)
-        #axs1[c,d].set_ylim(-24, -16)
-        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/f[r][ind]), label=r'$\tau$ = %.1g' % (tau[j]) )
+        norm = max((time-t0) * np.exp(-(time-t0)/tau0))
+        
+        axs1[c,d].plot(time, ( (time-t0) * np.exp(-(time-t0)/tau0) )/ norm, label=r'$\tau$ = %.1g' % (tau[j]))
+        
         axs1[c,d].set_title('t = %.1g' % (msa[a]))
-    
+        
+        if max((time-t0) * np.exp(-(time-t0)/tau0)) > max_y:
+            max_y = max((time-t0) * np.exp(-(time-t0)/tau0))
+
+        axs1[c,d].set_xlim(0, 3E9)        
+        axs1[c,d].set_ylim(0, 1.1)
+
+    axs1[c,d].plot((time_now, time_now), (0, 1), color='k', linestyle=':')            
+        
     a += tau_size
     b += tau_size
 
@@ -71,7 +83,7 @@ for i in range(msa_size):
 axs1[1,3].axis('off')
 axs1[0,3].legend()    
 fig1.show()  
-'''
+
 
 
 
@@ -96,15 +108,12 @@ for i in range(tau_size):
         tau0 = tau[i]
         axs2[c,d].plot(time, (time-t0) * np.exp(-(time-t0)/tau0), label=r'msa = %.1g' % (msa[j]))
 
-        
-
-        
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
         
         if max((time-t0) * np.exp(-(time-t0)/tau0)) > max_y:
             max_y = max((time-t0) * np.exp(-(time-t0)/tau0))
 
-        axs2[c,d].set_xlim(0, 15E8)        
+        axs2[c,d].set_xlim(0, 3E9)        
         axs2[c,d].set_ylim(0, 1.1*max_y)
 
     axs2[c,d].plot((time_now, time_now), (0, 2*max_y), color='k', linestyle=':')

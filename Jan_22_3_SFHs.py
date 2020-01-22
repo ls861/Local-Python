@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 
 
-fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_012/mock_catalogue.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_015/mock_catalogue.fits'
 data_fits = fits.open(fileName)
 
 #info = data_fits.info()
@@ -28,14 +28,18 @@ f   = data_fits['FULL SED'].data                                                
 tau = data_fits['STAR FORMATION BINS'].data['bin_tau']                          # yrs
 msa = data_fits['STAR FORMATION'].data['max_stellar_age']                       # yrs
 
-print(tau) # 14 
-print(msa) # 7
-
 tau_size = 14
 msa_size = 7
 
+ind = (wl > 500) & (wl < 20000)
 
-### ### constant t, vary tau ### ###
+
+time = 1E9*np.linspace(0, 3, len(msa))
+time_now = 1.12 * 1E9
+
+
+
+### ### constant t, vary tau, plotting SFH ### ###
 
 fig1, axs1 = plt.subplots(2, 4, figsize=(20,10))
 
@@ -45,19 +49,29 @@ b = tau_size
 c = 0
 d = 0
 
-ind = (wl > 500) & (wl < 20000)
+max_y = 0
 
 for i in range(msa_size):
     
     for j in np.arange(a, b):
         
-        r = np.arange(a, b)[7] # residual
+        t0 = time_now-msa[a]
+        tau0 = tau[j]
         
-        axs1[c,d].set_xlim(0, 20000)
-        axs1[c,d].set_ylim(16, 20)
-        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'$\tau$ = %.1g' % (tau[j]) )
+        norm = max((time-t0) * np.exp(-(time-t0)/tau0))
+        
+        axs1[c,d].plot(time, ( (time-t0) * np.exp(-(time-t0)/tau0) )/ norm, label=r'$\tau$ = %.1g' % (tau[j]))
+        
         axs1[c,d].set_title('t = %.1g' % (msa[a]))
-    
+        
+        if max((time-t0) * np.exp(-(time-t0)/tau0)) > max_y:
+            max_y = max((time-t0) * np.exp(-(time-t0)/tau0))
+
+        axs1[c,d].set_xlim(0, 3E9)        
+        axs1[c,d].set_ylim(0, 1.1)
+
+    axs1[c,d].plot((time_now, time_now), (0, 1), color='k', linestyle=':')            
+        
     a += tau_size
     b += tau_size
 
@@ -74,7 +88,7 @@ fig1.show()
 
 
 
-### ### constant tau, vary t ### ### SHAPE OF PLOT to 4x4
+### ### constant tau, vary t, plotting SFH ### ### SHAPE OF PLOT to 4x4
     
 fig2, axs2 = plt.subplots(4, 4, figsize=(20,20))
 
@@ -84,16 +98,25 @@ b = tau_size
 c = 0
 d = 0
 
+max_y = 0
+
 for i in range(tau_size):
     
     for j in np.arange(a, len(z), b):
         
-        r = np.arange(a, len(z), b)[3] # residual
-        
-        axs2[c,d].set_xlim(0, 20000)
-        axs2[c,d].set_ylim(16, 20)
-        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r't = %.1g' % (msa[j]) )
+        t0 = time_now-msa[j]
+        tau0 = tau[i]
+        axs2[c,d].plot(time, (time-t0) * np.exp(-(time-t0)/tau0), label=r'msa = %.1g' % (msa[j]))
+
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
+        
+        if max((time-t0) * np.exp(-(time-t0)/tau0)) > max_y:
+            max_y = max((time-t0) * np.exp(-(time-t0)/tau0))
+
+        axs2[c,d].set_xlim(0, 3E9)        
+        axs2[c,d].set_ylim(0, 1.1*max_y)
+
+    axs2[c,d].plot((time_now, time_now), (0, 2*max_y), color='k', linestyle=':')
 
     a += 1
     
@@ -101,6 +124,7 @@ for i in range(tau_size):
         c += 1
 
     d = (d+1)%4
+
     
 axs2[3,2].axis('off')
 axs2[3,3].axis('off')
@@ -138,6 +162,13 @@ for i in range(tau_size):
 axs2[6,1].legend()    
 fig2.show()   
 '''
+
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@ Created on Mon Jan 20 13:40:15 2020
 
 import numpy as np
 
-x = np.arange(1, 98, 7)
+x = np.linspace(1000000, 11E8, 7)
 
 print(len(x))
 print(x)
@@ -16,3 +16,11 @@ print(x)
 print(13*8)
 
 print(10%4)
+
+
+print(np.log10(x))
+
+
+
+for i in range(7):
+    print(np.log10(x[i]))
