@@ -62,7 +62,7 @@ for i in range(msa_size):
         
         axs1[c,d].plot(time, ( (time-t0) * np.exp(-(time-t0)/tau0) )/ norm, label=r'$\tau$ = %.1g' % (tau[j]))
         
-        axs1[c,d].set_title('t = %.1g' % (msa[a]))
+        axs1[c,d].set_title('msa = %.1g' % (msa[a]))
         
         if max((time-t0) * np.exp(-(time-t0)/tau0)) > max_y:
             max_y = max((time-t0) * np.exp(-(time-t0)/tau0))

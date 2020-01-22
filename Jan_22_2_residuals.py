@@ -50,9 +50,9 @@ for i in range(msa_size):
         r = np.arange(a, b)[7] # residual
         
         axs1[c,d].set_xlim(0, 20000)
-        axs1[c,d].set_ylim(16, 20)
+        axs1[c,d].set_ylim(18, 22)
         axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'$\tau$ = %.1g' % (tau[j]) )
-        axs1[c,d].set_title('t = %.1g' % (msa[a]))
+        axs1[c,d].set_title('msa = %.1g' % (msa[a]))
     
     a += tau_size
     b += tau_size
@@ -86,7 +86,7 @@ for i in range(tau_size):
         r = np.arange(a, len(z), b)[3] # residual
         
         axs2[c,d].set_xlim(0, 20000)
-        axs2[c,d].set_ylim(16, 20)
+        axs2[c,d].set_ylim(18, 22)
         axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'msa = %.1g' % (msa[j]) )
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
 
@@ -103,8 +103,6 @@ axs2[0,3].legend()
 fig2.show()   
 
 
-print(msa)
-print(tau)
 
 
 ### ### constant tau, vary t ### ###
