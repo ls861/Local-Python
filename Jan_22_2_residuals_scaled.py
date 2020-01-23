@@ -30,6 +30,9 @@ msa = data_fits['STAR FORMATION'].data['max_stellar_age']                       
 tau_size = 14
 msa_size = 7
 
+ind = (wl > 500) & (wl < 20000)
+xlim = (0, 20000)
+ylim = (-1, 1)
 
 ### ### constant t, vary tau ### ###
 
@@ -41,17 +44,15 @@ b = tau_size
 c = 0
 d = 0
 
-ind = (wl > 500) & (wl < 20000)
-
 for i in range(msa_size):
     
     for j in np.arange(a, b):
         
         r = np.arange(a, b)[7] # residual
         
-        axs1[c,d].set_xlim(0, 20000)
-        axs1[c,d].set_ylim(18, 22)
-        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'$\tau$ = %.1g' % (tau[j]) )
+        axs1[c,d].set_xlim(xlim)
+        axs1[c,d].set_ylim(ylim)
+        axs1[c,d].plot(wl[ind], np.log10(    f[j][ind]/(f[r][ind] * f[j][wl==15000] / f[r][wl==15000])       ), label=r'$\tau$ = %.1g' % (tau[j]) )
         axs1[c,d].set_title('msa = %.1g' % (msa[a]))
     
     a += tau_size
@@ -85,9 +86,9 @@ for i in range(tau_size):
     for j in np.arange(a, len(z), b):
         r = np.arange(a, len(z), b)[3] # residual
         
-        axs2[c,d].set_xlim(0, 20000)
-        axs2[c,d].set_ylim(18, 22)
-        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'msa = %.1g' % (msa[j]) )
+        axs2[c,d].set_xlim(xlim)
+        axs2[c,d].set_ylim(ylim)
+        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000]  / f[r][wl==15000])), label=r'msa = %.1g' % (msa[j]) )
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
 
     a += 1
@@ -99,7 +100,7 @@ for i in range(tau_size):
     
 axs2[3,2].axis('off')
 axs2[3,3].axis('off')
-axs2[0,3].legend()    
+axs2[0,3].legend()
 fig2.show()   
 
 

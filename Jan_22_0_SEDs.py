@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 
 
-fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_012/mock_catalogue.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_015/mock_catalogue.fits'
 data_fits = fits.open(fileName)
 
 #info = data_fits.info()
@@ -21,22 +21,18 @@ wl_spec = data_fits[6].data[0][0]
 redshift = data_fits[1].data
 
 
-
 z   = data_fits['GALAXY PROPERTIES'].data['redshift']
 wl  = data_fits['FULL SED WL'].data['wl'][0]                                    # A
 f   = data_fits['FULL SED'].data                                                # erg s-1 cm-2 A-1
 tau = data_fits['STAR FORMATION BINS'].data['bin_tau']                          # yrs
 msa = data_fits['STAR FORMATION'].data['max_stellar_age']                       # yrs
 
-print(tau) # 14 
-print(msa) # 7
-
 tau_size = 14
 msa_size = 7
 
 ind = (wl > 500) & (wl < 20000)
 xlim = (0, 20000)
-ylim = (-1, 1)
+ylim = (-21, -17)
 
 ### ### constant t, vary tau ### ###
 
@@ -54,10 +50,10 @@ for i in range(msa_size):
         
         r = np.arange(a, b)[7] # residual
         
-        axs1[c,d].set_xlim(0, 20000)
-        axs1[c,d].set_ylim(16, 20)
-        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r'$\tau$ = %.1g' % (tau[j]) )
-        axs1[c,d].set_title('t = %.1g' % (msa[a]))
+        axs1[c,d].set_xlim(xlim)
+        axs1[c,d].set_ylim(ylim)
+        axs1[c,d].plot(wl[ind], np.log10(f[j][ind]), label=r'$\tau$ = %.1g' % (tau[j]) )
+        axs1[c,d].set_title('msa = %.1g' % (msa[a]))
     
     a += tau_size
     b += tau_size
@@ -88,12 +84,11 @@ d = 0
 for i in range(tau_size):
     
     for j in np.arange(a, len(z), b):
-        
         r = np.arange(a, len(z), b)[3] # residual
         
-        axs2[c,d].set_xlim(0, 20000)
-        axs2[c,d].set_ylim(16, 20)
-        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]/(f[r][ind] * f[j][wl==15000])), label=r't = %.1g' % (msa[j]) )
+        axs2[c,d].set_xlim(xlim)
+        axs2[c,d].set_ylim(ylim)
+        axs2[c,d].plot(wl[ind], np.log10(f[j][ind]), label=r'msa = %.1g' % (msa[j]) )
         axs2[c,d].set_title(r'$\tau$ = %.1g' % (tau[i]))
 
     a += 1
@@ -107,7 +102,6 @@ axs2[3,2].axis('off')
 axs2[3,3].axis('off')
 axs2[0,3].legend()    
 fig2.show()   
-
 
 
 
