@@ -109,17 +109,35 @@ tau_calc_arr = 10**np.arange(7.5, 10, 0.01)
 mass_calc_arr = np.zeros(size)
 
 A = 1
-t = 2E9
-t0 = t - 5E8
+time_now = 1.12 * 1E9
+t = time_now
+msa = 5E8
+t0 = t - msa
 
 mass_calc_arr = A*(-tau_calc_arr* ( ((np.exp(-(t-t0)/tau_calc_arr))*(-t0+tau_calc_arr+t)) - tau_calc_arr) )
 
 
-
+plt.figure(figsize=(10, 5))
 plt.plot(tau_calc_arr, mass_calc_arr)
+time_now = 1.12 * 1E9
+plt.plot((msa, msa), (0, 13E16), color='k', linestyle=':')   
+plt.xlim(0, 1E10)
+plt.ylim(0, 13E16)
+plt.xlabel('TAU')
+plt.ylabel('MASS')
+plt.show()
 
+plt.figure(figsize=(10, 5))
 
+time = 1E9*np.linspace(0, 10, 1E6)
 
+plt.plot(time, A * (time-t0) * np.exp(-(time-t0)/msa))
+plt.plot((time_now, time_now), (0, 2E8), color='k', linestyle=':')   
+plt.xlim(0, 1E10)
+plt.ylim(0, 2E8)
+plt.xlabel('AGE OF UNIVERSE')
+plt.ylabel('SFR')
+plt.show()
 
 
 

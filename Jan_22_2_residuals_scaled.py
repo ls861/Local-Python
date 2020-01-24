@@ -66,7 +66,7 @@ for i in range(msa_size):
 axs1[1,3].axis('off')
 axs1[0,3].legend()    
 fig1.show()  
-
+o
 
 
 
