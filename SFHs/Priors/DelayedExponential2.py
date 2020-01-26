@@ -104,7 +104,6 @@ plt.show()
 
 ### ### ### ### ###
 
-10**np.random.uniform(low=7.5, high=10, size=size)
 tau_calc_arr = 10**np.arange(7.5, 10, 0.01)
 mass_calc_arr = np.zeros(size)
 
@@ -121,7 +120,7 @@ plt.figure(figsize=(10, 5))
 plt.plot(tau_calc_arr, mass_calc_arr)
 time_now = 1.12 * 1E9
 plt.plot((msa, msa), (0, 13E16), color='k', linestyle=':')   
-plt.xlim(0, 1E10)
+plt.xlim(0-t0, 1E10-t0)
 plt.ylim(0, 13E16)
 plt.xlabel('TAU')
 plt.ylabel('MASS')
