@@ -6,7 +6,7 @@ Created on Mon Jan 27 10:41:48 2020
 @author: lester
 """
 
-n=1000
+n=1001
 
 import numpy as np
 x = 3*np.random.random(n) # 100 random numbers
