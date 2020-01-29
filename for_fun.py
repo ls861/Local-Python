@@ -24,3 +24,20 @@ print(x[249], x[250], (x[249]+x[250])/2)
 
 y = sum(x)/n
 print(y)
+
+
+
+from scipy import stats
+dist = stats.binom(20, 0.7) # N = 20, b = 0.7
+r = dist.rvs(10) # ten random draws
+p = dist.pmf(8) # prob. evaluated at k=8
+
+print(r, p)
+print(dist)
+
+k = dist.rvs()
+from numpy.random import multinomial
+vals = multinomial(100000000000000000, pvals=[0.2, 0.3, 0.5])
+# pvals sum to 1
+
+print(vals)
