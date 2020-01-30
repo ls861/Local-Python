@@ -88,6 +88,28 @@ plt.plot(massArr, np.log10(10**massArr/(1E6)))
 
 plt.show()
 
+### ### ### ### ### using fig, ax instead of plt
+
+fig, ax = plt.subplots(figsize=(7, 5))
+
+h = ax.hist2d(mass_used, sfr_arr, bins=[50,100], cmap='Blues', normed=True)
+fig.colorbar(h[3], ax=ax, label='weighting in prior')
+
+ax.set_xlabel("log mass")
+ax.set_ylabel("log sfr")
+
+ax.set_xlim(6,11)
+ax.set_ylim(-4,3)
+
+ageUniv_5p5 = cd.age(5.5, **cosmo)/cc.Gyr_s #Gyr
+ageUniv_4p5 = cd.age(4.5, **cosmo)/cc.Gyr_s
+
+ax.plot(massArr, np.log10(10**massArr/(ageUniv_5p5*1E9)))
+ax.plot(massArr, np.log10(10**massArr/(ageUniv_4p5*1E9)))
+ax.plot(massArr, np.log10(10**massArr/(1E6)))
+
+fig.show()
+
 ### ### ### ### ###
 
 plt.figure(figsize=(7, 5))
@@ -128,7 +150,7 @@ plt.show()
 
 plt.figure(figsize=(10, 5))
 
-time = 1E9*np.linspace(0, 10, 1E6)
+time = 1E9*np.linspace(0, 10, int(1E6))
 
 plt.plot(time, A * (time-t0) * np.exp(-(time-t0)/msa))
 plt.plot((time_now, time_now), (0, 2E8), color='k', linestyle=':')   

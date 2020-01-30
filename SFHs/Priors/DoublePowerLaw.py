@@ -83,7 +83,7 @@ plt.ylabel("log sfr")
 ageUniv_5p5 = cd.age(5.5, **cosmo)/cc.yr_s                                      # yr
 ageUniv_4p5 = cd.age(4.5, **cosmo)/cc.yr_s                                      # yr
 
-plt.plot(massArr, np.log10(10**massArr/(1E6)), label='1E6')
+plt.plot(massArr, np.log10(10**massArr/(1E6)), label='t=1E6')
 plt.plot(massArr, np.log10(10**massArr/ageUniv_4p5), label='z=4.5')
 plt.plot(massArr, np.log10(10**massArr/ageUniv_5p5), label='z=5.5')
 

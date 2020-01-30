@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 
 
-
+'''
 fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_015/mock_catalogue.fits'
 data_fits = fits.open(fileName)
 
@@ -37,7 +37,7 @@ ylim = (-21, -17)
 
 time = 1E9*np.linspace(0, 3, len(msa))
 time_now = 1.12 * 1E9
-
+'''
 
 ### ### SFHs ### ###
 ### ### constant t, vary tau, plotting SFH ### ###
@@ -87,7 +87,7 @@ fig1.show()
 
 
 ### ### constant tau, vary t, plotting SFH ### ### SHAPE OF PLOT to 4x4
-    
+''' 
 fig2, axs2 = plt.subplots(4, 4, figsize=(10,10))
 
 a = 0
@@ -129,10 +129,10 @@ axs2[3,3].axis('off')
 axs2[0,3].legend()    
 fig2.show()   
 
-
+'''
 ### ### SEDs ### ###
 ### ### constant t, vary tau ### ###
-
+'''
 fig1, axs1 = plt.subplots(2, 4, figsize=(10,5))
 
 a = 0 
@@ -196,13 +196,13 @@ axs2[3,3].axis('off')
 axs2[0,3].legend()    
 fig2.show()   
 
-
+'''
 ### ### RESIDUALS ### ###
-
+'''
 ylim = (-1, 1)
-
+'''
 ### ### constant t, vary tau ### ### 11
-
+'''
 fig11, axs11 = plt.subplots(2, 4, figsize=(10,5))
 fig12, axs12 = plt.subplots(2, 4, figsize=(10,5))
 
@@ -292,9 +292,10 @@ fig21.show()
 axs22[3,2].axis('off')
 axs22[3,3].axis('off') 
 fig22.show()   
+'''
 
-
-### ### MASS and Shape Dependence on tau ### ###
+### ### Shape Dependence ### ###
+'''
 fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Jan_20_1_018/mock_catalogue.fits'
 data_fits = fits.open(fileName)
 
@@ -370,28 +371,22 @@ plt.xlabel('TAU')
 plt.ylabel('MASS')
 plt.legend()
 plt.show()
-    
-### ### SFH ### ###
-
-A = 1
-time_now = 1.12 * 1E9
-msa = 5E8
-t0 = t - msa
-
-plt.figure(figsize=(10, 5))
-
-time = 1E9*np.linspace(0, 10, int(1E6))
-
-plt.plot(time, A * (time-t0) * np.exp(-(time-t0)/msa))
-plt.plot((time_now, time_now), (0, 2E8), color='k', linestyle=':')   
-plt.xlim(0, 1E10)
-plt.ylim(0, 2E8)
-plt.xlabel('AGE OF UNIVERSE')
-plt.ylabel('SFR')
-plt.show()
+'''
 
 
-### ### Mass vs SFR dependence on prior ### ###
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
