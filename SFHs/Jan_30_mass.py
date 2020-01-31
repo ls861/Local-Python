@@ -9,12 +9,15 @@ Created on Tue Jan 28 16:06:01 2020
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
+from scipy.special import lambertw
 
-### ### MASS dependence on tau ### ###
+
 
 ### ### ### ### ### ### ###
 ### Delayed Exponential ###
 ### ### ### ### ### ### ### 
+
+### ### mass vs tau ### ###
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5
@@ -43,51 +46,9 @@ plt.show()
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5 / 10**9.049218
-alpha = 10.**np.arange(-1, 4, 1)
-alpha = [3.]
-beta = 1.
-
-tau_arr = 10**np.arange(7.5, 10.1, 0.0005)
-mass_arr = np.zeros(len(tau_arr))
-
-fig, ax = plt.subplots(figsize=(8, 4))
-    
-for j in range(len(alpha)):
-
-    
-    for i in range(len(tau_arr)):
-        
-        integrand = lambda T: 1 / (((T/tau_arr[i])**alpha[j])+((T/tau_arr[i])**-beta))
-        integral  = quad(integrand, 0, t)
-    
-    
-        mass_arr[i] = A * integral[0] 
-    
-    # https://www.wolframalpha.com/input/?i=%28%28t%2FC%29%5EB+%28B+-+A+%28t%2FC%29%5E%28A+%2B+B%29%29%29%2F%28t+%281+%2B+%28t%2FC%29%5E%28A+%2B+B%29%29%5E2%29&assumption=%22ClashPrefs%22+-%3E+%7B%22Math%22%7D
-    
-    #t_peak = np.exp( (   (alpha*np.log(tau)) - np.log(alpha) + (beta*np.log(tau)) + np.log(beta))    /  (alpha + beta))
-    
-    
-    tau_peak = np.exp(    ( (alpha[j]*np.log(t)) + np.log(alpha[j]) + (beta*np.log(t)) - np.log(beta))  /  (alpha[j] + beta) )
-    
-
-    ax.plot(tau_arr, mass_arr / max(mass_arr), color='C%s' % (j))
-    ax.plot((t, t), (0, 1.1), color='k', linestyle=':')   
-    ax.plot((tau_peak, tau_peak), (0, 1.1), color='C%s' % (j), linestyle=':')   
-    ax.set_xlim(5E9, 0)
-    ax.set_ylim(0, 1.1)
-    ax.set_xlabel('TAU')
-    ax.set_ylabel('MASS / A')
-
-plt.show()
-
-### ### mass vs tau ### ###
-
-A = 1
-t = 1.12 * 1E9              # time of observation / age of universe at z=5 / 10**9.049218
 #alpha = 10.**np.arange(-1, 4, 1) 
 alpha = [0.5, 50]
-beta = 1.
+beta = 1
 
 tau_arr = 10**np.arange(7.5, 10.1, 0.0005)
 mass_arr = np.zeros(len(tau_arr))
@@ -96,7 +57,6 @@ fig, ax = plt.subplots(figsize=(8, 4))
     
 for j in range(len(alpha)):
 
-    
     for i in range(len(tau_arr)):
         
         integrand = lambda T: 1 / (((T/tau_arr[i])**alpha[j])+((T/tau_arr[i])**-beta))
@@ -128,44 +88,249 @@ plt.show()
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5 / 10**9.049218
-alpha = 10.**np.arange(-1, 4, 1)
-alpha = [3, 10, 50]
-beta = 1.
+alpha_arr = 10.**np.arange(-1, 4, 0.1)
+beta = 50.
 
-tau_arr = 10**np.arange(7.5, 10.1, 0.0005)
-mass_arr = np.zeros(len(tau_arr))
+tau = [10**8.5, 10**9]
+mass_arr = np.zeros(len(alpha_arr))
 
 fig, ax = plt.subplots(figsize=(8, 4))
     
-for j in range(len(alpha)):
-
+for j in range(len(tau)):
     
-    for i in range(len(tau_arr)):
+    for i in range(len(alpha_arr)):
         
-        integrand = lambda T: 1 / (((T/tau_arr[i])**alpha[j])+((T/tau_arr[i])**-beta))
+        integrand = lambda T: 1 / (((T/tau[j])**alpha_arr[i])+((T/tau[j])**-beta))
         integral  = quad(integrand, 0, t)
-    
     
         mass_arr[i] = A * integral[0] 
     
     # https://www.wolframalpha.com/input/?i=%28%28t%2FC%29%5EB+%28B+-+A+%28t%2FC%29%5E%28A+%2B+B%29%29%29%2F%28t+%281+%2B+%28t%2FC%29%5E%28A+%2B+B%29%29%5E2%29&assumption=%22ClashPrefs%22+-%3E+%7B%22Math%22%7D
-    
     #t_peak = np.exp( (   (alpha*np.log(tau)) - np.log(alpha) + (beta*np.log(tau)) + np.log(beta))    /  (alpha + beta))
+    #tau_peak = np.exp(    ( (alpha[j]*np.log(t)) + np.log(alpha[j]) + (beta*np.log(t)) - np.log(beta))  /  (alpha[j] + beta) )
+    #Solve[((t/C)^B (B - A (t/C)^(A + B)))/(t (1 + (t/C)^(A + B))^2) == 0, A]
     
+    alpha_peak = np.real(lambertw(  beta * ((t/tau[j])**(-beta)) * np.log(t/tau[j])   ))  / np.log(t/tau[j])  
     
-    tau_peak = np.exp(    ( (alpha[j]*np.log(t)) + np.log(alpha[j]) + (beta*np.log(t)) - np.log(beta))  /  (alpha[j] + beta) )
-    
-
-    ax.plot(tau_arr, mass_arr / max(mass_arr), color='C%s' % (j), label=r'$\alpha$ = {%.2g}, $\beta$ = {%.2g}' % (alpha[j], beta))
-    ax.plot((t, t), (0, 1.1), color='k', linestyle=':')   
-    ax.plot((tau_peak, tau_peak), (0, 1.1), color='C%s' % (j), linestyle=':')   
-    ax.set_xlim(5E9, 0)
+    ax.plot(alpha_arr, mass_arr / max(mass_arr), color='C%s' % (j), label=r'$\tau$ = {%.2g}, $\beta$ = {%.2g}' % (tau[j], beta))
+    ax.plot((alpha_peak, alpha_peak), (0, 1.1), color='C%s' % (j), linestyle=':')   
+    ax.set_xlim(0.1, 1000)
     ax.set_ylim(0, 1.1)
-    ax.set_xlabel('TAU')
+    ax.set_xlabel('ALPHA')
     ax.set_ylabel('MASS / A')
+    ax.set_xscale('log')
 
 plt.legend()
 plt.show()
+
+### ### mass vs beta ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5 / 10**9.049218
+beta_arr = 10.**np.arange(-1, 4, 0.1)
+alpha = 50.
+
+tau = [10**8.5, 10**9]
+mass_arr = np.zeros(len(beta_arr))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+    
+for j in range(len(tau)):
+    
+    for i in range(len(beta_arr)):
+        
+        integrand = lambda T: 1 / (((T/tau[j])**alpha)+((T/tau[j])**-beta_arr[i]))
+        integral  = quad(integrand, 0, t)
+    
+        mass_arr[i] = A * integral[0] 
+    
+    # https://www.wolframalpha.com/input/?i=%28%28t%2FC%29%5EB+%28B+-+A+%28t%2FC%29%5E%28A+%2B+B%29%29%29%2F%28t+%281+%2B+%28t%2FC%29%5E%28A+%2B+B%29%29%5E2%29&assumption=%22ClashPrefs%22+-%3E+%7B%22Math%22%7D
+    #t_peak = np.exp( (   (alpha*np.log(tau)) - np.log(alpha) + (beta*np.log(tau)) + np.log(beta))    /  (alpha + beta))
+    #tau_peak = np.exp(    ( (alpha[j]*np.log(t)) + np.log(alpha[j]) + (beta*np.log(t)) - np.log(beta))  /  (alpha[j] + beta) )
+    #Solve[((t/C)^B (B - A (t/C)^(A + B)))/(t (1 + (t/C)^(A + B))^2) == 0, A]
+    #alpha_peak = np.real(lambertw(  beta * ((t/tau[j])**(-beta)) * np.log(t/tau[j])   ))  / np.log(t/tau[j])  
+    
+    beta_peak = -np.real(lambertw(-alpha * ((t/tau[j])**alpha) * np.log(t/tau[j])))  / np.log(t/tau[j])
+    
+    ax.plot(beta_arr, mass_arr / max(mass_arr), color='C%s' % (j), label=r'$\tau$ = {%.2g}, $\alpha$ = {%.2g}' % (tau[j], alpha))
+    ax.plot((beta_peak, beta_peak), (0, 1.1), color='C%s' % (j), linestyle=':')   
+    ax.set_xlim(1000, 0.1)
+    ax.set_ylim(0, 1.1)
+    ax.set_xlabel('BETA')
+    ax.set_ylabel('MASS / A')
+    ax.set_xscale('log')
+    print(beta_peak)
+
+plt.legend()
+plt.show()
+
+
+
+### ### ### ### ### ###  ###
+### Linear / Delayed Exp ###
+### ### ### ### ### ###  ###
+
+### ### mass vs tau ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+msa = 5E8                   # 10**8.70
+t0 = t - msa
+tp = t - msa/2
+
+tau_arr = np.linspace(0.1, 1E10, 1000)
+mass_arr = np.zeros(len(tau_arr))
+
+for i in range(len(mass_arr)):
+    if t <= tp:
+        mass_arr[i] = ((t-t0)**2) / (2*(tp-t0))
+    elif t > tp:
+        mass_arr[i] = ((tp - t0) / 2) + tau_arr[i] * (1 - np.exp(-((t-tp)/tau_arr[i])))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(tau_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('TAU')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+
+### ### mass vs t0 rising ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+
+t0_arr = np.linspace(0.1, t, 1000)
+tp = t + 5E8
+
+
+tau = 10
+mass_arr = np.zeros(len(t0_arr))
+
+for i in range(len(mass_arr)):
+    if t <= tp:
+        mass_arr[i] = ((t-t0_arr[i])**2) / (2*(tp-t0_arr[i]))
+    elif t > tp:
+
+        mass_arr[i] = ((tp - t0_arr[i]) / 2) + tau * (1 - np.exp(-((t-tp)/tau)))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t0_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+#ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('T0')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+
+### ### mass vs t0 falling ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+tp = t - 5E8
+
+t0_arr = np.linspace(0.1, tp, 1000)
+
+
+
+tau = t
+mass_arr = np.zeros(len(t0_arr))
+
+for i in range(len(mass_arr)):
+    if t <= tp:
+        print('error')
+        mass_arr[i] = ((t-t0_arr[i])**2) / (2*(tp-t0_arr[i]))
+    elif t > tp:
+
+        mass_arr[i] = ((tp - t0_arr[i]) / 2) + tau * (1 - np.exp(-((t-tp)/tau)))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t0_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+#ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('T0')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+### ### mass vs tp rising ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+tau = t
+t0 = t - 5E8
+
+tp_arr = np.linspace(t, 1E10, 1000)
+
+
+mass_arr = np.zeros(len(tp_arr))
+
+for i in range(len(mass_arr)):
+    if t <= tp_arr[i]:
+        mass_arr[i] = ((t-t0)**2) / (2*(tp_arr[i]-t0))
+    elif t > tp:
+        print('error')
+        mass_arr[i] = ((tp - t0_arr[i]) / 2) + tau * (1 - np.exp(-((t-tp)/tau)))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(tp_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+#ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('TP')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+### ### mass vs tp falling ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+tau = t
+t0 = t - 5E8
+
+tp_arr = np.linspace(t0, t, 1000)
+
+
+mass_arr = np.zeros(len(tp_arr))
+
+for i in range(len(mass_arr)):
+    if t < tp_arr[i]:
+        print('error')
+        mass_arr[i] = ((t-t0)**2) / (2*(tp_arr[i]-t0))
+    elif t >= tp_arr[i]:
+
+        mass_arr[i] = ((tp_arr[i] - t0) / 2) + tau * (1 - np.exp(-((t-tp_arr[i])/tau)))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(tp_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+#ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('TP')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
