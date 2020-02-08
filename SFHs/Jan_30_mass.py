@@ -167,18 +167,30 @@ plt.show()
 
 
 ### ### ### ### ### ###  ###
-### Linear / Delayed Exp ###
+### Linear / Exp ###
 ### ### ### ### ### ###  ###
 
-### ### mass vs tau ### ###
+def lin_exp(t_plot, t0_value, tp_value, tau_value):
+    sfr_plot = np.zeros(len(t_plot))
+    for i in range(len(t_plot)):
+        if t_plot[i] < t0_value:
+            sfr_plot[i] = 0
+        elif t_plot[i] < tp_value:
+            sfr_plot[i] = (t_plot[i] - t0_value) / (tp_value - t0_value)
+        else:
+            sfr_plot[i] = np.exp(-t_plot[i]/tau_value) * np.exp(tp_value/tau_value)
+    sfr_plot = sfr_plot / max(sfr_plot)
+    return sfr_plot
+
+### ### mass vs tau rising ### ###
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5
 msa = 5E8                   # 10**8.70
 t0 = t - msa
-tp = t - msa/2
+tp = t + msa/2
 
-tau_arr = np.linspace(0.1, 1E10, 1000)
+tau_arr = np.linspace(1E7, 1E10, 1000)
 mass_arr = np.zeros(len(tau_arr))
 
 for i in range(len(mass_arr)):
@@ -197,35 +209,137 @@ ax.set_xlabel('TAU')
 ax.set_ylabel('MASS / A')
 plt.show()
 
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, tp, min(tau_arr)), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, tp, max(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+
+### ### mass vs tau falling ### ###
+
+A = 1
+t = 1.12 * 1E9              # time of observation / age of universe at z=5
+msa = 5E8                   # 10**8.70
+t0 = t - msa
+tp = t - msa/2
+
+tau_arr = np.linspace(1E7, 1E10, 1000)
+mass_arr = np.zeros(len(tau_arr))
+
+for i in range(len(mass_arr)):
+    if t <= tp:
+        mass_arr[i] = ((t-t0)**2) / (2*(tp-t0))
+    elif t > tp:
+        mass_arr[i] = ((tp - t0) / 2) + tau_arr[i] * (1 - np.exp(-((t-tp)/tau_arr[i])))
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(tau_arr, mass_arr / max(mass_arr))
+#ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
+#ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
+ax.set_xlim(0, 1E10)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('TAU')
+ax.set_ylabel('MASS / A')
+plt.show()
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, tp, min(tau_arr)), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, tp, max(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
 
 ### ### mass vs t0 rising ### ###
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5
 
-t0_arr = np.linspace(0.1, t, 1000)
+
 tp = t + 5E8
+t0_arr = np.linspace(0.1, tp, 1000)
 
-
-tau = 10
+tau = 1E9
 mass_arr = np.zeros(len(t0_arr))
 
 for i in range(len(mass_arr)):
-    if t <= tp:
-        mass_arr[i] = ((t-t0_arr[i])**2) / (2*(tp-t0_arr[i]))
-    elif t > tp:
-
-        mass_arr[i] = ((tp - t0_arr[i]) / 2) + tau * (1 - np.exp(-((t-tp)/tau)))
+    if t0_arr[i] >= t:
+        mass_arr[i] = 0
+    else:
+        if t <= tp:
+            mass_arr[i] = ((t-t0_arr[i])**2) / (2*(tp-t0_arr[i]))
+        elif t > tp:
+            mass_arr[i] = ((tp - t0_arr[i]) / 2) + tau * (1 - np.exp(-((t-tp)/tau)))
 
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(t0_arr, mass_arr / max(mass_arr))
 #ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
 #ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
-#ax.set_xlim(0, 1E10)
+ax.set_xlim(0, tp)
 ax.set_ylim(0, 1.1)
 ax.set_xlabel('T0')
 ax.set_ylabel('MASS / A')
 plt.show()
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, min(t0_arr), tp, tau), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, max(t0_arr), tp, tau))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
 
 
 ### ### mass vs t0 falling ### ###
@@ -238,7 +352,7 @@ t0_arr = np.linspace(0.1, tp, 1000)
 
 
 
-tau = t
+tau = 1E9
 mass_arr = np.zeros(len(t0_arr))
 
 for i in range(len(mass_arr)):
@@ -253,17 +367,42 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(t0_arr, mass_arr / max(mass_arr))
 #ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
 #ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
-#ax.set_xlim(0, 1E10)
+ax.set_xlim(0, tp)
 ax.set_ylim(0, 1.1)
 ax.set_xlabel('T0')
 ax.set_ylabel('MASS / A')
 plt.show()
 
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, min(t0_arr), tp, tau), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, max(t0_arr), tp, tau))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+
 ### ### mass vs tp rising ### ###
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5
-tau = t
+tau = 1E9
 t0 = t - 5E8
 
 tp_arr = np.linspace(t, 1E10, 1000)
@@ -282,17 +421,41 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(tp_arr, mass_arr / max(mass_arr))
 #ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
 #ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
-#ax.set_xlim(0, 1E10)
+ax.set_xlim(t, 1E10)
 ax.set_ylim(0, 1.1)
 ax.set_xlabel('TP')
 ax.set_ylabel('MASS / A')
 plt.show()
 
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, min(tp_arr), tau), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, max(tp_arr), tau))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
+
 ### ### mass vs tp falling ### ###
 
 A = 1
 t = 1.12 * 1E9              # time of observation / age of universe at z=5
-tau = t
+tau = 1E9
 t0 = t - 5E8
 
 tp_arr = np.linspace(t0, t, 1000)
@@ -312,13 +475,35 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(tp_arr, mass_arr / max(mass_arr))
 #ax.plot((t0, t0), (0, 1.1), color='k', linestyle=':')   
 #ax.plot((tp, tp), (0, 1.1), color='k', linestyle=':')   
-#ax.set_xlim(0, 1E10)
+ax.set_xlim(t0, t)
 ax.set_ylim(0, 1.1)
 ax.set_xlabel('TP')
 ax.set_ylabel('MASS / A')
 plt.show()
 
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, min(tp_arr), tau), label=r'$\tau$ = {%.2g}' % (min(tau_arr)))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
 
+### PLOT ###
+t_plot = np.linspace(0., 1E10, 1000)
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(t_plot, lin_exp(t_plot, t0, max(tp_arr), tau))
+ax.plot((t, t), (0, 1.1), color='k', linestyle=':')    
+ax.set_xlim(0, 3E9)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('t')
+ax.set_ylabel('SFR')
+plt.show()
+### ###  ###
 
 
 

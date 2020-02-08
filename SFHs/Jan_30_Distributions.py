@@ -20,20 +20,21 @@ size        = np.int(1E4)
 z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
 
 age_z_4p5   = cd.age(4.5, **cosmo)/cc.yr_s                                      # yr, (log, 9.107)
+age_z_5p5   = cd.age(5.5, **cosmo)/cc.yr_s                                      # yr,
 age_z_15    = cd.age(15, **cosmo)/cc.yr_s                                       # yr, age of universe at z=15
 age_galaxy  = 10**np.random.uniform(low=6, high=10, size=size)                  # yr, age of galaxy
 
 t_arr       = cd.age(z, **cosmo)/cc.yr_s                                        # yr, age of Universe
 t0_arr      = t_arr-age_galaxy                                                  # yr, start of star formation
-tau_arr     = 10**np.random.uniform(low=7.5, high=10, size=size)                # yr, width of function
 
 m_arr       = np.random.uniform(low=5, high=12, size=size)                      # log, mass of galaxy
 massArr     = np.arange(5, 13, 1)
 
-
 ### ### ### ### ### ### ###
 ### Delayed Exponential ###
 ### ### ### ### ### ### ### 
+
+tau_arr     = 10**np.random.uniform(low=7.5, high=10, size=size)                # yr, width of function
 
 sfr_arr = []
 mass_used = []
@@ -60,21 +61,10 @@ for i in range(size):
         ssfr_arr.append(np.log10(sfr/m))
         tau_log10_arr.append(np.log10(tau))
 
-        '''
-        xax = (10**9)*np.arange(0.1, 15, 0.01)
-        plt.figure(figsize=(10, 5))
-        plt.plot(xax, A * (xax-t0) * np.exp(-(xax-t0)/tau))
-        plt.plot((t, t), (0, 1E100))
-        plt.plot((t0, t0), (0, 1E10))
-        plt.xlim((0, 14E9))
-        plt.ylim((0, max(A * (xax-t0) * np.exp(-(xax-t0)/tau))))
-        plt.show()
-        print(A, m)
-        '''
-            
+
 print(len(t_arr))
 print(len(sfr_arr))
-
+ 
 ### ### ### ### ### sfr vs mass
 
 fig, ax = plt.subplots(figsize=(8, 4))
@@ -85,18 +75,15 @@ fig.colorbar(h[3], ax=ax, label='weighting in prior')
 ax.set_xlabel("log mass")
 ax.set_ylabel("log sfr")
 
-ageUniv_5p5 = cd.age(5.5, **cosmo)/cc.Gyr_s #Gyr
-ageUniv_4p5 = cd.age(4.5, **cosmo)/cc.Gyr_s
-
-ax.plot(massArr, np.log10(10**massArr/(ageUniv_5p5*1E9)))
-ax.plot(massArr, np.log10(10**massArr/(ageUniv_4p5*1E9)))
-ax.plot(massArr, np.log10(10**massArr/(1E6)))
-
+plt.plot(massArr, np.log10(10**massArr/(1E6)), label='t=1E6')
+plt.plot(massArr, np.log10(10**massArr/age_z_4p5), label='z=4.5')
+plt.plot(massArr, np.log10(10**massArr/age_z_5p5), label='z=5.5')
+plt.legend()
 plt.show()
 
 ### ### ### ### ###
 
-
+ 
 ### ### ### ### ### tau vs ssfr
 
 fig, ax = plt.subplots(figsize=(8, 4))
@@ -109,13 +96,13 @@ plt.show()
 
 ### ### ### ### ###
 
+ 
 
+### ### ### ### ###   ###
+### Double Power Law1 ###
+### ### ### ### ###   ###       
 
-### ### ### ### ###  ###
-### Double Power Law ###
-### ### ### ### ###  ###       
-
-tau_arr     = np.random.uniform(low=0.1, high=t_arr, size=size)                 # yr, width of function
+tau_arr     = np.random.uniform(low=7E8, high=t_arr, size=size)                 # yr
 
 alpha_arr   = (10**np.random.uniform(low=-1, high=3, size=size))
 beta_arr    = (10**np.random.uniform(low=-1, high=3, size=size))
@@ -126,6 +113,7 @@ sfr_arr     = []
 mass_used   = []
 int_err     = []
 
+print(age_z_15)
 for i in range(size):
 
     if age_z_15 < t0_arr[i]: # age of galaxy is less than time available for star formation
@@ -140,14 +128,12 @@ for i in range(size):
         
         integrand = lambda T: 1 / (((T/tau)**alpha)+((T/tau)**-beta))
         integral  = quad(integrand, t0, t)
-        
-        if integral[0] > 0:
+            
+        if integral[0] > 0:                                                     # not zero
             A = m / integral[0]                                                 # solar masses / yr
             
-
-
             if A > 1E300:
-                pass
+                #pass
                 print('lt', A, m, integral[0], (((t/tau)**alpha)+((t/tau)**-beta)), sfr)
             else:
                 int_err.append(integral[1])
@@ -159,11 +145,17 @@ for i in range(size):
                 else:
                     mass_used.append(m_arr[i])                                      # log, mass of galaxy
                     sfr_arr.append(np.log10(sfr)) 
+        else:
+            print('TEST', integral[0])
+            T = np.linspace(0, 1E10, 1000)
+            plt.plot(T, 1 / (((T/tau)**alpha)+((T/tau)**-beta)))
+            plt.show()
+
 
 print(len(t_arr), len(sfr_arr), max(int_err))
 print(max(mass_used), min(mass_used), max(sfr_arr), min(sfr_arr))
 
-plt.figure(figsize=(7, 5))
+plt.figure(figsize=(8, 4))
 plt.hist2d(mass_used, sfr_arr, bins=[50,100], cmap='Blues', normed=True)
 c=plt.colorbar()
 c.set_label("weighting in prior")
@@ -173,20 +165,11 @@ plt.ylabel("log sfr")
 #plt.xlim(6,11)
 #plt.ylim(-4,3)
 
-ageUniv_5p5 = cd.age(5.5, **cosmo)/cc.yr_s                                      # yr
-ageUniv_4p5 = cd.age(4.5, **cosmo)/cc.yr_s                                      # yr
-
 plt.plot(massArr, np.log10(10**massArr/(1E6)), label='t=1E6')
-plt.plot(massArr, np.log10(10**massArr/ageUniv_4p5), label='z=4.5')
-plt.plot(massArr, np.log10(10**massArr/ageUniv_5p5), label='z=5.5')
-
-
+plt.plot(massArr, np.log10(10**massArr/age_z_4p5), label='z=4.5')
+plt.plot(massArr, np.log10(10**massArr/age_z_5p5), label='z=5.5')
 plt.legend()
 plt.show()
-
-#pylab.savefig("delayed_prior_z5_lester.pdf")
-
-
 
 
 ### ### ### ### ###   ###
@@ -194,36 +177,15 @@ plt.show()
 ### ### ### ### ###   ###  
 
 
-
-
-cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.72}
-cosmo = cd.set_omega_k_0(cosmo)
-
-size        = np.int(1E4)
-z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
-
-age_z_15    = cd.age(15, **cosmo)/cc.yr_s                                       # yr, age of universe at z=15
-age_galaxy  = 10**np.random.uniform(low=6, high=9.3, size=size)                  # yr, age of galaxy
-
-t_arr       = cd.age(z, **cosmo)/cc.yr_s                                        # yr, age of Universe
-t0_arr      = t_arr-age_galaxy                                                  # yr, start of star formation
 tau_arr     = 10**np.random.uniform(low=9, high=10, size=size)                  # yr, width of function
-
-m_arr       = np.random.uniform(low=5, high=12, size=size)                      # log, mass of galaxy
-massArr     = np.arange(5, 13, 1)
 
 alpha_arr   = 10**np.random.uniform(low=-1, high=2, size=size)                  # cannot make upper limit 3 due to beta_max
 
 k = 100                                                                         # the factor in beta_min
+
 beta_max    = -(np.log10((2*k) - ((t_arr/tau_arr)**(alpha_arr)))) / np.log10(t_arr/tau_arr) # limits left slope
 
-'''
-beta_max   = np.zeros(size)
 
-for i in range(size):
-    print(t_arr[i], tau_arr[i], alpha_arr[i])
-    beta_max[i]    = -(np.log10((2*k) - ((t_arr[i]/tau_arr[i])**(alpha_arr[i])))) / np.log10(t_arr[i]/tau_arr[i]) # limits left slope
-'''
 
 test = 0
 for i in range(size):
@@ -280,6 +242,7 @@ for i in range(size):
         
         xax = (10**9)*np.arange(0.1, 15, 0.01)
         upper = max(A / (((xax/tau)**alpha)+((xax/tau)**-beta)))
+
         '''
         plt.figure(figsize=(10, 5))
         plt.plot(xax, A / (((xax/tau)**alpha)+((xax/tau)**-beta)))
@@ -290,7 +253,7 @@ for i in range(size):
         plt.show()
         print(A, m, t, t0, alpha, beta)
         '''
-            
+          
 print(len(t_arr))
 print(len(sfr_arr))
 
@@ -360,7 +323,6 @@ plt.ylabel("log mass")
 plt.show()
 
 ### ### ### ### ###
-
 
 
 
