@@ -35,7 +35,7 @@ ax.set_xlim(0,55000)
 
 ### HST FILTERS ###
         
-fileName = '/Users/lester/BEAGLE/BEAGLE-general/filters/JADES_mock_filters_fixed.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general-current/filters/JADES_mock_filters_fixed.fits'
 #fileName = '/Users/lester/BEAGLE/BEAGLE-general/filters/UVUDF_filters.fits'
 filter_fits = fits.open(fileName)
 
@@ -83,7 +83,7 @@ for i in range(len(filters)):
 
 ### SPECTRA ###
     
-fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/Lester_z_shift_2/my_first_test.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general-current/results/Lester_z_shift_2/my_first_test.fits'
 data_fits = fits.open(fileName)
 
 redshift = [0]
