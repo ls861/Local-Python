@@ -5,7 +5,8 @@ from astropy.io import fits
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_002/astrodeep_002/mock_catalogue_002_002.fits'
+#fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_002/astrodeep_002/mock_catalogue_002_002.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/param_002/astrodeep_003/mock_catalogue_002_003.fits'
 
 # =============================================================================
 # get SFH parameters

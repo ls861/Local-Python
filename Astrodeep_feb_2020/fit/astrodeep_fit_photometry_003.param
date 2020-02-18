@@ -32,7 +32,7 @@ FILTERS CONFIGURATION = $BEAGLE_FILTERS/astrodeep_filters_config.dat
 #******************** (MOCK)  OBSERVATIONS **********************
 #****************************************************************
 
-N_OBJECTS = 10
+N_OBJECTS = 50
 
 #****************************************************************
 #******************** IGM ABSORPTION *******
@@ -44,19 +44,19 @@ IGM ABSORPTION = Inoue
 # ************** SF BIN #1 **************************
 # **************************************************
 
-SF_PARAMETER  = name:sfh_type                 type:fixed  char_value:lin_exp
-SF_PARAMETER  = name:max_stellar_age          type:random  prior:distribution:gaussian prior:mean:8.  prior:sigma:2.  prior:range:[6.,10.]
-SF_PARAMETER  = name:tau_exp                  type:random  prior:distribution:uniform  prior:range:[7.,10.5]
-SF_PARAMETER  = name:tau                      type:random  prior:distribution:uniform  prior:range:[7.,10.5]
+SF_PARAMETER  = name:sfh_type                 type:fixed  char_value:linear_exp
+SF_PARAMETER  = name:max_stellar_age          type:random  prior:distribution:gaussian prior:mean:8.  prior:sigma:2.  prior:range:[8.,9.]
+SF_PARAMETER  = name:tau_exp                  type:gridded  grid:range:[7., 10.5]  grid:step:1.
+SF_PARAMETER  = name:tau                      type:gridded  grid:range:[7., 10.5]  grid:step:1.
 SF_PARAMETER  = name:metallicity              type:fixed  value:0.
-SF_PARAMETER  = name:mass                     type:random  prior:distribution:uniform  prior:range:[7.,10.5]
+SF_PARAMETER  = name:mass                     type:fixed  value:9.
 
 #****************************************************************
 # ******************* PRINTED OUTPUT  *****************************
 #****************************************************************
 
-RESULTS DIRECTORY = $BEAGLE_RESULTS/param_003/astrodeep_001/
-MOCK CATALOGUE NAME = mock_catalogue_003_001
+RESULTS DIRECTORY = $BEAGLE_RESULTS/param_003/astrodeep_002/
+MOCK CATALOGUE NAME = mock_catalogue_003_002
 
 PRINT PHOTOMETRY = T
 PRINT SPECTRUM = T
