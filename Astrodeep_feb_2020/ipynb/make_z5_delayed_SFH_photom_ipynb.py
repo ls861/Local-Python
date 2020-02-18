@@ -24,12 +24,17 @@ def find_age(mass, sfr, tau, minAge, maxAge):
     nAge = 500
     dAge = (maxAge-minAge)/nAge
     ageArr = np.fromiter((x for x in np.arange(minAge,maxAge+dAge,dAge)),np.float)
+
     scaleArr = sfr/(ageArr*np.exp((-1)*ageArr/tau))
     massArr = integrate_delayed_history(scaleArr, tau, 0, ageArr)
+
 #     print ageArr[0], massArr[0], scaleArr[0], ageArr[-1], massArr[-1], scaleArr[-1]
 #     print minAge, minMass, minScale, maxAge, maxMass, maxScale
 
-    
+# =============================================================================
+#     plt.scatter(massArr, ageArr)
+#     plt.show()
+# =============================================================================
     #interpolate age vs. mass array to find age required to produce required mass
     #pylab.figure()
     #pylab.plot(np.log10(massArr), log10(ageArr))
@@ -45,35 +50,42 @@ def find_age(mass, sfr, tau, minAge, maxAge):
 # 
 # =============================================================================
 
-zObs = 5
+zObs = 5.
 maxAge = 1.18E9 #(age Univ = 1.186E9 for For Ho = 69.6, OmegaM = 0.286, Omegavac = 0.714, z = 5.000)
 minAge = 1.E6
-minMass = 7
-maxMass = 12
+minMass = 7.
+maxMass = 12.
 
 from astropy.table import Table
 
-intercept = -8
-slope = 1
+intercept = -8.
+slope = 1.
 scatter = 0.3
-nObj = 100
+nObj = 1000
 #nObj = 100
-minTau = 7
-maxTau = 10
+minTau = 7.
+maxTau = 10.5
 #assign masses drawn from broad Guassian distribution
-Marr = np.random.normal(size=nObj,scale=0.5,loc=10.0)
+Marr = np.random.normal(size=nObj,scale=0.5,loc=(minMass+maxMass)/2)
+
+
 while np.max(Marr) > maxMass or np.min(Marr) < minMass:
     tempIdx = np.where((Marr > maxMass) | (Marr < minMass))[0]
-    Marr[tempIdx] = np.random.normal(size=len(tempIdx),scale=10,loc=9.5)
+    print(tempIdx)
+    Marr[tempIdx] = np.random.normal(size=len(tempIdx),scale=0.5,loc=(minMass+maxMass)/2)
 plt.figure()
-plt.hist(Marr)
+plt.hist(Marr, bins=50)
 plt.show()
 
 #assign SFRs
 Sfr = slope*Marr+intercept+np.random.normal(size=nObj,scale=scatter)
+
+plt.scatter(Marr, Sfr)
+
 tauArr = np.zeros(nObj)
 scaleArr = np.zeros(nObj)
 ageArr = np.zeros(nObj)
+
 for j in range(nObj):
     #assign tau
     s = 10**Sfr[j]
@@ -87,6 +99,9 @@ for j in range(nObj):
     ageArr[j] = np.log10(age)
     t = 10**ageArr[j]
     scaleArr[j] = s/(t*np.exp((-1)*t/tau))
+    
+    
+    
 outputDict = {}
 outputDict['mass']=Marr
 #print tauArr
@@ -100,8 +115,8 @@ outputTable.write("delayed_BEAGLEinput.fits", overwrite=True)
 # 
 # =============================================================================
 
-pylab.scatter(Marr, Sfr)
 
+plt.scatter(Marr, Sfr)
 
 
 
