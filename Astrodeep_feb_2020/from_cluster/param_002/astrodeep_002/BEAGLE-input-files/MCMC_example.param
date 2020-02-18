@@ -1,7 +1,7 @@
 # Seed of the random number generator
 # if not present, empty, or 0 it uses the system seed
 # if > 0 use the user defined seed
-# if < 0 use seed form system clock
+# if < 0 use seed form system clock 
 # NB the user defined seed is used *in combination* with the default (system) seed, so in order to get the same sequences
 # in different computers you need to get the actual seed of the generator *after* initialization of the MCMC
 SEED = 87884
@@ -19,11 +19,11 @@ NUMBER OF WALKERS = 150
 # This parameter determines the number of independent samples to be drawn in order to achieve a given Monte Carlo accuracy.
 # The Monte Carlo accuracy determines the error-bars on the error-bars of your model parameters.
 # Do not put too small values, 5 % is ok most of the times !
-# MC accuracy  |  number of effective samples
-#     10 %     |     100
-#     5 %      |     400
-#     2 %      |     2500
-#     1 %      |     10000
+# MC accuracy  |  number of effective samples 
+#     10 %     |     100                
+#     5 %      |     400                
+#     2 %      |     2500               
+#     1 %      |     10000              
 MONTE CARLO ACCURACY = 0.05
 
 # Whether to "thin" the chain or not, used only in post-processing to save memory
@@ -31,9 +31,9 @@ MONTE CARLO ACCURACY = 0.05
 THIN CHAIN = F
 
 # Whether the sampler need to initialize MPI, or this has been done in the main program
-# INITIALIZE MPI =
+# INITIALIZE MPI = 
 
-# Type of sampling method:
+# Type of sampling method: 
 # ----> metropolis-hastings
 # ----> affine-invariant
 MCMC ALGORITHM = nested-sampling
@@ -41,11 +41,11 @@ MCMC ALGORITHM = nested-sampling
 #MCMC ALGORITHM = affine-invariant
 
 # Type of adaptive proposal to be used with the metropolis-hastings sampling method
-# ----> AM ("adaptive Metropolis"), in which the covariance matrix of the multivariate
+# ----> AM ("adaptive Metropolis"), in which the covariance matrix of the multivariate 
 #       Gaussian proposal distribution is adaptively updated to reach an optimal acceptance rate
 # ----> SCAM ("single-component adaptive Metropolis"), in which the variance of the univariate
 #       Gaussian proposal distribution is adaptively updated to reach an optimal acceptance rate
-# ----> RAM ("robust adaptive Metropolis"), in which the proposal transition (positive, semi-definite)
+# ----> RAM ("robust adaptive Metropolis"), in which the proposal transition (positive, semi-definite) 
 #       matrix is updated to reach an optimal acceptance rate
 PROPOSAL = AM
 
@@ -54,11 +54,11 @@ PROPOSAL = AM
 # ----> Gaussian
 STARTING DISTRIBUTION = uniform
 
-# If you already have an estimate of the posterior covariance put here the filename
+# If you already have an estimate of the posterior covariance put here the filename 
 # containing the covariance matrix. It has to be a square matrix, n_par x n_par
-#PROPOSAL MATRIX =
+#PROPOSAL MATRIX = 
 
-# This parameter controls the frequency of the proposal adaptation, i.e. the proposal (co)variance/transition
+# This parameter controls the frequency of the proposal adaptation, i.e. the proposal (co)variance/transition 
 # matrix is updated every "UPDATE ITERATIONS" iterations
 # default value = 100
 UPDATE ITERATIONS = 100
@@ -85,10 +85,10 @@ CONSTANT EFFICIENCY = F
 # Evidence tolerance factor (default = 0.5)
 EVIDENCE TOLERANCE = 0.10
 
-# Enlargment factor. It determines the sampling efficiency.
+# Enlargment factor. It determines the sampling efficiency. 
 # 0.8 and 0.3 are recommended for parameter estimation & evidence evaluation respectively.
 # (default = 0.8)
-ENLARGMENT FACTOR = 0.8
+ENLARGMENT FACTOR = 0.3
 
 # Maximum (expected) number of modes (default = 10)
 NUMBER OF MODES = 10
