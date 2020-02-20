@@ -108,7 +108,7 @@ outputDict['mass']=Marr
 outputDict['tau']=tauArr
 outputDict['max_stellar_age']=ageArr
 outputTable = Table(outputDict)
-outputTable.write("delayed_BEAGLEinput.fits", overwrite=True)
+#outputTable.write("delayed_BEAGLEinput.fits", overwrite=True)
 
 
 # =============================================================================

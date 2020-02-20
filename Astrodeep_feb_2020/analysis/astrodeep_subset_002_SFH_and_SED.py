@@ -6,8 +6,8 @@ import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
 #fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_002/astrodeep_002/mock_catalogue_002_002.fits'
-#fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/param_002/astrodeep_003/mock_catalogue_002_003.fits'
-fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/param_005/astrodeep_009/mock_catalogue_005_009.fits'
+fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/param_002/astrodeep_003/mock_catalogue_002_003.fits'
+#fileName = '/Users/lester/BEAGLE/BEAGLE-general/results/param_005/astrodeep_009/mock_catalogue_005_009.fits'
 
 # =============================================================================
 # get SFH parameters
@@ -63,10 +63,10 @@ for i in range(len(SFR)):
     
     plt.xlim(0, 1.4E10)
     plt.ylim(bottom=0)
-    plt.plot(x_arr, y_arr / max(y_arr))
+    plt.plot(x_arr, y_arr / max(y_arr), color='#1f77b4')
 #    plt.show()
     
-    plt.plot(age_z[i] - lookback_age[i], SFR[i] / ratio)
+    plt.plot(age_z[i] - lookback_age[i], SFR[i] / ratio, color='#ff7f0e')
 #    plt.xlim(0, 1.4E10)
 #    plt.ylim(0, 1E5)
     plt.show()
