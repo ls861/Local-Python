@@ -25,8 +25,11 @@ EMISSION LINES CONFIGURATION = $BEAGLE_TEMPLATES/ineb_June16/mup100/cb2016_Jan16
 # ******************* PHOTOMETRY *****************************
 #****************************************************************
 #
-FILTERS THROUGHPUTS = $BEAGLE_FILTERS/astrodeep_filters.fits
-FILTERS CONFIGURATION = $BEAGLE_FILTERS/astrodeep_filters_config.dat
+#FILTERS THROUGHPUTS = $BEAGLE_FILTERS/astrodeep_filters.fits
+#FILTERS CONFIGURATION = $BEAGLE_FILTERS/astrodeep_filters_config.dat
+
+FILTERS THROUGHPUTS = $BEAGLE_FILTERS/JADES_mock_filters_fixed.fits
+FILTERS CONFIGURATION = $BEAGLE_FILTERS/JADES_filters_config.dat
 
 #****************************************************************
 #******************** (MOCK)  OBSERVATIONS **********************
@@ -54,8 +57,8 @@ SF_PARAMETER  = name:mass                     type:from_file
 # ******************* PRINTED OUTPUT  *****************************
 #****************************************************************
 
-RESULTS DIRECTORY = $BEAGLE_RESULTS/param_005/astrodeep_009/
-MOCK CATALOGUE NAME = mock_catalogue_005_009
+RESULTS DIRECTORY = $BEAGLE_RESULTS/param_005/astrodeep_010/
+MOCK CATALOGUE NAME = mock_catalogue_005_010
 MOCK INPUT PARAMETERS = fileName:$BEAGLE_DATA/delayed_BEAGLEinput_photometry_005.fits
 
 PRINT PHOTOMETRY = T

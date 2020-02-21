@@ -10,16 +10,12 @@ Created on Wed Feb 19 12:30:23 2020
 import numpy as np
 import matplotlib.pyplot as plt
 
-t = np.linspace(0, np.pi, 10000)
-
-x = np.cos(14*t)
-y = np.sin(26*t)
-
-plt.plot(x, y)
+m_AB = np.array([42.8614, 30.0721, 45.285, 32.3961, 29.4, 25.5])
+S_v = 10**( (23.9 - m_AB) / 2.5 )
+print(S_v)
 
 
 
 
 
 
-print(np.pi)
