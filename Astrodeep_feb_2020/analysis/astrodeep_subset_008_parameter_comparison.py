@@ -196,7 +196,7 @@ distance = (abs(mtot_r[id_b] - mtot_b)**2 + abs(np.log10(sfr_r[id_b]) - np.log10
 
 
 
-plt.hist(distance, bins=50)
+plt.hist(distance, bins=500)
 
 ind = distance > 1
 ind = [i for i, x in enumerate(ind) if x]
