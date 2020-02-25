@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 from scipy.integrate import quad
 
-def sfr_calc(sfh, mtot, msa, tau):
+def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta):
     
     if sfh == 'DE':
         
@@ -31,8 +31,19 @@ def sfr_calc(sfh, mtot, msa, tau):
         sfr = A * t * np.exp(-t/ta)
            
     elif sfh == 'LE':
-        pass
-    
+        
+        m       = 10**mtot                                                          # solar masses
+        t       = 10**msa                                                           # yrs
+        ta      = 10**tau                                                           # yrs
+        ta_exp  = 10**tau_exp                                                       # yrs
+        A       = np.empty(len(m))
+        
+        for i in range(len(A)):          
+            integrand = lambda T: (T*np.heaviside(ta[i] - T, 0)  + ta[i]*np.exp((ta[i]-T)/ta_exp[i])*np.heaviside(T - ta[i], 1))
+            A[i] = m[i] / quad(integrand, 0, t[i])[0]
+                
+        sfr = A * (t*np.heaviside(ta - t, 0)  + ta*np.exp((ta-t)/ta_exp)*np.heaviside(t - ta, 1))
+        
     elif sfh == 'DPL':
         pass
     
@@ -76,9 +87,9 @@ plt.show()
 # get BEAGLE parameters
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_006/astrodeep_002/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
+#fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_006/astrodeep_002/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
-#fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_007/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_007/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
 #fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_008/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
@@ -90,6 +101,7 @@ z_med_b = data_fits[1].data['redshift_median']
 mtot_b = data_fits[1].data['mass_mean']
 msa_b = data_fits[1].data['max_stellar_age_mean']
 tau_b = data_fits[1].data['tau_mean']
+tau_exp_b = data_fits[1].data['tau_exp_mean']
 
 data_fits.close()
 
@@ -99,7 +111,7 @@ data_fits.close()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize/2))
-plt.title('DE - Histogram of BEAGLE fitted redshifts', size=size)
+plt.title('LE - Histogram of BEAGLE fitted redshifts', size=size)
 plt.xlabel(r'Redshift', size=size)
 plt.ylabel(r'Count', size=size)
 plt.hist(z_b, bins=50, histtype=u'step', label='mean')
@@ -113,11 +125,11 @@ plt.show()
 # plot main sequence
 # =============================================================================
 
-sfr_b = sfr_calc('DE', mtot_b, msa_b, tau_b)
+sfr_b = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0)
 
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
+plt.title('LE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
 plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.xlim(7.5, 11)
@@ -130,7 +142,7 @@ plt.show()
 
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
+plt.title('LE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
 plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.xlim(7.5, 11)
@@ -141,6 +153,8 @@ for i in range(len(sfr_b)):
     plt.plot( mtot_r[id_b][i], np.log10(sfr_r[id_b][i]), 'o', color=color, markersize=3)
 plt.show()   
     
+
+
 
 
 

@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 from scipy.integrate import quad
 
-def sfr_calc(sfh, mtot, msa, tau):
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
+
+def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
     
     if sfh == 'DE':
         
@@ -16,7 +19,7 @@ def sfr_calc(sfh, mtot, msa, tau):
         # https://www.wolframalpha.com/input/?i=A*%28t%29*exp%28-%28t%29%2FC%29
       
         sfr = A * t * np.exp(-t/ta)
-           
+
     elif sfh == 'iDE':
         
         m       = 10**mtot                                                          # solar masses
@@ -31,15 +34,37 @@ def sfr_calc(sfh, mtot, msa, tau):
         sfr = A * t * np.exp(-t/ta)
            
     elif sfh == 'LE':
-        pass
-    
+        
+        m       = 10**mtot                                                          # solar masses
+        t       = 10**msa                                                           # yrs
+        ta      = 10**tau                                                           # yrs
+        ta_exp  = 10**tau_exp                                                       # yrs
+        A       = np.empty(len(m))
+        
+        for i in range(len(A)):          
+            integrand = lambda T: (T*np.heaviside(ta[i] - T, 0)  + ta[i]*np.exp((ta[i]-T)/ta_exp[i])*np.heaviside(T - ta[i], 1))
+            A[i] = m[i] / quad(integrand, 0, t[i])[0]
+                
+        sfr = A * (t*np.heaviside(ta - t, 0)  + ta*np.exp((ta-t)/ta_exp)*np.heaviside(t - ta, 1))
+        
     elif sfh == 'DPL':
-        pass
-    
+        
+        m       = 10**mtot                                                          # solar masses
+        ta      = 10**tau                                                           # yrs
+        t = cosmo.age(z).value * 1E9                                                # yrs
+        A       = np.empty(len(m))
+        err     = np.empty(len(m))
+        
+        for i in range(len(A)):          
+            integrand = lambda T: ( ( ((T/ta[i])**alpha[i]) + ((T/ta[i])**-beta[i]) ) ** -1 )
+            A[i] = m[i] / quad(integrand, 0, t[i])[0]
+            err[i] = quad(integrand, 0, t[i])[1] / quad(integrand, 0, t[i])[0]
+        sfr = A * ( ( ((t/ta)**alpha) + ((t/ta)**-beta) ) ** -1 )
+        
     else:
         sfr='ERROR in sfr_calc'
      
-    return sfr
+    return sfr, err
 
 
 size = 15
@@ -76,11 +101,11 @@ plt.show()
 # get BEAGLE parameters
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_006/astrodeep_002/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
+#fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_006/astrodeep_002/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
 #fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_007/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
-#fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_008/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_008/astrodeep_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 
 data_fits = fits.open(fileName)
 
@@ -88,8 +113,10 @@ id_b = np.asarray(data_fits[1].data['ID'], dtype=int) - 1
 z_b = data_fits[1].data['redshift_mean']
 z_med_b = data_fits[1].data['redshift_median']
 mtot_b = data_fits[1].data['mass_mean']
-msa_b = data_fits[1].data['max_stellar_age_mean']
+#msa_b = data_fits[1].data['max_stellar_age_mean']
 tau_b = data_fits[1].data['tau_mean']
+alpha_b = data_fits[1].data['dpl_alpha_mean']
+beta_b = data_fits[1].data['dpl_beta_mean']
 
 data_fits.close()
 
@@ -99,7 +126,7 @@ data_fits.close()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize/2))
-plt.title('DE - Histogram of BEAGLE fitted redshifts', size=size)
+plt.title('DPL - Histogram of BEAGLE fitted redshifts', size=size)
 plt.xlabel(r'Redshift', size=size)
 plt.ylabel(r'Count', size=size)
 plt.hist(z_b, bins=50, histtype=u'step', label='mean')
@@ -113,11 +140,17 @@ plt.show()
 # plot main sequence
 # =============================================================================
 
-sfr_b = sfr_calc('DE', mtot_b, msa_b, tau_b)
+sfr_b, err = sfr_calc('DPL', mtot_b, 0, tau_b, 0, alpha_b, beta_b, z_b)
+
+plt.hist(err, bins=50)
+plt.ylim(0, 10)
+
+plt.show()
+
 
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
+plt.title('DPL - Plot showing BEAGLE fitted SFR vs Mass', size=size)
 plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.xlim(7.5, 11)
@@ -130,7 +163,7 @@ plt.show()
 
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
+plt.title('DPL - Plot showing BEAGLE fitted SFR vs Mass', size=size)
 plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.xlim(7.5, 11)
@@ -141,6 +174,16 @@ for i in range(len(sfr_b)):
     plt.plot( mtot_r[id_b][i], np.log10(sfr_r[id_b][i]), 'o', color=color, markersize=3)
 plt.show()   
     
+
+# This creates a list of indices for which the relative integration error is less than the specified value
+ind = err <= 0.01
+ind = [i for i, x in enumerate(ind) if x]
+
+
+
+
+
+
 
 
 
