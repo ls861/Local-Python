@@ -110,13 +110,21 @@ fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_
 data_fits = fits.open(fileName)
 
 id_b = np.asarray(data_fits[1].data['ID'], dtype=int) - 1
-z_b = data_fits[1].data['redshift_mean']
+#z_b = data_fits[1].data['redshift_mean']
 z_med_b = data_fits[1].data['redshift_median']
-mtot_b = data_fits[1].data['mass_mean']
+#mtot_b = data_fits[1].data['mass_mean']
 #msa_b = data_fits[1].data['max_stellar_age_mean']
-tau_b = data_fits[1].data['tau_mean']
-alpha_b = data_fits[1].data['dpl_alpha_mean']
-beta_b = data_fits[1].data['dpl_beta_mean']
+#tau_b = data_fits[1].data['tau_mean']
+#alpha_b = data_fits[1].data['dpl_alpha_mean']
+#beta_b = data_fits[1].data['dpl_beta_mean']
+
+z_b = data_fits[1].data['redshift_median']
+#z_med_b = data_fits[1].data['redshift_median']
+mtot_b = data_fits[1].data['mass_median']
+#msa_b = data_fits[1].data['max_stellar_age_median']
+tau_b = data_fits[1].data['tau_median']
+alpha_b = data_fits[1].data['dpl_alpha_median']
+beta_b = data_fits[1].data['dpl_beta_median']
 
 data_fits.close()
 
@@ -180,13 +188,49 @@ ind = err <= 0.01
 ind = [i for i, x in enumerate(ind) if x]
 
 
+# =============================================================================
+# Finding the data points with the worst fits
+# =============================================================================
+
+distance = (abs(mtot_r[id_b] - mtot_b)**2 + abs(np.log10(sfr_r[id_b]) - np.log10(sfr_b))**2 )**0.5
 
 
 
+plt.hist(distance, bins=50)
+
+ind = distance > 1
+ind = [i for i, x in enumerate(ind) if x]
+
+print(ind)
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('DPL - Plot showing BEAGLE fitted SFR vs Mass', size=size)
+plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
+plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+#plt.xlim(7.5, 11)
+#plt.ylim(-1, 3.5)
+for i in range(len(sfr_b)):
+    if i in ind:
+        color = next(plt.gca()._get_lines.prop_cycler)['color']
+        plt.plot( (mtot_r[id_b][i],mtot_b[i]), (np.log10(sfr_r[id_b][i]),np.log10(sfr_b[i])), '-', color=color, label=(i, (id_b + 1)[i]))
+        plt.plot( mtot_r[id_b][i], np.log10(sfr_r[id_b][i]), 'o', color=color, markersize=3)
+plt.legend()
+plt.show()   
+
+
+galaxy_id = (id_b + 1)[ind]
+print(galaxy_id)
 
 
 
+k=[32, 95]
+test = sfr_calc('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
+print(test)
+plt.scatter(mtot_b[k], np.log10(sfr_b[k]))
 
+
+k=32
+print('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
 '''
 
 
