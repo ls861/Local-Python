@@ -2,83 +2,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
-from scipy.integrate import quad
-
-from astropy.cosmology import FlatLambdaCDM
-cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
-
-def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
-    
-    '''
-    sfr_b, err = sfr_calc('DE', mtot_b, msa_b, tau_b, 0, 0, 0, 0)
-    sfr_b, err = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0, 0)
-    sfr_b, err = sfr_calc('DPL', mtot_b, 0, tau_b, 0, alpha_b, beta_b, z_b)
-    '''
-    
-    if sfh == 'DE':
-        
-        m       = 10**mtot                                                          # solar masses
-        t       = 10**msa                                                           # yrs
-        ta      = 10**tau                                                           # yrs
-
-        A = m / ( -ta*np.exp(-t/ta)*(t+ta) + ta**2 )
-        # https://www.wolframalpha.com/input/?i=A*%28t%29*exp%28-%28t%29%2FC%29
-      
-        sfr = A * t * np.exp(-t/ta)
-        err = 0
-
-    elif sfh == 'iDE':
-        
-        m       = 10**mtot                                                          # solar masses
-        t       = 10**msa                                                           # yrs
-        ta      = 10**tau                                                           # yrs
-        A       = np.empty(len(m))
-        
-        for i in range(len(A)):            
-            integrand = lambda T: T * np.exp(-T/ta[i])
-            A[i] = m[i] / quad(integrand, 0, t[i])[0]
-                
-        sfr = A * t * np.exp(-t/ta)
-        err = 0
-           
-    elif sfh == 'LE':
-        
-        m       = 10**mtot                                                          # solar masses
-        t       = 10**msa                                                           # yrs
-        ta      = 10**tau                                                           # yrs
-        ta_exp  = 10**tau_exp                                                       # yrs
-        A       = np.empty(len(m))
-        
-        for i in range(len(A)):          
-            integrand = lambda T: (T*np.heaviside(ta[i] - T, 0)  + ta[i]*np.exp((ta[i]-T)/ta_exp[i])*np.heaviside(T - ta[i], 1))
-            A[i] = m[i] / quad(integrand, 0, t[i])[0]
-                
-        sfr = A * (t*np.heaviside(ta - t, 0)  + ta*np.exp((ta-t)/ta_exp)*np.heaviside(t - ta, 1))
-        err = 0
-        
-    elif sfh == 'DPL':
-        
-        m       = 10**mtot                                                          # solar masses
-        ta      = 10**tau                                                           # yrs
-        t       = cosmo.age(z).value * 1E9                                          # yrs
-        A       = np.empty(len(m))
-        err     = np.empty(len(m))
-        
-        for i in range(len(A)):          
-            integrand = lambda T: ( ( ((T/ta[i])**alpha[i]) + ((T/ta[i])**-beta[i]) ) ** -1 )
-            A[i] = m[i] / quad(integrand, 0, t[i])[0]
-            err[i] = quad(integrand, 0, t[i])[1] / quad(integrand, 0, t[i])[0]
-        sfr = A * ( ( ((t/ta)**alpha) + ((t/ta)**-beta) ) ** -1 )
-        
-    else:
-        sfr='ERROR in sfr_calc'
-        err = 0
-     
-    return sfr, err
-
+from sfr_calc import sfr_calc
 
 size = 15
-fsize = 6
+fsize = 7
 
 # =============================================================================
 # get "real" parameters
@@ -87,14 +14,11 @@ fsize = 6
 fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/fit/mock_catalogue_005_010.fits'
 data_fits = fits.open(fileName)
 
-
 mtot_r = np.log10(data_fits['GALAXY PROPERTIES'].data['m_tot'])                    # mtot is the value we selected as prior
 #r_mstar = data_fits['GALAXY PROPERTIES'].data['m_star']
 sfr_r = data_fits['STAR FORMATION'].data['SFR']
 
-
 data_fits.close()
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('Plot showing SFR vs Mass', size=size)
@@ -102,10 +26,6 @@ plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.scatter(mtot_r, np.log10(sfr_r))
 plt.show()
-
-
-
-
 
 # =============================================================================
 # get BEAGLE parameters
@@ -133,7 +53,7 @@ data_fits.close()
 # plot Redshifts
 # =============================================================================
 
-plt.figure(figsize=(fsize, fsize/2))
+plt.figure(figsize=(fsize, fsize))
 plt.title('DE - Histogram of BEAGLE fitted redshifts', size=size)
 plt.xlabel(r'Redshift', size=size)
 plt.ylabel(r'Count', size=size)
@@ -142,14 +62,11 @@ plt.hist(z_med_b, bins=50, histtype=u'step', label='median')
 plt.legend()
 plt.show()
 
-
-
 # =============================================================================
 # plot main sequence
 # =============================================================================
 
 sfr_b, err = sfr_calc('DE', mtot_b, msa_b, tau_b, 0, 0, 0, 0)
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
@@ -162,7 +79,6 @@ plt.scatter(mtot_b, np.log10(sfr_b), label='BEAGLE output')
 plt.scatter(np.delete(mtot_r,id_b), np.log10(np.delete(sfr_r,id_b)), label='not fitted')
 plt.legend()
 plt.show()
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('DE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
@@ -177,14 +93,79 @@ for i in range(len(sfr_b)):
 plt.show()   
     
 
+# =============================================================================
+# plot main sequence as a 2d histogram
+# =============================================================================
+
+# input values
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(mtot_r, np.log10(sfr_r), range=[[7.5, 11], [-1, 3.5]], bins=100)
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+massh = np.empty(0)
+sfrh = np.empty(0)
+
+#for i in range(len(id_b)):
+for i in range(10):
+
+    beagleData = fits.open('/Users/lester/Documents/param_006/astrodeep_002/{}_BEAGLE.fits'.format(id_b[i]+1))
+    
+    #needs float64 to provide precision needed for the random.choice weights
+    temp_probs = np.float64(beagleData['POSTERIOR PDF'].data['probability'])
+    temp_probs = temp_probs/np.sum(temp_probs)
+
+    #here's the key line - take weighted samples from the multinest output!
+    idx = np.random.choice(len(temp_probs), size=10000, p=temp_probs)
+    massh = np.append(massh, np.log10(beagleData['GALAXY PROPERTIES'].data['M_tot'][idx]))
+    sfrh = np.append(sfrh, np.log10(beagleData['STAR FORMATION'].data['sfr'][idx]))
+
+plt.figure(figsize=(fsize, fsize))
+plt.scatter(massh, sfrh)
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100)
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100, normed=True)
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+import matplotlib.colors as mcolors
+
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100, norm=mcolors.LogNorm())
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+
+
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100, norm=mcolors.PowerNorm(gamma))
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+
+
+
 
 
 '''
-
-
-
-
-
 # =============================================================================
 # Resizing Arrays
 # =============================================================================

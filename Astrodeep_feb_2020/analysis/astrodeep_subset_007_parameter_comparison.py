@@ -14,14 +14,11 @@ fsize = 6
 fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/fit/mock_catalogue_005_010.fits'
 data_fits = fits.open(fileName)
 
-
 mtot_r = np.log10(data_fits['GALAXY PROPERTIES'].data['m_tot'])                    # mtot is the value we selected as prior
 #r_mstar = data_fits['GALAXY PROPERTIES'].data['m_star']
 sfr_r = data_fits['STAR FORMATION'].data['SFR']
 
-
 data_fits.close()
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('Plot showing SFR vs Mass', size=size)
@@ -29,10 +26,6 @@ plt.xlabel(r'$\text{log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.scatter(mtot_r, np.log10(sfr_r))
 plt.show()
-
-
-
-
 
 # =============================================================================
 # get BEAGLE parameters
@@ -56,7 +49,6 @@ tau_exp_b = data_fits[1].data['tau_exp_mean']
 
 data_fits.close()
 
-
 # =============================================================================
 # plot Redshifts
 # =============================================================================
@@ -70,14 +62,11 @@ plt.hist(z_med_b, bins=50, histtype=u'step', label='median')
 plt.legend()
 plt.show()
 
-
-
 # =============================================================================
 # plot main sequence
 # =============================================================================
 
 sfr_b, err = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0, 0)
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('LE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
@@ -90,7 +79,6 @@ plt.scatter(mtot_b, np.log10(sfr_b), label='BEAGLE output')
 plt.scatter(np.delete(mtot_r,id_b), np.log10(np.delete(sfr_r,id_b)), label='not fitted')
 plt.legend()
 plt.show()
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('LE - Plot showing BEAGLE fitted SFR vs Mass', size=size)
@@ -105,16 +93,7 @@ for i in range(len(sfr_b)):
 plt.show()   
     
 
-
-
-
-
 '''
-
-
-
-
-
 # =============================================================================
 # Resizing Arrays
 # =============================================================================

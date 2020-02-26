@@ -14,7 +14,12 @@ id_AD = data_fits[1].data['ID']
 z_AD = data_fits[1].data['ZBEST']
 H160 = data_fits[1].data['b_H160']
 errH160 = data_fits[1].data['b_errH160']
+print(data_fits[1].header)
 data_fits.close()
+
+print(id_AD)
+
+
 
 # =============================================================================
 # get beagle redshifts
@@ -40,7 +45,7 @@ H160 = H160[id_B-1]
 errH160 = errH160[id_B-1]
 SN = abs(H160/errH160)
 
-ind = (SN > 5) & (SN < 20)
+ind = (SN > 5) & (SN < 50)
 
 z_B = z_B[ind]
 z_Berr_m = z_Berr_m[ind]
