@@ -48,7 +48,7 @@ header_string = '#ID b_B435 b_errB435 b_V606 b_errV606 b_I814 b_errI814 b_Y105 b
 #f= open("astrodeep_ascii.txt","w+")  this was the original ~300, which doesn't include the ID to determine which galaxy
 #f= open("astrodeep_ascii2.txt","w+")   this was a subset of the above of just first 3 to fit locally
 
-f= open("astrodeep_ascii_002.txt","w+")  # this includes data to determine source galaxy, not used anywhere, can overwrite for now
+f= open("astrodeep_ascii_003.txt","w+")  # this includes data to determine source galaxy, not used anywhere, can overwrite for now
 
 f.write(header_string)
 
