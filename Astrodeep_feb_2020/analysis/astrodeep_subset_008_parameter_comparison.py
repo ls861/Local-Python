@@ -231,6 +231,19 @@ plt.scatter(mtot_b[k], np.log10(sfr_b[k]))
 
 k=32
 print('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 
 

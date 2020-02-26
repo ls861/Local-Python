@@ -40,7 +40,7 @@ H160 = H160[id_B-1]
 errH160 = errH160[id_B-1]
 SN = abs(H160/errH160)
 
-ind = (SN > 0) & (SN < 20)
+ind = (SN > 5) & (SN < 20)
 
 z_B = z_B[ind]
 z_Berr_m = z_Berr_m[ind]
