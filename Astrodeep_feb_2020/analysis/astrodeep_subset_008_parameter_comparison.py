@@ -9,6 +9,12 @@ cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
 
 def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
     
+    '''
+    sfr_b, err = sfr_calc('DE', mtot_b, msa_b, tau_b, 0, 0, 0, 0)
+    sfr_b, err = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0, 0)
+    sfr_b, err = sfr_calc('DPL', mtot_b, 0, tau_b, 0, alpha_b, beta_b, z_b)
+    '''
+    
     if sfh == 'DE':
         
         m       = 10**mtot                                                          # solar masses
@@ -19,6 +25,7 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
         # https://www.wolframalpha.com/input/?i=A*%28t%29*exp%28-%28t%29%2FC%29
       
         sfr = A * t * np.exp(-t/ta)
+        err = 0
 
     elif sfh == 'iDE':
         
@@ -32,6 +39,7 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
             A[i] = m[i] / quad(integrand, 0, t[i])[0]
                 
         sfr = A * t * np.exp(-t/ta)
+        err = 0
            
     elif sfh == 'LE':
         
@@ -46,12 +54,13 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
             A[i] = m[i] / quad(integrand, 0, t[i])[0]
                 
         sfr = A * (t*np.heaviside(ta - t, 0)  + ta*np.exp((ta-t)/ta_exp)*np.heaviside(t - ta, 1))
+        err = 0
         
     elif sfh == 'DPL':
         
         m       = 10**mtot                                                          # solar masses
         ta      = 10**tau                                                           # yrs
-        t = cosmo.age(z).value * 1E9                                                # yrs
+        t       = cosmo.age(z).value * 1E9                                          # yrs
         A       = np.empty(len(m))
         err     = np.empty(len(m))
         
@@ -110,21 +119,22 @@ fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_
 data_fits = fits.open(fileName)
 
 id_b = np.asarray(data_fits[1].data['ID'], dtype=int) - 1
-#z_b = data_fits[1].data['redshift_mean']
 z_med_b = data_fits[1].data['redshift_median']
-#mtot_b = data_fits[1].data['mass_mean']
-#msa_b = data_fits[1].data['max_stellar_age_mean']
-#tau_b = data_fits[1].data['tau_mean']
-#alpha_b = data_fits[1].data['dpl_alpha_mean']
-#beta_b = data_fits[1].data['dpl_beta_mean']
 
-z_b = data_fits[1].data['redshift_median']
-#z_med_b = data_fits[1].data['redshift_median']
-mtot_b = data_fits[1].data['mass_median']
-#msa_b = data_fits[1].data['max_stellar_age_median']
-tau_b = data_fits[1].data['tau_median']
-alpha_b = data_fits[1].data['dpl_alpha_median']
-beta_b = data_fits[1].data['dpl_beta_median']
+z_b = data_fits[1].data['redshift_mean']
+mtot_b = data_fits[1].data['mass_mean']
+#msa_b = data_fits[1].data['max_stellar_age_mean']
+tau_b = data_fits[1].data['tau_mean']
+alpha_b = data_fits[1].data['dpl_alpha_mean']
+beta_b = data_fits[1].data['dpl_beta_mean']
+
+#z_b = data_fits[1].data['redshift_median']
+##z_med_b = data_fits[1].data['redshift_median']
+#mtot_b = data_fits[1].data['mass_median']
+##msa_b = data_fits[1].data['max_stellar_age_median']
+#tau_b = data_fits[1].data['tau_median']
+#alpha_b = data_fits[1].data['dpl_alpha_median']
+#beta_b = data_fits[1].data['dpl_beta_median']
 
 data_fits.close()
 
@@ -152,10 +162,7 @@ sfr_b, err = sfr_calc('DPL', mtot_b, 0, tau_b, 0, alpha_b, beta_b, z_b)
 
 plt.hist(err, bins=50)
 plt.ylim(0, 10)
-
 plt.show()
-
-
 
 plt.figure(figsize=(fsize, fsize))
 plt.title('DPL - Plot showing BEAGLE fitted SFR vs Mass', size=size)
@@ -194,9 +201,7 @@ ind = [i for i, x in enumerate(ind) if x]
 
 distance = (abs(mtot_r[id_b] - mtot_b)**2 + abs(np.log10(sfr_r[id_b]) - np.log10(sfr_b))**2 )**0.5
 
-
-
-plt.hist(distance, bins=500)
+plt.hist(distance, bins=50)
 
 ind = distance > 1
 ind = [i for i, x in enumerate(ind) if x]

@@ -4,7 +4,16 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 from scipy.integrate import quad
 
-def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta):
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
+
+def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta, z):
+    
+    '''
+    sfr_b, err = sfr_calc('DE', mtot_b, msa_b, tau_b, 0, 0, 0, 0)
+    sfr_b, err = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0, 0)
+    sfr_b, err = sfr_calc('DPL', mtot_b, 0, tau_b, 0, alpha_b, beta_b, z_b)
+    '''
     
     if sfh == 'DE':
         
@@ -16,7 +25,8 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta):
         # https://www.wolframalpha.com/input/?i=A*%28t%29*exp%28-%28t%29%2FC%29
       
         sfr = A * t * np.exp(-t/ta)
-           
+        err = 0
+
     elif sfh == 'iDE':
         
         m       = 10**mtot                                                          # solar masses
@@ -29,6 +39,7 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta):
             A[i] = m[i] / quad(integrand, 0, t[i])[0]
                 
         sfr = A * t * np.exp(-t/ta)
+        err = 0
            
     elif sfh == 'LE':
         
@@ -43,14 +54,27 @@ def sfr_calc(sfh, mtot, msa, tau, tau_exp, alpha, beta):
             A[i] = m[i] / quad(integrand, 0, t[i])[0]
                 
         sfr = A * (t*np.heaviside(ta - t, 0)  + ta*np.exp((ta-t)/ta_exp)*np.heaviside(t - ta, 1))
+        err = 0
         
     elif sfh == 'DPL':
-        pass
-    
+        
+        m       = 10**mtot                                                          # solar masses
+        ta      = 10**tau                                                           # yrs
+        t       = cosmo.age(z).value * 1E9                                          # yrs
+        A       = np.empty(len(m))
+        err     = np.empty(len(m))
+        
+        for i in range(len(A)):          
+            integrand = lambda T: ( ( ((T/ta[i])**alpha[i]) + ((T/ta[i])**-beta[i]) ) ** -1 )
+            A[i] = m[i] / quad(integrand, 0, t[i])[0]
+            err[i] = quad(integrand, 0, t[i])[1] / quad(integrand, 0, t[i])[0]
+        sfr = A * ( ( ((t/ta)**alpha) + ((t/ta)**-beta) ) ** -1 )
+        
     else:
         sfr='ERROR in sfr_calc'
+        err = 0
      
-    return sfr
+    return sfr, err
 
 
 size = 15
@@ -125,7 +149,7 @@ plt.show()
 # plot main sequence
 # =============================================================================
 
-sfr_b = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0)
+sfr_b, err = sfr_calc('LE', mtot_b, msa_b, tau_b, tau_exp_b, 0, 0, 0)
 
 
 plt.figure(figsize=(fsize, fsize))
