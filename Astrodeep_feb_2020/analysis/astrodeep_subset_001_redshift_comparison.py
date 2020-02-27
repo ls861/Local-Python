@@ -8,7 +8,7 @@ from astropy.io import fits
 # get astrodeep redshifts
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/ascii_to_fits/astrodeep_catalogue_001.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/ascii_to_fits/astrodeep_catalogue_002.fits'
 data_fits = fits.open(fileName)
 id_AD = data_fits[1].data['ID']
 z_AD = data_fits[1].data['ZBEST']
@@ -25,7 +25,7 @@ print(id_AD)
 # get beagle redshifts
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_001/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_feb_2020/from_cluster/param_001/astrodeep_004/pyp-beagle/data/BEAGLE_summary_catalogue.fits'
 data_fits = fits.open(fileName)
 id_B = np.asarray(data_fits[1].data['ID'], dtype=int)
 z_B = data_fits[1].data['redshift_median']
