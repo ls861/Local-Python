@@ -18,7 +18,7 @@ axes[0, 0].hist2d(data[:, 0], data[:, 1], bins=100)
 for ax, gamma in zip(axes.flat[1:], gammas):
     ax.set_title(r'Power law $(\gamma=%1.1f)$' % gamma)
     ax.hist2d(data[:, 0], data[:, 1],
-              bins=100, norm=mcolors.PowerNorm(gamma))
+              bins=100, norm=mcolors.LogNorm(gamma))
 
 fig.tight_layout()
 
