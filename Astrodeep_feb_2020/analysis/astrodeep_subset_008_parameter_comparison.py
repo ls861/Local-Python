@@ -5,7 +5,7 @@ from astropy.io import fits
 from sfr_calc import sfr_calc
 
 size = 15
-fsize = 6
+fsize = 7
 
 # =============================================================================
 # get "real" parameters
@@ -160,7 +160,7 @@ k=[32, 95]
 test = sfr_calc('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
 print(test)
 plt.scatter(mtot_b[k], np.log10(sfr_b[k]))
-
+plt.show()
 
 k=32
 print('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
@@ -185,8 +185,8 @@ plt.show()
 massh = np.empty(0)
 sfrh = np.empty(0)
 
-#for i in range(len(id_b)):
-for i in range(10):
+for i in range(len(id_b)):
+#for i in range(10):
 
     beagleData = fits.open('/Users/lester/Documents/param_008/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
     

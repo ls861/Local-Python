@@ -5,7 +5,7 @@ from astropy.io import fits
 from sfr_calc import sfr_calc
 
 size = 15
-fsize = 6
+fsize = 7
 
 # =============================================================================
 # get "real" parameters
@@ -109,8 +109,8 @@ plt.show()
 massh = np.empty(0)
 sfrh = np.empty(0)
 
-#for i in range(len(id_b)):
-for i in range(10):
+for i in range(len(id_b)):
+#for i in range(10):
 
     beagleData = fits.open('/Users/lester/Documents/param_007/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
     
