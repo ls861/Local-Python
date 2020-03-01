@@ -170,7 +170,47 @@ print('DPL', mtot_b[k], 0, tau_b[k], 0, alpha_b[k], beta_b[k], z_b[k])
 
 
 
+# =============================================================================
+# plot main sequence as a 2d histogram
+# =============================================================================
 
+# input values
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(mtot_r, np.log10(sfr_r), range=[[7.5, 11], [-1, 3.5]], bins=100)
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+massh = np.empty(0)
+sfrh = np.empty(0)
+
+#for i in range(len(id_b)):
+for i in range(10):
+
+    beagleData = fits.open('/Users/lester/Documents/param_008/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
+    
+    #needs float64 to provide precision needed for the random.choice weights
+    temp_probs = np.float64(beagleData['POSTERIOR PDF'].data['probability'])
+    temp_probs = temp_probs/np.sum(temp_probs)
+
+    #here's the key line - take weighted samples from the multinest output!
+    idx = np.random.choice(len(temp_probs), size=10000, p=temp_probs)
+    massh = np.append(massh, np.log10(beagleData['GALAXY PROPERTIES'].data['M_tot'][idx]))
+    sfrh = np.append(sfrh, np.log10(beagleData['STAR FORMATION'].data['sfr'][idx]))
+
+plt.figure(figsize=(fsize, fsize))
+plt.scatter(massh, sfrh)
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
+
+plt.figure(figsize=(1.2*fsize, fsize))
+plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100)
+plt.colorbar()
+plt.xlim(7.5, 11)
+plt.ylim(-1, 3.5)
+plt.show()
 
 
 

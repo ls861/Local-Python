@@ -86,6 +86,8 @@ ax.hist(SN[ind], bins=50)
 plt.show()
 
 
+
+
 # =============================================================================
 # investigating the galaxies which agree/disagree the most
 # =============================================================================
@@ -95,41 +97,48 @@ print(len(distance))
 
 '''
 Need to plot input photometric points plus errors
-plus fitted photometric points plus errors
-plus best fit SED
 '''
 
-_arr = np.empty(len(distance))
+filters = ['HST_ACS_WFC_F435W_APP', 'HST_ACS_WFC_F606W_APP', 'HST_ACS_WFC_F814W_APP', 'HST_WFC3_IR_F105W_APP', 'HST_WFC3_IR_F125W_APP', 'HST_WFC3_IR_F140W_APP', 'HST_WFC3_IR_F160W_APP', 'Paranal_HAWKI_Ks_APP', 'Spitzer_IRAC_I1_APP', 'Spitzer_IRAC_I2_APP']
+
+filter_label = np.array(['B435', 'V606', 'I814', 'Y105', 'J125', 'JH140', 'H160', 'Ks', 'CH1', 'CH2'])
+
+filter_fwhm_centre = np.array([4348.65, 5926.47, 7975.65, 10530.87, 12495.71, 13976.13, 15433.07, 21440.35, 35465.62, 45024.31])
+
+filter_fwhm = np.array([939, 2322.94, 1856, 2917.03, 3005.2, 3940.88, 2874.18, 3249.92, 7431.71, 10096.82])
+
 
 for i, j in enumerate(id_B[distance]): # j is galaxy ID up to 289 etc (AD and B id)
-    print(i, j)
+    
+    z = z_B[distance][i]
+    
     fileName = '/Users/lester/Documents/param_001/astrodeep_004/{}_BEAGLE.fits'.format(j)
     data_fits = fits.open(fileName)
     chi2 = data_fits['POSTERIOR PDF'].data['chi_square']    
     wl = data_fits['FULL SED WL'].data[0][0]
     flux = data_fits['FULL SED'].data[np.argmin(chi2)]
+    
+    m = []
+    for k in range(len(filters)):
+        m.append(np.array(data_fits['APPARENT MAGNITUDES'].data[filters[k]][np.argmin(chi2)]))
+    m = np.array(m)
+    
+    f = []
+    for k in range(len(filters)):
+        f.append(10**( (23.9 - m[k]) / 2.5 ))
+    f = np.array(f)
+    
     data_fits.close()
     
-    z = z_B[distance][i]
-#    plt.plot(wl, flux)
-    plt.plot(wl * (1+z), flux / (1+z))
-    plt.xlim(5000, 15000)
-#    plt.ylim(0, 1E-20)
-#    plt.yscale('log')
-    plt.show()
-
     
-
-
-
-# NEED TO SOMEHOW GET THE ACTUAL REDSHIFTS I'M TRYING TO SORT OUT HERE.......
-
-print(z_B[distance])
-print(z_AD[distance])
-
-
-
-
+    plt.scatter(filter_fwhm_centre, f/1E19, marker='x')
+    plt.plot(wl * (1+z), flux / (1+z))
+    plt.xlim(0000, 55000)
+#    plt.ylim(1E-22, 1E-20)
+    plt.yscale('log')
+    plt.show()
+    print(i, j, z, int(1216*(1+z)), int(4000*(1+z)))
+    
 
 
 
