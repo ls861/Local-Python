@@ -82,6 +82,9 @@ plt.show()
 
 # input values
 plt.figure(figsize=(1.2*fsize, fsize))
+plt.title('FITTED (DE) SFR vs Mass', size=size)
+plt.xlabel(r'$\text{log}(M_{tot}/M_{\odot})$', size=size)
+plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.hist2d(mtot_r, np.log10(sfr_r), range=[[7.5, 11], [-1, 3.5]], bins=100)
 plt.colorbar()
 plt.xlim(7.5, 11)
@@ -91,8 +94,8 @@ plt.show()
 massh = np.empty(0)
 sfrh = np.empty(0)
 
-for i in range(len(id_b)):
-#for i in range(10):
+#for i in range(len(id_b)):
+for i in range(10):
 
     beagleData = fits.open('/Users/lester/Documents/PhD/param_007/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
     
@@ -107,6 +110,9 @@ for i in range(len(id_b)):
 
 
 plt.figure(figsize=(1.2*fsize, fsize))
+plt.title('FITTED (LE) SFR vs Mass', size=size)
+plt.xlabel(r'$\text{log}(M_{tot}/M_{\odot})$', size=size)
+plt.ylabel(r'$\text{log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100)
 plt.colorbar()
 plt.xlim(7.5, 11)
