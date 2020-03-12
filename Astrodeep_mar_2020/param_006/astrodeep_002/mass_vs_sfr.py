@@ -36,6 +36,8 @@ data_fits = fits.open(fileName)
 
 mtot_r = np.log10(data_fits['GALAXY PROPERTIES'].data['m_tot'])
 sfr_r = data_fits['STAR FORMATION'].data['SFR']
+msa_r = np.log10(data_fits['STAR FORMATION'].data['max_stellar_age'])
+tau_r = np.log10(data_fits['STAR FORMATION BINS'].data['bin_tau'])
 
 data_fits.close()
 
@@ -63,8 +65,10 @@ plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
 plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
 plt.plot((7.5, 11), (7.5, 11))
-plt.scatter(mtot_r[id_b], mtot_b, s=10)
+plt.scatter(mtot_r[id_b], mtot_b, s=10, c=msa_r[id_b]-tau_r[id_b], zorder=10)
 plt.errorbar(mtot_r[id_b], mtot_b, yerr=[mtot_b - mtot_68_b[:, 0], mtot_68_b[:, 1] - mtot_b], linestyle="None", elinewidth=0.5, color='k')
+
+plt.colorbar()
 
 plt.xlim(7.5, 11)
 plt.ylim(7.5, 11)
@@ -104,8 +108,8 @@ plt.show()
 massh = np.empty(0)
 sfrh = np.empty(0)
 
-for i in range(len(id_b)):
-#for i in range(10):
+#for i in range(len(id_b)):
+for i in range(10):
 
     beagleData = fits.open('/Users/lester/Documents/PhD/param_{}/astrodeep_{}/{}_BEAGLE.fits'.format(param, revision, id_b[i]+1))
     

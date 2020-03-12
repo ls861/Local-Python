@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 s=1
 
 mean = (0, 0)
-cov = [[0.15, -0.1], [-0.1, 0.15]]
+cov = [[0.15, -0.01], [-0.01, 0.15]]
 x = np.random.multivariate_normal(mean, cov, 100000)
 
 

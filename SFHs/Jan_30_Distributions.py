@@ -16,7 +16,7 @@ import math
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.72}
 cosmo = cd.set_omega_k_0(cosmo)
 
-size        = np.int(1E4)
+size        = np.int(1E6)
 z           = np.random.uniform(low=4.5, high=5.5, size=size)                   # redshift
 
 age_z_4p5   = cd.age(4.5, **cosmo)/cc.yr_s                                      # yr, (log, 9.107)
