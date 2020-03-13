@@ -14,7 +14,7 @@ from astropy.io import fits
 
 title = 'DE'
 param = '006'
-revision = '002'
+revision = '003'
 
 #title = 'LE'
 #param = '007'
@@ -63,7 +63,7 @@ data_fits.close()
 
 title = 'DE NO MinRelError'
 param = '006'
-revision = '003'
+revision = '004'
 
 fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param, revision)
 data_fits = fits.open(fileName)
@@ -103,7 +103,7 @@ print(len(b_boo), len(bn_boo), len(test))
 # PLOT - input mass vs output mass
 # =============================================================================
 
-plt.figure(figsize=(fsize, fsize))
+plt.figure(figsize=(1.6*fsize, fsize))
 plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
 plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
@@ -125,7 +125,7 @@ plt.show()
 
 
 
-'''
+
 
 # =============================================================================
 # PLOT - input sfr vs output sfr
@@ -136,13 +136,33 @@ plt.title('Input SFR (DE) vs Output SFR ({})'.format(title), size=size)
 plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.plot((-1, 3.5), (-1, 3.5))
-plt.scatter(np.log10(sfr_r[id_b]), np.log10(sfr_b), s=10)
-plt.errorbar(np.log10(sfr_r[id_b]), np.log10(sfr_b), yerr=[np.log10(sfr_b / sfr_68_b[:, 0]), np.log10(sfr_68_b[:, 1] / sfr_b)], linestyle="None", elinewidth=0.5, color='k')
+plt.scatter(np.log10(sfr_r[id_b]), np.log10(sfr_b), s=10, zorder=1)
+plt.errorbar(np.log10(sfr_r[id_b]), np.log10(sfr_b), yerr=[np.log10(sfr_b / sfr_68_b[:, 0]), np.log10(sfr_68_b[:, 1] / sfr_b)], linestyle="None", elinewidth=0.5, color='k', zorder=0)
 
 plt.xlim(-1, 3.5)
 plt.ylim(-1, 3.5)
 plt.show()
 
+# =============================================================================
+# PLOT - input sfr vs output sfr FOR NO REL ERROR
+# =============================================================================
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('Input SFR (DE) vs Output SFR ({})'.format(title), size=size)
+plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+plt.plot((-1, 3.5), (-1, 3.5))
+plt.scatter(np.log10(sfr_r[id_bn]), np.log10(sfr_bn), s=10, zorder=1)
+plt.errorbar(np.log10(sfr_r[id_bn]), np.log10(sfr_bn), yerr=[np.log10(sfr_bn / sfr_68_bn[:, 0]), np.log10(sfr_68_bn[:, 1] / sfr_bn)], linestyle="None", elinewidth=0.5, color='k', zorder=10)
+
+plt.xlim(-1, 3.5)
+plt.ylim(-1, 3.5)
+plt.show()
+
+
+
+
+'''
 # =============================================================================
 # PLOT - main sequence as a 2d histogram
 # =============================================================================
