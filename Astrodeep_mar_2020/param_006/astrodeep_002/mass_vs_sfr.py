@@ -16,6 +16,10 @@ title = 'DE'
 param = '006'
 revision = '002'
 
+title = 'DE NO MinRelError'
+param = '006'
+revision = '003'
+
 #title = 'LE'
 #param = '007'
 #revision = '001'

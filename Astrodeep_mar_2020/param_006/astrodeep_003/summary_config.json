@@ -1,0 +1,10 @@
+[
+    {
+        "name": "STAR FORMATION",
+        "columns": ["SFR", "sSFR"]
+    },
+
+    {
+        "name": "POSTERIOR PDF"
+    }
+]

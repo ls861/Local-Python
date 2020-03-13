@@ -53,26 +53,26 @@ sig_flux = sig_flux5 / 5.
 # =============================================================================
     
 
-#header_string = '#ID F090W F115W F150W F200W F277W F356W F444W errF090W errF115W errF150W errF200W errF277W errF356W errF444W\n'
-#
-#file1 = open("JADES_ascii_001.txt","w+")
-#
-#
-#file1.write(header_string)
-#
-#for i in range(len(m[0])):
-#    row = str(i+1)
-#    
-#    for j in range(len(filters)):
-#        row = row + ' ' + str(f[j][i] + np.random.normal(loc=0.0, scale=sig_flux[j]))
-#    
-#    for j in range(len(sig_flux)):
-#        row = row + ' ' + str(sig_flux[j])
-#
-#    row = row + '\n'    
-#    file1.write(row)
-#
-#file1.close()
+header_string = '#ID F090W F115W F150W F200W F277W F356W F444W errF090W errF115W errF150W errF200W errF277W errF356W errF444W\n'
+
+file1 = open("JADES_ascii_001.txt","w+")
+
+
+file1.write(header_string)
+
+for i in range(len(m[0])):
+    row = str(i+1)
+    
+    for j in range(len(filters)):
+        row = row + ' ' + str(f[j][i] + np.random.normal(loc=0.0, scale=sig_flux[j]))
+    
+    for j in range(len(sig_flux)):
+        row = row + ' ' + str(sig_flux[j])
+
+    row = row + '\n'    
+    file1.write(row)
+
+file1.close()
 
 
 
