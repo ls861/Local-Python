@@ -12,9 +12,13 @@ import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 from astropy.io import fits
 
-title = 'DE'
-param = '006'
-revision = '003'
+param1 = '006'
+revision1 = '004'
+title1 = param1 + ' ' + revision1
+
+param2 = '006'
+revision2 = '005'
+title2 = param2 + ' ' + revision2
 
 #title = 'LE'
 #param = '007'
@@ -31,7 +35,7 @@ fsize = 10
 # INPUT - get "real" parameters
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/mock_catalogue_005_010.fits'.format(param, revision)
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/mock_catalogue_005_010.fits'.format(param1, revision1)
 data_fits = fits.open(fileName)
 
 mtot_r = np.log10(data_fits['GALAXY PROPERTIES'].data['m_tot'])
@@ -45,7 +49,7 @@ data_fits.close()
 # OUTPUT - get BEAGLE parameters
 # =============================================================================
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param, revision)
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param1, revision1)
 data_fits = fits.open(fileName)
 
 id_b = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int) - 1
@@ -61,7 +65,7 @@ data_fits.close()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
+plt.title('Input Mass (DE) vs Output Mass ({})'.format(title1), size=size)
 plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
 plt.plot((7.5, 11), (7.5, 11))
@@ -79,11 +83,7 @@ plt.show()
 # OUTPUT - get BEAGLE parameters FOR NO REL ERROR
 # =============================================================================
 
-title = 'DE NO MinRelError'
-param = '006'
-revision = '004'
-
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param, revision)
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/param_{}/astrodeep_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param2, revision2)
 data_fits = fits.open(fileName)
 
 id_bn = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int) - 1
@@ -99,7 +99,7 @@ data_fits.close()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
+plt.title('Input Mass (DE) vs Output Mass ({})'.format(title2), size=size)
 plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
 plt.plot((7.5, 11), (7.5, 11))
@@ -140,7 +140,7 @@ print(len(b_boo), len(bn_boo), len(test))
 # =============================================================================
 
 plt.figure(figsize=(1.6*fsize, fsize))
-plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
+plt.title('Mass ({}) vs Mass ({})'.format(title1, title2), size=size)
 plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
 plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
 plt.plot((7.5, 11), (7.5, 11))
@@ -168,7 +168,7 @@ plt.show()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('Input SFR (DE) vs Output SFR ({})'.format(title), size=size)
+plt.title('Input SFR (DE) vs Output SFR ({})'.format(title1), size=size)
 plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.plot((-1, 3.5), (-1, 3.5))
@@ -184,7 +184,7 @@ plt.show()
 # =============================================================================
 
 plt.figure(figsize=(fsize, fsize))
-plt.title('Input SFR (DE) vs Output SFR ({})'.format(title), size=size)
+plt.title('Input SFR (DE) vs Output SFR ({})'.format(title2), size=size)
 plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.plot((-1, 3.5), (-1, 3.5))
