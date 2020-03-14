@@ -56,6 +56,24 @@ sfr_68_b = data_fits['STAR FORMATION'].data['SFR_68.00']
 
 data_fits.close()
 
+# =============================================================================
+# PLOT - input mass vs output mass
+# =============================================================================
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
+plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
+plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
+plt.plot((7.5, 11), (7.5, 11))
+plt.scatter(mtot_r[id_b], mtot_b, s=10, c=msa_r[id_b]-tau_r[id_b], zorder=10)
+plt.errorbar(mtot_r[id_b], mtot_b, yerr=[mtot_b - mtot_68_b[:, 0], mtot_68_b[:, 1] - mtot_b], linestyle="None", elinewidth=0.5, color='k')
+
+plt.colorbar()
+
+plt.xlim(7.5, 11)
+plt.ylim(7.5, 11)
+plt.show()
+
 
 # =============================================================================
 # OUTPUT - get BEAGLE parameters FOR NO REL ERROR
@@ -75,6 +93,24 @@ sfr_bn = data_fits['STAR FORMATION'].data['SFR_mean']
 sfr_68_bn = data_fits['STAR FORMATION'].data['SFR_68.00']
 
 data_fits.close()
+
+# =============================================================================
+# PLOT - input mass vs output mass FOR NO REL ERROR
+# =============================================================================
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('Input Mass (DE) vs Output Mass ({})'.format(title), size=size)
+plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
+plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
+plt.plot((7.5, 11), (7.5, 11))
+plt.scatter(mtot_r[id_bn], mtot_bn, s=10, c=msa_r[id_bn]-tau_r[id_bn], zorder=10)
+plt.errorbar(mtot_r[id_bn], mtot_bn, yerr=[mtot_bn - mtot_68_bn[:, 0], mtot_68_bn[:, 1] - mtot_bn], linestyle="None", elinewidth=0.5, color='k')
+
+plt.colorbar()
+
+plt.xlim(7.5, 11)
+plt.ylim(7.5, 11)
+plt.show()
 
 # =============================================================================
 # PLOT - input mass vs output for with and without REL ERROR
