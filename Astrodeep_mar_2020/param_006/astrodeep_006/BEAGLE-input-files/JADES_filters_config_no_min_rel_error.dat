@@ -1,0 +1,17 @@
+# The possible units that can be used are: Jy, milliJy, microJy, nanoJy
+# Alternatively one can pass a conversion factor to convert the fluxes in the
+# catalogue into [erg s^-1 cm^-2 Hz^-1], e.g.
+# flux:conversion:<conversion factor>
+units:microJy
+
+# Column in the photometric catalogue containing the object IDs
+object_ID:colName:ID
+
+# List of photometric filters included in the input photometric catalogue
+name:F090W_NRC_and_OTE       flux:colName:F090W   fluxErr:colName:errF090W
+name:F115W_NRC_and_OTE       flux:colName:F115W   fluxErr:colName:errF115W
+name:F150W_NRC_and_OTE       flux:colName:F150W   fluxErr:colName:errF150W
+name:F200W_NRC_and_OTE       flux:colName:F200W   fluxErr:colName:errF200W
+name:F277W_NRC_and_OTE       flux:colName:F277W   fluxErr:colName:errF277W
+name:F356W_NRC_and_OTE       flux:colName:F356W   fluxErr:colName:errF356W
+name:F444W_NRC_and_OTE       flux:colName:F444W   fluxErr:colName:errF444W

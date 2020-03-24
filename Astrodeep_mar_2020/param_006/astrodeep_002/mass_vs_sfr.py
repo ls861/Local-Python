@@ -14,7 +14,7 @@ from astropy.io import fits
 
 title = 'DE'
 param = '006'
-revision = '002'
+revision = '006'
 
 #title = 'DE NO MinRelError'
 #param = '006'

@@ -13,11 +13,11 @@ import matplotlib.cm as cm
 from astropy.io import fits
 
 param1 = '006'
-revision1 = '004'
+revision1 = '005'
 title1 = param1 + ' ' + revision1
 
 param2 = '006'
-revision2 = '005'
+revision2 = '006'
 title2 = param2 + ' ' + revision2
 
 #title = 'LE'
