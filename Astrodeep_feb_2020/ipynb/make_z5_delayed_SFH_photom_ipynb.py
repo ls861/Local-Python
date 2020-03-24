@@ -50,25 +50,15 @@ def find_age(mass, sfr, tau, minAge, maxAge):
 # 
 # =============================================================================
 
-zObs = 5.
-maxAge = 1.18E9 #(age Univ = 1.186E9 for For Ho = 69.6, OmegaM = 0.286, Omegavac = 0.714, z = 5.000)
-minAge = 1.E6
+nObj = 1000
+
 minMass = 7.
 maxMass = 12.
 
-from astropy.table import Table
-
-intercept = -8.
-slope = 1.
-scatter = 0.3
-nObj = 1000
-#nObj = 100
-minTau = 7.
-maxTau = 10.5
 #assign masses drawn from broad Guassian distribution
 Marr = np.random.normal(size=nObj,scale=0.5,loc=(minMass+maxMass)/2)
 
-
+#rechoose a mass if not within minMass and maxMass
 while np.max(Marr) > maxMass or np.min(Marr) < minMass:
     tempIdx = np.where((Marr > maxMass) | (Marr < minMass))[0]
     print(tempIdx)
@@ -77,10 +67,50 @@ plt.figure()
 plt.hist(Marr, bins=50)
 plt.show()
 
-#assign SFRs
-Sfr = slope*Marr+intercept+np.random.normal(size=nObj,scale=scatter)
+#calculate sfr from eqn of straight line + scatter
+intercept = -8.
+slope = 1.
+scatter = 0.3
 
+Sfr = slope*Marr+intercept+np.random.normal(size=nObj,scale=scatter)
 plt.scatter(Marr, Sfr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+import cosmolopy.distance as cd
+import cosmolopy.constants as cc
+cosmo = {'omega_M_0' : 0.286, 'omega_lambda_0' : 0.714, 'h' : 0.696}
+cosmo = cd.set_omega_k_0(cosmo)
+zObs=2.0
+ageUniv = cd.age(zObs, **cosmo)/cc.yr_s
+
+minAge = 1.E6
+maxAge = ageUniv
+
+
+
+from astropy.table import Table
+
+
+
+
+minTau = 7.
+maxTau = 10.5
+
+
+
+
+
 
 tauArr = np.zeros(nObj)
 scaleArr = np.zeros(nObj)
@@ -110,13 +140,6 @@ outputDict['max_stellar_age']=ageArr
 outputTable = Table(outputDict)
 #outputTable.write("delayed_BEAGLEinput.fits", overwrite=True)
 
-
-# =============================================================================
-# 
-# =============================================================================
-
-
-plt.scatter(Marr, Sfr)
 
 
 
