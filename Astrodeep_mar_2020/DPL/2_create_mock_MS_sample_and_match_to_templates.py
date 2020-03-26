@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 # =============================================================================
 # load the templates
 # =============================================================================
-load = 100000
+load = 1000000 # max 1,000,000
 
 alpha = np.load('alpha.npy')[:load]
 beta = np.load('beta.npy')[:load]
@@ -53,8 +53,14 @@ while np.max(Marr) > maxMass or np.min(Marr) < minMass:
 # calculate sfr from linear relation + scatter
 # =============================================================================
 
-intercept = -8.
-slope = 1.
+## ORIGINAL
+#intercept = -8.
+#slope = 1.
+#scatter = 0.3
+
+ageUniv = 3228839870.9122815 # from previous python script, z=2, {'o_M_0':0.3,'o_lambda_0':0.7,'h':0.7}
+slope = 0.84 - 0.026*ageUniv*1e-9 # 0.7560501633562806
+intercept = -(6.51 - 0.11*ageUniv*1e-9) # -6.1548276141996485
 scatter = 0.3
 
 Sfr = slope*Marr+intercept+np.random.normal(size=nObj,scale=scatter)
@@ -122,6 +128,38 @@ plt.xlim(7, 12)
 plt.ylim(-1, 3)
 
 plt.show()
+
+# =============================================================================
+# find nearest point for entire MS sample
+# =============================================================================
+
+closest_ind = np.empty(nObj, dtype=int)
+
+for i in range(nObj):
+    closest_ind[i] = closest_node([Marr[i], Sfr[i]], nodes)
+
+plt.figure(figsize=(12, 10))
+plt.scatter(Marr, Sfr, marker='x', zorder=1)
+plt.scatter(np.log10(mass)[closest_ind], np.log10(sfr)[closest_ind], zorder=0)
+
+
+
+
+
+# =============================================================================
+#np.save('Marr', Marr)
+#np.save('sfr_mock', Sfr)
+#np.save('closest_ind', closest_ind)
+# =============================================================================
+
+
+
+
+
+
+
+
+
 
 
 
