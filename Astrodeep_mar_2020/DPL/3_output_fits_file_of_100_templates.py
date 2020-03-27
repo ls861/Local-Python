@@ -65,7 +65,7 @@ plt.show()
 
 outputDict = {}
 
-outputDict['id']                = range(len(mass))
+outputDict['id']                = np.array(range(len(mass)))+1
 outputDict['tau']               = np.log10(tau)
 outputDict['dpl_alpha']         = alpha
 outputDict['dpl_beta']          = beta
@@ -84,8 +84,6 @@ outputDict['max_stellar_age']   = np.random.uniform(8, 9, len(mass)) # never use
 
 outputTable = Table(outputDict)
 #outputTable.write("mock_MS_parameters_000.fits", overwrite=True)
-
-
 
 
 

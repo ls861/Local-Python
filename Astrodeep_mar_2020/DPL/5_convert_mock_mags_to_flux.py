@@ -26,7 +26,7 @@ filters = ['HST_ACS_WFC_F435W_APP', 'HST_ACS_WFC_F606W_APP', 'HST_ACS_WFC_F814W_
 #column name from ASTRODEEP config file + NOT ACTUALLY USED HERE
 filter_label = ['b_B435', 'b_V606', 'b_I814', 'b_Y105', 'b_J125', 'b_JH140', 'b_H160', 'b_Ks', 'b_CH1', 'b_CH2']
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_catalogue_DPL_001_13.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_catalogue_DPL_001_15.fits'
 data_fits = fits.open(fileName)
 
 m = []
@@ -58,22 +58,22 @@ sig_flux = sig_flux5 / 5.
 header_string = '#ID b_B435 b_V606 b_I814 b_Y105 b_J125 b_JH140 b_H160 b_Ks b_CH1 b_CH2 b_errB435 b_errV606 b_errI814 b_errY105 b_errJ125 b_errJH140 b_errH160 b_errKs b_errCH1 b_errCH2\n'
 
 # =============================================================================
-# file1 = open("DPL_mock_fluxes.txt","w+")
-# file1.write(header_string)
-# 
-# for i in range(len(m[0])):
-#     row = str(i+1)
-#     
-#     for j in range(len(filters)):
-#         row = row + ' ' + str(f[j][i] + np.random.normal(loc=0.0, scale=sig_flux[j]))
-#     
-#     for j in range(len(sig_flux)):
-#         row = row + ' ' + str(sig_flux[j])
-# 
-#     row = row + '\n'    
-#     file1.write(row)
-# 
-# file1.close()
+#file1 = open("DPL_mock_fluxes.txt","w+")
+#file1.write(header_string)
+#
+#for i in range(len(m[0])):
+#    row = str(i+1)
+#    
+#    for j in range(len(filters)):
+#        row = row + ' ' + str(f[j][i] + np.random.normal(loc=0.0, scale=sig_flux[j]))
+#    
+#    for j in range(len(sig_flux)):
+#        row = row + ' ' + str(sig_flux[j])
+#
+#    row = row + '\n'    
+#    file1.write(row)
+#
+#file1.close()
 # =============================================================================
 
 

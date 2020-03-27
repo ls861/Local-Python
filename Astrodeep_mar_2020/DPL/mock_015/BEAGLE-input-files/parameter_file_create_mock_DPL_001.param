@@ -61,14 +61,11 @@ SF_PARAMETER  = name:dpl_beta                 type:from_file
 SF_PARAMETER  = name:metallicity              type:from_file
 SF_PARAMETER  = name:mass                     type:from_file
 
-# workaround for DPL
-SF_PARAMETER  = name:max_stellar_age          type:fixed    value:11.
-
 #****************************************************************
 # ******************* PRINTED OUTPUT  *****************************
 #****************************************************************
 
-RESULTS DIRECTORY = $BEAGLE_RESULTS/param_DPL/mock_014/
+RESULTS DIRECTORY = $BEAGLE_RESULTS/param_DPL/mock_015/
 MOCK CATALOGUE NAME = mock_catalogue_DPL_001
 MOCK INPUT PARAMETERS = fileName:$BEAGLE_DATA/mock_MS_parameters_004.fits
 
@@ -85,7 +82,7 @@ PRINT SF AND ChE HISTORIES = T
 PDF SAMPLER FILE = $BEAGLE_PARAM_DIR/MCMC_lester_001.param
 
 PARAMETER  = name:redshift                    type:fixed    value:2.
-#PARAMETER  = name:formation_redshift          type:fixed    value:99.
+PARAMETER  = name:formation_redshift          type:fixed    value:999.
 
 PARAMETER  = name:nebular_logU                type:from_file
 PARAMETER  = name:nebular_xi                  type:from_file

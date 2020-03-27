@@ -1,3 +1,4 @@
+[main]
 # Verbose mode: 0 ---> no info
 #               1 ----> print only errors
 #               2 ---> print errors and warnings
@@ -38,7 +39,7 @@ FILTERS CONFIGURATION = $BEAGLE_FILTERS/astrodeep_filters_config_no_min_rel_erro
 #FILTERS CONFIGURATION = $BEAGLE_FILTERS/JADES_filters_config.dat
 
 PHOTOMETRIC CATALOGUE = $BEAGLE_DATA/DPL_mock_fluxes.fits
-PRIORS CATALOGUE = $BEAGLE_DATA/mock_MS_parameters_003.fits
+PRIORS CATALOGUE = $BEAGLE_DATA/mock_MS_parameters_004.fits
 
 #****************************************************************
 #******************** (MOCK)  OBSERVATIONS **********************
@@ -68,9 +69,7 @@ SF_PARAMETER  = name:mass                     type:fitted  order_priority:0  pri
 # ******************* PRINTED OUTPUT  *****************************
 #****************************************************************
 
-RESULTS DIRECTORY = $BEAGLE_RESULTS/param_DPL/fit_002/
-#MOCK CATALOGUE NAME = mock_catalogue_DPL_001
-#MOCK INPUT PARAMETERS = fileName:$BEAGLE_DATA/mock_MS_parameters_003.fits
+RESULTS DIRECTORY = $BEAGLE_RESULTS/param_DPL/fit_004/
 
 PRINT PHOTOMETRY = T
 PRINT SPECTRUM = T
