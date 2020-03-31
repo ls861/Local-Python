@@ -31,13 +31,13 @@ idx = (np.abs(xlin - ageUniv2)).argmin()
 
 plt.figure(figsize=(10, 10))
 plt.xlim(0, 1e10)
-plt.ylim(0, 50)
+#plt.ylim(0, 50)
 
 for i in range(len(A)):
 #for i in [0]:
     sfr_calc = A[i] / (((xlin/tau[i])**alpha[i])+((xlin/tau[i])**-beta[i]))
 #    print(alpha[i], beta[i], tau[i], A[i], sfr[i], sfr_calc)
-    plt.plot(xlin, sfr_calc)
+    plt.plot(xlin, sfr_calc/max(sfr_calc))
 #    plt.plot(xlin, np.gradient(sfr_calc, xlin))
     grad[i] = np.gradient(sfr_calc, xlin)[idx]
     
