@@ -47,7 +47,8 @@ plt.hist(grad, bins=50)
 plt.show()
 
 
-
+plt.hist(tau, bins=50)
+plt.show()
 
 
 

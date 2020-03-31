@@ -13,7 +13,7 @@ from scipy.stats import truncnorm
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-nObj = 10
+nObj = 1000
 
 intercept = -8.
 slope = 1.
@@ -43,11 +43,7 @@ for i in range(nObj):
 
     A[i] = mass[i] / integral[0]
 
-
 sfr = A / (((ageUniv/tau)**alpha)+((ageUniv/tau)**-beta))
-
-
-
 
 # =============================================================================
 # PLOT 1
