@@ -12,11 +12,11 @@ import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
 param1 = 'DPL'
-revisions = ['004', '005', '006', '007', '008', '009', '010', '011']
+revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011']
     
 for revision1 in revisions:
     
-    title1 = param1 + ' ' + revision1
+    title1 = param1 + ' ' + revision1.replace('_', ' ')
     
     # =============================================================================
     # get INPUT params (len 100)
@@ -71,10 +71,10 @@ for revision1 in revisions:
     data_fits = fits.open(fileName)
     
     id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int) - 1
-    mtot_b1 = data_fits['POSTERIOR PDF'].data['mass_mean']
-    mtot_68_b1 = data_fits['POSTERIOR PDF'].data['mass_68.00']
-    sfr_b1 = data_fits['STAR FORMATION'].data['SFR_mean']
-    sfr_68_b1 = data_fits['STAR FORMATION'].data['SFR_68.00']
+#    mtot_b1 = data_fits['POSTERIOR PDF'].data['mass_mean']
+#    mtot_68_b1 = data_fits['POSTERIOR PDF'].data['mass_68.00']
+#    sfr_b1 = data_fits['STAR FORMATION'].data['SFR_mean']
+#    sfr_68_b1 = data_fits['STAR FORMATION'].data['SFR_68.00']
     
     mass_b1 = data_fits['POSTERIOR PDF'].data['mass_mean']
     dpl_alpha_b1 = data_fits['POSTERIOR PDF'].data['dpl_alpha_mean']
@@ -119,7 +119,7 @@ for revision1 in revisions:
             axs[j,i].errorbar(params[i+4*j][id_b1], params_b1[i+4*j], yerr=[params_b1[i+4*j] - params_68_b1[i+4*j][:, 0], params_68_b1[i+4*j][:, 1] - params_b1[i+4*j]], linestyle="None", elinewidth=0.5, color='k')
             
             min_ax = min(min(params[i+4*j][id_b1]), min(params_b1[i+4*j]))
-#            min_ax = 9.2
+            min_ax = 9.3
             max_ax = max(max(params[i+4*j][id_b1]), max(params_b1[i+4*j]))
             axs[j,i].set_xlim(min_ax, max_ax)
             axs[j,i].set_ylim(min_ax, max_ax)

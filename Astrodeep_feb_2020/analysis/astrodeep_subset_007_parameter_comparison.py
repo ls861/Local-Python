@@ -109,10 +109,10 @@ plt.show()
 massh = np.empty(0)
 sfrh = np.empty(0)
 
-for i in range(len(id_b)):
-#for i in range(10):
+#for i in range(len(id_b)):
+for i in range(10):
 
-    beagleData = fits.open('/Users/lester/Documents/param_007/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
+    beagleData = fits.open('/Users/lester/Documents/PhD/param_007/astrodeep_001/{}_BEAGLE.fits'.format(id_b[i]+1))
     
     #needs float64 to provide precision needed for the random.choice weights
     temp_probs = np.float64(beagleData['POSTERIOR PDF'].data['probability'])

@@ -108,7 +108,7 @@ for i, j in enumerate(id_B[distance]): # j is galaxy ID up to 289 etc (AD and B 
     
     z = z_B[distance][i]
     
-    fileName = '/Users/lester/Documents/param_001/astrodeep_004/{}_BEAGLE.fits'.format(j)
+    fileName = '/Users/lester/Documents/PhD/param_001/astrodeep_004/{}_BEAGLE.fits'.format(j)
     data_fits = fits.open(fileName)
     
     # get the best fit BEAGLE SED

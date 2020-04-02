@@ -13,12 +13,13 @@ import matplotlib.cm as cm
 from astropy.io import fits
 
 param1 = 'DPL'
-revision1 = '004'
+revision1 = '008'
 title1 = param1 + ' ' + revision1
 
 param2 = 'DPL'
-revision2 = '011'
-title2 = param2 + ' ' + revision2
+revision2 = '009'
+title2 = param2 + ' ' + revision2 
+#title2 = param2 + ' ' + '010 002' 
 
 size = 13
 fsize = 8
@@ -35,6 +36,8 @@ sfr_r = data_fits['STAR FORMATION'].data['SFR']
 tau_r = np.log10(data_fits['STAR FORMATION BINS'].data['bin_tau'])
 
 data_fits.close()
+
+ssfr_r = sfr_r/(10**mtot_r)
 
 # =============================================================================
 # OUTPUT - get BEAGLE parameters 1
@@ -58,8 +61,9 @@ nebular_logU_b1 = data_fits['POSTERIOR PDF'].data['nebular_logu_mean']
 tau_b1 = data_fits['POSTERIOR PDF'].data['tau_mean']
 nebular_xi_b1 = data_fits['POSTERIOR PDF'].data['nebular_xi_mean']
 
-
 data_fits.close()
+
+ssfr_b1 = sfr_b1/(10**mtot_b1)
 
 # =============================================================================
 # OUTPUT - get BEAGLE parameters 2
@@ -75,6 +79,8 @@ sfr_b2 = data_fits['STAR FORMATION'].data['SFR_mean']
 sfr_68_b2 = data_fits['STAR FORMATION'].data['SFR_68.00']
 
 data_fits.close()
+
+ssfr_b2 = sfr_b2/(10**mtot_b2)
 
 # =============================================================================
 # calculate input gradient for rising or falling + get INPUT params
@@ -136,7 +142,6 @@ plt.ylim(7.5, 11)
 plt.legend()
 plt.show()
 
-
 # =============================================================================
 # PLOT - input mass vs output mass 2
 # =============================================================================
@@ -179,7 +184,6 @@ plt.ylim(-1, 3.5)
 plt.legend()
 plt.show()
 
-
 # =============================================================================
 # PLOT - input sfr vs output sfr 2
 # =============================================================================
@@ -195,6 +199,42 @@ plt.errorbar(np.log10(sfr_r[id_b2]), np.log10(sfr_b2), yerr=[np.log10(sfr_b2 / s
 
 plt.xlim(-1, 3.5)
 plt.ylim(-1, 3.5)
+plt.legend()
+plt.show()
+
+# =============================================================================
+# PLOT - input sfr vs output ssfr 1
+# =============================================================================
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('Input SSFR (DE) vs Output SSFR ({})'.format(title1), size=size)
+plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+#plt.plot((-1, 3.5), (-1, 3.5))
+plt.scatter(np.log10(ssfr_r[id_b1])[idx_r1], np.log10(ssfr_b1)[idx_r1], s=10, zorder=1, color='r', label='rising')
+plt.scatter(np.log10(ssfr_r[id_b1])[idx_f1], np.log10(ssfr_b1)[idx_f1], s=10, zorder=1, color='g', label='falling')
+#plt.errorbar(np.log10(sfr_r[id_b1]), np.log10(sfr_b1), yerr=[np.log10(sfr_b1 / sfr_68_b1[:, 0]), np.log10(sfr_68_b1[:, 1] / sfr_b1)], linestyle="None", elinewidth=1, color='k', zorder=0)
+
+plt.xlim(-10, -7)
+plt.ylim(-10, -7)
+plt.legend()
+plt.show()
+
+# =============================================================================
+# PLOT - input sfr vs output ssfr 2
+# =============================================================================
+
+plt.figure(figsize=(fsize, fsize))
+plt.title('Input SSFR (DE) vs Output SSFR ({})'.format(title2), size=size)
+plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+#plt.plot((-1, 3.5), (-1, 3.5))
+plt.scatter(np.log10(ssfr_r[id_b2])[idx_r2], np.log10(ssfr_b2)[idx_r2], s=10, zorder=1, color='r', label='rising')
+plt.scatter(np.log10(ssfr_r[id_b2])[idx_f2], np.log10(ssfr_b2)[idx_f2], s=10, zorder=1, color='g', label='falling')
+#plt.errorbar(np.log10(sfr_r[id_b2]), np.log10(sfr_b2), yerr=[np.log10(sfr_b2 / sfr_68_b2[:, 0]), np.log10(sfr_68_b2[:, 1] / sfr_b2)], linestyle="None", elinewidth=1, color='k', zorder=0)
+
+plt.xlim(-10, -7)
+plt.ylim(-10, -7)
 plt.legend()
 plt.show()
 

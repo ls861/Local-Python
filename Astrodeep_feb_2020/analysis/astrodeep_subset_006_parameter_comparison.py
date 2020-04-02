@@ -153,12 +153,12 @@ plt.show()
 
 
 
-plt.figure(figsize=(1.2*fsize, fsize))
-plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100, norm=mcolors.PowerNorm(gamma))
-plt.colorbar()
-plt.xlim(7.5, 11)
-plt.ylim(-1, 3.5)
-plt.show()
+#plt.figure(figsize=(1.2*fsize, fsize))
+#plt.hist2d(massh, sfrh, range=[[7.5, 11], [-1, 3.5]], bins=100, norm=mcolors.PowerNorm(gamma))
+#plt.colorbar()
+#plt.xlim(7.5, 11)
+#plt.ylim(-1, 3.5)
+#plt.show()
 
 
 
