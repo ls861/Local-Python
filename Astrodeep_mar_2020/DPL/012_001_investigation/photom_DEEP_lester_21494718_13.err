@@ -1,0 +1,51 @@
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/parameter_file_fit_DPL_012.param" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/cb2016_n2_mup100_N015_O01_deplO70_C100_June16" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/cb2016_Jan16_line_wavelengths_may2017.dat" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/astrodeep_filters.fits" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/astrodeep_filters_config_1pc_min_rel_error.dat" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/mock_MS_parameters_004.fits" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: The destination "/home/ls861/BEAGLE-general/BEAGLE_RESULTS/param_DPL/fit_012_001/BEAGLE-input-files/MCMC_lester_012_001.param" already exists, and it will NOT be overwritten ]
+ [FUNCTION: "copy_file" ]
+ [MODULE: "lib_io" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: Buffer STAR FORMATION not found. ]
+ [FUNCTION: "find_buffer" ]
+ [MODULE: "fits_buffers" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: Buffer STAR FORMATION BINS not found. ]
+ [FUNCTION: "find_buffer" ]
+ [MODULE: "fits_buffers" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+ [WARNING: Buffer DUST ATTENUATION not found. ]
+ [FUNCTION: "find_buffer" ]
+ [MODULE: "fits_buffers" ]
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------

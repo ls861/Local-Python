@@ -1,0 +1,90 @@
+*** Error in `/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE': free(): invalid next size (normal): 0x0000000003719540 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x816b9)[0x2b4dd1ac16b9]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x4a3021]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x47c111]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x4968c1]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x497af5]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x4562c6]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x4498d3]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x409558]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x405bf7]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2b4dd1a62545]
+/home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE[0x406b15]
+======= Memory map: ========
+00400000-00bdc000 r-xp 00000000 762:3c8f4 144116978171267041             /rds/project/rm665/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE
+00ddc000-00dea000 r-xp 007dc000 762:3c8f4 144116978171267041             /rds/project/rm665/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE
+00dea000-00e36000 rwxp 007ea000 762:3c8f4 144116978171267041             /rds/project/rm665/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE
+00e36000-01028000 rwxp 00000000 00:00 0 
+01b67000-03850000 rwxp 00000000 00:00 0                                  [heap]
+2b4dd0061000-2b4dd0083000 r-xp 00000000 08:01 136412004                  /usr/lib64/ld-2.17.so
+2b4dd0083000-2b4dd0088000 rwxp 00000000 00:00 0 
+2b4dd00c5000-2b4dd00cb000 rwxp 00000000 00:00 0 
+2b4dd0282000-2b4dd0283000 r-xp 00021000 08:01 136412004                  /usr/lib64/ld-2.17.so
+2b4dd0283000-2b4dd0284000 rwxp 00022000 08:01 136412004                  /usr/lib64/ld-2.17.so
+2b4dd0284000-2b4dd0285000 rwxp 00000000 00:00 0 
+2b4dd0285000-2b4dd03fe000 r-xp 00000000 08:01 136927934                  /usr/lib64/libfftw3.so.3.3.2
+2b4dd03fe000-2b4dd05fd000 ---p 00179000 08:01 136927934                  /usr/lib64/libfftw3.so.3.3.2
+2b4dd05fd000-2b4dd0609000 r-xp 00178000 08:01 136927934                  /usr/lib64/libfftw3.so.3.3.2
+2b4dd0609000-2b4dd060a000 rwxp 00184000 08:01 136927934                  /usr/lib64/libfftw3.so.3.3.2
+2b4dd060a000-2b4dd0b64000 r-xp 00000000 08:01 136942680                  /usr/lib64/liblapack.so.3.4.2
+2b4dd0b64000-2b4dd0d63000 ---p 0055a000 08:01 136942680                  /usr/lib64/liblapack.so.3.4.2
+2b4dd0d63000-2b4dd0d64000 r-xp 00559000 08:01 136942680                  /usr/lib64/liblapack.so.3.4.2
+2b4dd0d64000-2b4dd0d67000 rwxp 0055a000 08:01 136942680                  /usr/lib64/liblapack.so.3.4.2
+2b4dd0d67000-2b4dd0dbf000 r-xp 00000000 08:01 136414095                  /usr/lib64/libblas.so.3.4.2
+2b4dd0dbf000-2b4dd0fbe000 ---p 00058000 08:01 136414095                  /usr/lib64/libblas.so.3.4.2
+2b4dd0fbe000-2b4dd0fbf000 r-xp 00057000 08:01 136414095                  /usr/lib64/libblas.so.3.4.2
+2b4dd0fbf000-2b4dd0fc0000 rwxp 00058000 08:01 136414095                  /usr/lib64/libblas.so.3.4.2
+2b4dd0fc0000-2b4dd10e5000 r-xp 00000000 00:2b 62949470                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgfortran.so.3.0.0
+2b4dd10e5000-2b4dd12e4000 ---p 00125000 00:2b 62949470                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgfortran.so.3.0.0
+2b4dd12e4000-2b4dd12e5000 r-xp 00124000 00:2b 62949470                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgfortran.so.3.0.0
+2b4dd12e5000-2b4dd12e7000 rwxp 00125000 00:2b 62949470                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgfortran.so.3.0.0
+2b4dd12e7000-2b4dd13e8000 r-xp 00000000 08:01 136407037                  /usr/lib64/libm-2.17.so
+2b4dd13e8000-2b4dd15e7000 ---p 00101000 08:01 136407037                  /usr/lib64/libm-2.17.so
+2b4dd15e7000-2b4dd15e8000 r-xp 00100000 08:01 136407037                  /usr/lib64/libm-2.17.so
+2b4dd15e8000-2b4dd15e9000 rwxp 00101000 08:01 136407037                  /usr/lib64/libm-2.17.so
+2b4dd15e9000-2b4dd15ff000 r-xp 00000000 00:2b 62949329                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgcc_s.so.1
+2b4dd15ff000-2b4dd17fe000 ---p 00016000 00:2b 62949329                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgcc_s.so.1
+2b4dd17fe000-2b4dd17ff000 r-xp 00015000 00:2b 62949329                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgcc_s.so.1
+2b4dd17ff000-2b4dd1800000 rwxp 00016000 00:2b 62949329                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libgcc_s.so.1
+2b4dd1800000-2b4dd183e000 r-xp 00000000 00:2b 62949287                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libquadmath.so.0.0.0
+2b4dd183e000-2b4dd1a3e000 ---p 0003e000 00:2b 62949287                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libquadmath.so.0.0.0
+2b4dd1a3e000-2b4dd1a3f000 r-xp 0003e000 00:2b 62949287                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libquadmath.so.0.0.0
+2b4dd1a3f000-2b4dd1a40000 rwxp 0003f000 00:2b 62949287                   /usr/local/software/archive/linux-scientific7-x86_64/gcc-9/gcc-6.5.0-trdjpqcmdfjdygb32vbo3tl3akpyignw/lib64/libquadmath.so.0.0.0
+2b4dd1a40000-2b4dd1c03000 r-xp 00000000 08:01 137242008                  /usr/lib64/libc-2.17.so
+2b4dd1c03000-2b4dd1e03000 ---p 001c3000 08:01 137242008                  /usr/lib64/libc-2.17.so
+2b4dd1e03000-2b4dd1e07000 r-xp 001c3000 08:01 137242008                  /usr/lib64/libc-2.17.so
+2b4dd1e07000-2b4dd1e09000 rwxp 001c7000 08:01 137242008                  /usr/lib64/libc-2.17.so
+2b4dd1e09000-2b4e14d33000 rwxp 00000000 00:00 0 
+2b4e18000000-2b4e18021000 rwxp 00000000 00:00 0 
+2b4e18021000-2b4e1c000000 ---p 00000000 00:00 0 
+2b4e8ecee000-2b4e91dca000 rwxp 00000000 00:00 0 
+7ffdac31b000-7ffdac33f000 rwxp 00000000 00:00 0                          [stack]
+7ffdac35f000-7ffdac361000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+#0  0x2b4dd1a763ef in ???
+#1  0x2b4dd1a76377 in ???
+#2  0x2b4dd1a77a67 in ???
+#3  0x2b4dd1ab8ec6 in ???
+#4  0x2b4dd1ac16b8 in ???
+#5  0x4a3020 in __posterior_MOD_pos_samp
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/build/dependencies/multinest-src/posterior.F90:372
+#6  0x47c110 in __nested_MOD_clusterednest
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/build/dependencies/multinest-src/nested.F90:2505
+#7  0x4968c0 in __nested_MOD_nestsample
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/build/dependencies/multinest-src/nested.F90:365
+#8  0x497af4 in __nested_MOD_nestrun
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/build/dependencies/multinest-src/nested.F90:239
+#9  0x4562c5 in __nested_sampling_MOD_run_nested_sampling
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/src/nested_sampling.f90:137
+#10  0x4498d2 in __prosit_MOD_sample_pdf
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/mcfor/src/PROSIT.f90:322
+#11  0x409557 in beagle
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/eclake_BEAGLE/src/BEAGLE.f90:649
+#12  0x405bf6 in main
+	at /home/ec296/rds/rds-rm665-beagle_shared/code/eclake_BEAGLE/src/BEAGLE.f90:6
+/var/spool/slurm/slurmd/job21497494/slurm_script: line 153: 138389 Aborted                 /home/ls861/rds/rds-rm665-beagle_shared/eclake_BEAGLE_install/bin/BEAGLE --parameter-file /home/ls861/BEAGLE-general/params/parameter_file_fit_DPL_012.param --fit

@@ -210,7 +210,7 @@ plt.figure(figsize=(fsize, fsize))
 plt.title('Input SSFR (DE) vs Output SSFR ({})'.format(title1), size=size)
 plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
-#plt.plot((-1, 3.5), (-1, 3.5))
+plt.plot((-10, -7), (-10, -7))
 plt.scatter(np.log10(ssfr_r[id_b1])[idx_r1], np.log10(ssfr_b1)[idx_r1], s=10, zorder=1, color='r', label='rising')
 plt.scatter(np.log10(ssfr_r[id_b1])[idx_f1], np.log10(ssfr_b1)[idx_f1], s=10, zorder=1, color='g', label='falling')
 #plt.errorbar(np.log10(sfr_r[id_b1]), np.log10(sfr_b1), yerr=[np.log10(sfr_b1 / sfr_68_b1[:, 0]), np.log10(sfr_68_b1[:, 1] / sfr_b1)], linestyle="None", elinewidth=1, color='k', zorder=0)
@@ -228,7 +228,7 @@ plt.figure(figsize=(fsize, fsize))
 plt.title('Input SSFR (DE) vs Output SSFR ({})'.format(title2), size=size)
 plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
-#plt.plot((-1, 3.5), (-1, 3.5))
+plt.plot((-10, -7), (-10, -7))
 plt.scatter(np.log10(ssfr_r[id_b2])[idx_r2], np.log10(ssfr_b2)[idx_r2], s=10, zorder=1, color='r', label='rising')
 plt.scatter(np.log10(ssfr_r[id_b2])[idx_f2], np.log10(ssfr_b2)[idx_f2], s=10, zorder=1, color='g', label='falling')
 #plt.errorbar(np.log10(sfr_r[id_b2]), np.log10(sfr_b2), yerr=[np.log10(sfr_b2 / sfr_68_b2[:, 0]), np.log10(sfr_68_b2[:, 1] / sfr_b2)], linestyle="None", elinewidth=1, color='k', zorder=0)
@@ -298,9 +298,4 @@ for j in [0, 1]:
         axs[j,i].set_title(params_names[i+4*j])
         axs[j,i].scatter(params[i+4*j][id_b1], params_b1[i+4*j])
 plt.show()
-
-
-
-
-
 
