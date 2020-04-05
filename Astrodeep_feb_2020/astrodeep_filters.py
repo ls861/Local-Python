@@ -31,7 +31,7 @@ data_fits.close()
 
 fig, ax = plt.subplots(figsize=(10, 4))
 #fig.suptitle('Astrodeep Filters')
-fig.suptitle('JADES Filters')
+fig.suptitle('ASTRODEEP Filters')
 
 for i in range(len(filters)):
     ax.fill_between(wl[i], f[i], alpha=0.7, label=filter_label[i])

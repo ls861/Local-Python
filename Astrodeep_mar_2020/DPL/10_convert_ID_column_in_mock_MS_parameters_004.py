@@ -19,7 +19,7 @@ outputDict = {}
 
 fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_MS_parameters_004.fits'
 data_fits = fits.open(fileName)
-print(data_fits[1].header)
+#print(data_fits[1].header)
 
 ID                              = data_fits[1].data['id']
 outputDict['id']                = ID.astype(str)
@@ -44,7 +44,7 @@ data_fits.close()
 
 outputTable = Table(outputDict)
     
-outputTable.write("mock_MS_parameters_005.fits", overwrite=True)
+#outputTable.write("mock_MS_parameters_005.fits", overwrite=True)
 
 
 

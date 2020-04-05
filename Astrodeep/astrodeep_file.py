@@ -137,7 +137,7 @@ for i in range(len(catalogs_z)):
 cat       = np.hstack(catalogs_z)
 cat       = cat[cat['ZBEST'] > 0] # removes values with -1
 
-np.save("cat", cat)
+#np.save("cat", cat)
 
 
 

@@ -13,8 +13,8 @@ import cosmolopy.constants as cc
 from scipy.integrate import quad
 
 param1 = 'DPL'
-revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011']
-revisions = ['012_001']
+revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011', '012_001']
+revisions = ['012_004']
     
 for revision1 in revisions:
     
@@ -258,4 +258,3 @@ for revision1 in revisions:
     plt.ylim(min_ax, max_ax)
     plt.legend()
     plt.show()    
-    
