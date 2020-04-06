@@ -14,7 +14,7 @@ from scipy.integrate import quad
 
 param1 = 'DPL'
 revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011', '012_001']
-revisions = ['012_004']
+revisions = ['012_005']
     
 for revision1 in revisions:
     
@@ -24,7 +24,7 @@ for revision1 in revisions:
     # get INPUT params (len 100)
     # =============================================================================
     
-    fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_MS_parameters_004.fits'
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_MS_parameters_005.fits'
     data_fits = fits.open(fileName)
 #    print(data_fits[1].header)
 

@@ -37,7 +37,7 @@ data_fits.close()
 
 f = []
 for i in range(len(filters)):
-    f.append(10**( (23.9 - m[i]) / 2.5 ))
+    f.append(10**( (23.9 - m[i]) / 2.5 )) #mJy (in frequency not wavelength)
 
 # =============================================================================
 # FIND ERRORS
