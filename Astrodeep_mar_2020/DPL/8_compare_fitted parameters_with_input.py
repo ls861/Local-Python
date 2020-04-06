@@ -14,7 +14,7 @@ from scipy.integrate import quad
 
 param1 = 'DPL'
 revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011', '012_001']
-revisions = ['012_005']
+revisions = ['012_001']
     
 for revision1 in revisions:
     
@@ -258,3 +258,73 @@ for revision1 in revisions:
     plt.ylim(min_ax, max_ax)
     plt.legend()
     plt.show()    
+
+
+
+
+# =============================================================================
+# calculate distance between points to find ID of "bad" ones
+# =============================================================================
+
+plt.hist(abs(ssfr[id_b1]-ssfr_b1))
+
+
+bad_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) > 1.2]
+
+
+
+print(bad_fit_idx+1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
