@@ -14,7 +14,10 @@ from scipy.integrate import quad
 
 param1 = 'DPL'
 revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011', '012_001']
-revisions = ['012_001']
+revisions = ['012_006', '012_007', '012_008', '012_009']
+
+fsize = 3
+size = 8
     
 for revision1 in revisions:
     
@@ -150,7 +153,7 @@ for revision1 in revisions:
     params_b1 = [mass_b1, np.log10(dpl_alpha_b1), np.log10(dpl_beta_b1), tauV_eff_b1, metallicity_b1, nebular_logU_b1, np.log10(tau_b1), nebular_xi_b1]
     params_68_b1 = [mass_68_b1, np.log10(dpl_alpha_68_b1), np.log10(dpl_beta_68_b1), tauV_eff_68_b1, metallicity_68_b1, nebular_logU_68_b1, np.log10(tau_68_b1), nebular_xi_68_b1]
     
-    fig, axs = plt.subplots(2, len(params)/2, figsize=(15, 8))
+    fig, axs = plt.subplots(2, len(params)/2, figsize=(4*fsize, 2*fsize))
     fig.suptitle(title1)
     for j in [0, 1]:
         for i in range(len(params)/2):
@@ -178,9 +181,6 @@ for revision1 in revisions:
     # =============================================================================
     # PLOT - input mass vs output mass 1
     # =============================================================================
-    
-    fsize = 6
-    size = 13
     
     plt.figure(figsize=(fsize, fsize))
     plt.title('Input Mass (DPL) vs Output Mass ({})'.format(title1), size=size)
@@ -260,24 +260,18 @@ for revision1 in revisions:
     plt.show()    
 
 
-
-
-# =============================================================================
-# calculate distance between points to find ID of "bad" ones
-# =============================================================================
-
-plt.hist(abs(ssfr[id_b1]-ssfr_b1))
-
-
-bad_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) > 1.2]
-
-
-
-print(bad_fit_idx+1)
-
-
-
-
+    # =============================================================================
+    # calculate distance between points to find ID of "good or "bad" ones
+    # =============================================================================
+    
+    plt.hist(abs(ssfr[id_b1]-ssfr_b1))
+    plt.show()
+    
+    good_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) < 0.3]
+    print(good_fit_idx+1)
+    
+    bad_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) >= 0.3]
+    print(bad_fit_idx+1)
 
 
 
