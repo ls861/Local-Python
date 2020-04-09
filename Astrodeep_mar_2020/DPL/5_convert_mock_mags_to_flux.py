@@ -44,7 +44,8 @@ for i in range(len(filters)):
 # =============================================================================
     
 #sig_mag5 = np.array([29.4, 29.6, 29.7, 29.8, 29.4, 29.4, 29.1])    
-sig_mag5 = np.full(len(filters), 30.0)
+#sig_mag5 = np.full(len(filters), 30.0) # original for 012_001
+sig_mag5 = np.array([28.95, 29.35, 28.84, 28.45, 28.34, 28.34, 28.16, 26.45, 26.52, 26.25])    # CANDELS for 012_010, NOTE, 140 wasn't in table, hence duplicated 125.
 
 sig_flux5 = 10**( (23.9 - sig_mag5) / 2.5 )     # microJy
 sig_flux = sig_flux5 / 5.
@@ -58,7 +59,8 @@ sig_flux = sig_flux5 / 5.
 header_string = '#ID b_B435 b_V606 b_I814 b_Y105 b_J125 b_JH140 b_H160 b_Ks b_CH1 b_CH2 b_errB435 b_errV606 b_errI814 b_errY105 b_errJ125 b_errJH140 b_errH160 b_errKs b_errCH1 b_errCH2\n'
 
 # =============================================================================
-#file1 = open("DPL_mock_fluxes.txt","w+")
+#file1 = open("DPL_mock_fluxes.txt","w+") # original 012_001
+#file1 = open("DPL_mock_fluxes_CANDELS.txt","w+") # CANDELS 012_010
 #file1.write(header_string)
 #
 #for i in range(len(m[0])):
