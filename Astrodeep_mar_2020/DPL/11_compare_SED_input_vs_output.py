@@ -11,15 +11,18 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 
 param = 'DPL'
-revision = '012_009'
+revision = '012_001'
 
 samples = 100
 
 #IDs = [1, 20, 23, 53, 75, 87, 89, 90, 99] # bad fit 012_001
 #IDs = [6, 11, 13, 14, 27, 31, 45, 61, 68, 80] # good fit 012_001 
-IDs = [6, 11, 20]
 
-fsize=12
+#IDs = [1, 20, 23, 26, 37, 43, 47, 52, 53, 67, 74, 75, 86, 87, 88, 89, 90, 99] # BAD 001 > 0.8
+IDs = [1, 4, 5, 6, 8, 9, 14, 16, 21, 24, 26, 29, 33, 34, 38, 43, 47, 51, 52, 53, 56, 62, 73, 74, 75, 77, 85, 86, 87, 89, 90, 94, 96, 98, 99] # BAD 010 > 0.8
+IDs=[20]
+
+fsize=10
 c = 299792458 # m s^-2
 
 
@@ -167,8 +170,8 @@ for ID in IDs:
     # PLOT with fitted SEDs shaded
     # =============================================================================
     
-    plt.figure(figsize=(2*fsize, 0.2*fsize))
-    plt.title(title, fontsize=14)
+    plt.figure(figsize=(2*fsize, 1*fsize))
+    plt.title(title + ', chi2 = {0:.3g}'.format(np.average(chi2_fit_arr)), fontsize=14)
     plt.xlabel('Wavelength $\lambda$ ($\AA$)', fontsize=14)
     plt.ylabel('Energy Density $\lambda F_\lambda$ ($erg\:s^{-1}\:cm^{-2}$)', fontsize=14)
 
@@ -192,7 +195,8 @@ for ID in IDs:
     
     plt.xlim(0, 50000)
 #    plt.xlim(10000, 15000)
-    plt.ylim(0.9*y_lim1, 1.5*y_lim2)
+#    plt.ylim(0.9*y_lim1, 1.5*y_lim2)
+    plt.ylim(0.8*min(ptblfl_phot_mock), 1.5*max(ptblfl_phot_mock))
     
     plt.yscale('log')
     plt.legend()
@@ -203,25 +207,25 @@ for ID in IDs:
     # chi_squared random comparisons
     # =============================================================================
     
-    chi2_mock = np.sum(((ptblfl_phot_mock - lfl_phot_mock)**2) / (ptblflerr_phot_mock**2) )
-    
-    #print(chi2_fit_total)
-    plt.figure(figsize=(0.2*fsize, 0.2*fsize))
-    plt.hist(chi2_fit_total, bins=20)
-    plt.show()
-    
-    #print(chi2_fit_arr)
-    plt.figure(figsize=(0.2*fsize, 0.2*fsize))
-    plt.hist(chi2_fit_arr, bins=20)
-    plt.show()
-    
-    # just choose a number from the samples
-    i=0
-    
-    test = np.sum(((lfl_phot_fit_arr[i] - ptblfl_phot_mock)**2) / (ptblflerr_phot_mock**2) )
-    print('lester')
-    print(test)
-    print(chi2_fit_arr[i])
+#    chi2_mock = np.sum(((ptblfl_phot_mock - lfl_phot_mock)**2) / (ptblflerr_phot_mock**2) )
+#    
+#    #print(chi2_fit_total)
+#    plt.figure(figsize=(0.2*fsize, 0.2*fsize))
+#    plt.hist(chi2_fit_total, bins=20)
+#    plt.show()
+#    
+#    #print(chi2_fit_arr)
+#    plt.figure(figsize=(0.2*fsize, 0.2*fsize))
+#    plt.hist(chi2_fit_arr, bins=20)
+#    plt.show()
+#    
+#    # just choose a number from the samples
+#    i=0
+#    
+#    test = np.sum(((lfl_phot_fit_arr[i] - ptblfl_phot_mock)**2) / (ptblflerr_phot_mock**2) )
+#    print('lester')
+#    print(test)
+#    print(chi2_fit_arr[i])
     
 
 

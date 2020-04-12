@@ -11,7 +11,7 @@ from astropy.table import Table
 from astropy.io import fits
 
 param = 'DPL'
-revision = '012_001'
+revision = '012_010'
 
 samples = 100
 
@@ -64,7 +64,7 @@ outputDict['id']                = id_b1.astype(str)
 outputDict['chi2']              = chi2_fit_arr_allID
 outputTable = Table(outputDict)
     
-#outputTable.write("012_001_chi2.fits", overwrite=True)
+#outputTable.write("012_010_chi2.fits", overwrite=True)
 
 
 
