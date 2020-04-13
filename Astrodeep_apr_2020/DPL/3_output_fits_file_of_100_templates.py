@@ -86,7 +86,7 @@ outputTable = Table(outputDict)
 
 
 
-
+print(sfr)
 
 
 

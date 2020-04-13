@@ -26,7 +26,7 @@ filters = ['HST_ACS_WFC_F435W_APP', 'HST_ACS_WFC_F606W_APP', 'HST_ACS_WFC_F814W_
 #column name from ASTRODEEP config file + NOT ACTUALLY USED HERE
 filter_label = ['b_B435', 'b_V606', 'b_I814', 'b_Y105', 'b_J125', 'b_JH140', 'b_H160', 'b_Ks', 'b_CH1', 'b_CH2']
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_catalogue_DPL_001_15.fits'
+fileName = '/Users/lester/Documents/PhD/param_100/mock_100_LE/mock_catalogue_100_LE.fits'
 data_fits = fits.open(fileName)
 
 m = []
@@ -62,7 +62,7 @@ header_string = '#ID b_B435 b_V606 b_I814 b_Y105 b_J125 b_JH140 b_H160 b_Ks b_CH
 
 # =============================================================================
 #file1 = open("DPL_mock_fluxes.txt","w+") # original 012_001
-#file1 = open("DPL_mock_fluxes_CANDELS.txt","w+") # CANDELS 012_010
+#file1 = open("100_LE_mock_fluxes_CANDELS.txt","w+") # CANDELS 012_010
 #file1.write(header_string)
 #
 #for i in range(len(m[0])):

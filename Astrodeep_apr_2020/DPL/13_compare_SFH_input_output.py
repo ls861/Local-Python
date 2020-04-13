@@ -12,10 +12,10 @@ from astropy.io import fits
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-revision = '012_010'
+revision = 'DPL'
 fsize=2
     
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/{}_input_and_output.fits'.format(revision)
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/{}_combined.fits'.format(revision)
 data_fits = fits.open(fileName)
 #    print(data_fits[1].header)
 
@@ -34,10 +34,10 @@ tau_out = 10**(data_fits[1].data['tau_mean'])
 data_fits.close()
 
 # calculated using python file 8
-ID_rr_012_010 = np.array([2, 40, 72])
-ID_ff_012_010 = np.array([1, 3, 4, 6, 8, 12, 16, 18, 21, 22, 24, 25, 26, 27, 28, 29, 35, 41, 43, 44, 47, 49, 50, 51, 52, 53, 55, 57, 58, 61, 63, 66, 67, 68, 71, 73, 74, 76, 77, 79, 80, 82, 83, 84, 85, 90, 92, 93, 94, 95, 96, 98, 99])
-ID_rf_012_010 = np.array([5, 7, 9, 10, 11, 13, 14, 32, 33, 34, 37, 38, 56, 62, 69, 70, 75, 78, 86, 87, 88, 89, 91, 97])
-ID_fr_012_010 = np.array([17, 81, 100])
+ID_rr_DPL = np.array([2])
+ID_ff_DPL = np.array([1, 4, 6, 7, 10, 14, 15, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 32, 34, 36, 38, 40, 41, 42, 43, 44, 47, 48, 50, 51, 52, 54, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 67, 68, 69, 70, 71, 74, 82, 83, 84, 86, 87, 88, 89, 90, 91, 92, 94, 97, 99, 100])
+ID_rf_DPL = np.array([3, 5, 8, 11, 12, 13, 16, 23, 31, 39, 45, 46, 49, 53, 60, 64, 72, 73, 75, 76, 77, 79, 80, 81, 95, 96, 98])
+ID_fr_DPL = np.array([33, 37, 93])
 
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.7}
 cosmo = cd.set_omega_k_0(cosmo)
@@ -47,7 +47,7 @@ msa = ageUniv2 - ageUniv999
 
 xlin = np.linspace(1, 1e10, 100000)
 
-for j in ID_rf_012_010:
+for j in ID_rf_DPL:
     
     i = (np.abs(ID - j)).argmin()
     

@@ -1,0 +1,115 @@
+SIMPLE  =                    T / conforms to FITS standard                      BITPIX  =                    8 / array data type                                NAXIS   =                    0 / number of array dimensions                     EXTEND  =                    T                                                  END                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             XTENSION= 'BINTABLE'           / binary table extension                         BITPIX  =                    8 / array data type                                NAXIS   =                    2 / number of array dimensions                     NAXIS1  =                   84 / length of dimension 1                          NAXIS2  =                  100 / length of dimension 2                          PCOUNT  =                    0 / number of group parameters                     GCOUNT  =                    1 / number of groups                               TFIELDS =                   21 / number of table fields                         TTYPE1  = 'ID      '                                                            TFORM1  = 'J       '                                                            TTYPE2  = 'b_B435  '                                                            TFORM2  = 'E       '                                                            TTYPE3  = 'b_V606  '                                                            TFORM3  = 'E       '                                                            TTYPE4  = 'b_I814  '                                                            TFORM4  = 'E       '                                                            TTYPE5  = 'b_Y105  '                                                            TFORM5  = 'E       '                                                            TTYPE6  = 'b_J125  '                                                            TFORM6  = 'E       '                                                            TTYPE7  = 'b_JH140 '                                                            TFORM7  = 'E       '                                                            TTYPE8  = 'b_H160  '                                                            TFORM8  = 'E       '                                                            TTYPE9  = 'b_Ks    '                                                            TFORM9  = 'E       '                                                            TTYPE10 = 'b_CH1   '                                                            TFORM10 = 'E       '                                                            TTYPE11 = 'b_CH2   '                                                            TFORM11 = 'E       '                                                            TTYPE12 = 'b_errB435'                                                           TFORM12 = 'E       '                                                            TTYPE13 = 'b_errV606'                                                           TFORM13 = 'E       '                                                            TTYPE14 = 'b_errI814'                                                           TFORM14 = 'E       '                                                            TTYPE15 = 'b_errY105'                                                           TFORM15 = 'E       '                                                            TTYPE16 = 'b_errJ125'                                                           TFORM16 = 'E       '                                                            TTYPE17 = 'b_errJH140'                                                          TFORM17 = 'E       '                                                            TTYPE18 = 'b_errH160'                                                           TFORM18 = 'E       '                                                            TTYPE19 = 'b_errKs '                                                            TFORM19 = 'E       '                                                            TTYPE20 = 'b_errCH1'                                                            TFORM20 = 'E       '                                                            TTYPE21 = 'b_errCH2'                                                            TFORM21 = 'E       '                                                            END                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?eÕj?–ÒÄ?´¤W?÷ô&@)äX@8D]@8Ú@_øa@†îP@+`:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =îü¶=þ!>è‡>!|º>_`Q>yûÖ>ox>pk©>€;ú>)~:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   @©@€.@,@¥ÑxA ÊAA cA%ÇA"v€A"åA>:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ? 1>õµ¼>å`š>üÎˆ?#~?Ab×?Gu¶?#Ñ?·¨>í ž:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?ø?K	ó?…@Œ?áó¸@>3@t}°@ˆFn@Ä¹@¯ý!@µMÛ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =÷«s>Z6> Ï>YÚ>«Ó>ØW¼>ëÚy>ãÇ£? œ‡>Øž×:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =\>Ø=’8=Æzý>=ô>§Ÿã>Îÿª>ä¥	?õS?,sÎ?/Z:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >¿c‘>Ò>ñœ?9T‘?›t?»ê?ÊYÛ?ÙlM?Õ£Š?Î95:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   	>Çð?
+Œ?8¢³?“Ê?úMw@>Ê@'Ð@Gz0@}3@;ø:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   
+=•]‰=ÖÁƒ>¯>ˆ_>ã}­?!z?Ú?<RV?wN±?Œã„:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?„41?Šº#?‘ê/?·al?ÿ<t@å®@)&@t>@ž5?ùR€:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?ï(+?ð±ß?ðç@"B@pE™@•YK@¡ `@‘«@Œ0|@‚÷±:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >þQ?	—)?:?3‡&?oz-?§+ê?½¼?ˆZ…?‹(«?ƒµt:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >Ù²@>Õª>ÊÙ>Öf>ý½¾?Ò7?!è6>Ñ·v>À\p>›¿Ê:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >¹·¸>ÏÛò>å	Ç?|)?iæ5?ŽÒ]?šOi?G¾?¡[¿?8Ì:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =¿Ëv=år
+>ÄP>tÄn>³ˆÒ>òÅí?Š³?'ƒ`?\j?Uß§:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?ŒT>ùÔ>îyþ?1)?'e¬?;„Ø?=ÿ?! §?µ’>ðÐÅ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?	S ?wÑ?#>?;››?qÕß?°w?ï?ƒ>?k¥?6 Ü:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?Wî¦?eP¿?wF?)?ßre@
+N@€@Ö+@ ø’?Õl:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >h‚M>˜[w>ÆQ? d}?ƒÊl?¢®b?²?Ì.õ?óÿ‹?ñrï:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >uÓ>”@`>¯ï>û¡Y?FAß?bþ?m !?†pÌ?Š:Ð?}ã:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =¸’þ=Àdn=ÎÄ>vÞ>:²2>M™Ï>Kw/>K…>n0A>3Zö:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?¤ôB?Ã)?ç¶Ö@>N@f×‚@¢‘@ºMç@™iº@¨$@Ÿ':úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =²²Z=À†=ë–Ó>5‘>ŽzÒ>­¬>·åV>Ô¸Á>È˜a>ÀnE:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =’ž¦=ÀŸ=ûaâ>@²Ç>£9›>ÏŠZ>çà>å?ó?5?!if:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?ý*?õc?énp?õ):@—@ô(@ÌV@ _ ?Î=Æ?€:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >dÑ > ‚U>Ø>?)‡ö?‰.|?®ùØ?Äd?éa!@Ì@)Þ	:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >'ß>J²O>pgí>žðú>í„Á?æ?Ó@?D?vË?–:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =h¶=œ½k=Ô+ü>:@>£J…>Â¤>Õ#Ã?4?yÂ?¾Ù:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >[ª>iî>oCì>”ä>Æ’v>þÒ/?
+®s>ò¤ç>ßµÁ>º:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   @,Å@A@[u@œ	á@ö;¦AöSA(åAâ/A5"AÀÜ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼    ?f»2?r2ê??wÎ?Ñß™@'ø@Ë|?úp`?æ”v?ÇBû:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   !?xï*?—¼x?°ƒ>?ô@6eT@SŽì@\«$@Y|Ò@›@™¤½:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   "=?ƒ¾=€=ª‡>¦q>QøË>p±I>~\F>¯¯’>ÛG">ü
+ã:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   #=ÄƒD=Ç÷Ä=¿¾ò=ÀÏ÷>œÍ>\>'Kk>e=é¿=‘ÌK:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   $?âƒw?í¨C?ÿˆx@#¨M@a@y-(@pà@Š¦{@|;b@Yš:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   %=¯¶=½"=ÌfÐ>>v>M¼>s²E>s§¨>‰].>]íô>{™:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   &>X>D˜“>{ßà>¸\•?Ä?0M?;a?[¦´?Ž±?¡òI:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   '=ñ—;>+Úm>f›8>µH¥?
+š?#ˆB?-ÙÙ?ZÑ™?¢#?¬­:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   (>É©&?#¯?'Å¡?pÙÄ?´ÃŒ?Ýá‹?ñ™-@ p¤@4ú^@Hë:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   )=»´
+>	øÇ>8m°>ŠÚß>åž?a¶?¶µ?-ng?…xD?¨A/:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   *=Žº=ÎzQ>*<>^!˜>²Û>Òh>ßO)?j?>;?;P:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   +=KÌ=(Á/=Q =í›=Ñ@> §T>	à>!V>7˜š>U'õ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ,?îß?(,?í?I8?)›?9×å?9‹0?2lÚ?ù>à8:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ->í¤>•F>ÝJ>?ëb>F>¦—>«¯v>¼r$>¬3)>Ó9:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   .?ùÞ´?öÖ?êý‡@ œ@éá@PV3@g˜³@»ï@
+¹Ú?âæw:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   /?,b&?>þ™?Vì?•­%?èÆ@`@Ïª@5 @$…?öd‘:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   0>hÈV>¤+Ì>Ú5?(B?‚ª?—Íi?Ÿû9?ÇöO@Š»@!ß–:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   1>%ØB>:Šu>K„¼>xâX>®.>ÄœJ>Êœ,>¼ÿœ>ØB->©¾ô:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   2>m0#>j™´>fÛœ>Œ}n>Å£(>ä¿:>ì\ƒ>á•>ÂG>¤”$:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   3@ôÖ@,Æ2@CßD@sG@£÷@»s@ÂÏÆ@º¦A jA‡ƒ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   4?™¾?$ú?7¥«?ioñ?š¥õ?§ U?¥t{?¸NN?â¹œ?ïË:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   5=»é=Z:=žP=Í¦>#t‘>8“Y>A”:>mæ>Þ?4|:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   6<*m²< ã<ÖÜé=-ñ“=ƒ†Ž=’k»=—•0=ÞÐv>,=ô5á:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   7=Ûß©=îýH>¬1>IØN>Éº>¹Ö,>ÄÇ2>ÅæY>ºœ1>½¯è:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   8=Wfq=Žp<=º‰>œ‹>^Bµ>{ ù>ƒøž>”AG>Ó·®>øf:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   9@F@ _Û@ Ý•@ÂÒQA1A# îA)ëA ¡àA%þgA$åw:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   :=°7=ó‘>p>kas>£Žý>°ä>¸wß>÷
+
+?%?$ë»:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ;> 0^>4Ó>jÀü>¥òä?•µ?¼?îè?<@Ú?†üý?œIý:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   <>ŒVÙ>Ó56?Á?\“À?«æ½?ÁH?È£•?öRè@D.{@_Ô3:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   =<²=í<ìª=z~=yc	=ÆÍO>ŒV>—[>âK>GZ¶>tän:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   >>Qé»>n”>†kY>½¥…?
+\´?8(?N²˜?*R?CTD?A‚Î:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ?=~õc=…å¾=ˆ@m=£B)=Ñbµ=øwð>Ëá=èì=’À=’˜ˆ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   @>•jU>•š>–£û>¨Ž¯>Õ¬ >ÿ‘Î?—±>ß”`>ÊÚÐ>§ãª:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   A>wQT>€4Ù>†c>©„>úR¯?®?!/? —é?„?Àk:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   B>O<>'l >9BÂ>Qú?>v×>‘áè>›Ù>‘_>Ö°>4nÑ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   C>Ñ¾ñ>Ôe>Ùtv?Þx?7†±?J•?K?H(Ç?-ë5?¹ç:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   D?äFK?ìy¢?óÿÊ@nÅ@DÙ¢@j›@vå@[@FQ@$üˆ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   E?p?Û?pÕ:?m#»?‹¨ù?´í?ÍÐ¸?×?Â;+?´X­?šµ—:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   F@¹IY@·ôX@µò@¿ZJ@åªEAÊÉA$6@ÜH@¿MÖ@˜‰i:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   G=çâ>%•Ð>]-÷>½ô?'‘ï?Pf-?d!n?€ão?²x‹?ÆàK:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   H>M&U>Š©>¯ô™??Rz?…ã?”‚¾?¨M7?ÑÕ;?È“$:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   I?N‹Ý?Z:ë?jm?¡q=?ñPs@—n@0@Ò@Ÿ×@ ‘:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   J>»ÍD>åkÒ?	of?PÂ?«?ÃÔ«?Î1å?ê÷_?ûÏù?êeÓ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   K=„Õ=¥†=ÁÎ>2 >O½J>q>xF!>•Q¾>À>>Â$G:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   L>¾Ò‘>ÜiÄ>øBó?&+€?zg*?žsÎ?­Œ>?§E÷?¯ód?©T´:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   M>UâJ>‘«>¸Ê„?Œ?Vén?whà?‚qÔ?˜"œ?È‰u?Üè1:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   N>¿K>¼ƒ¾>´¼6>Ì¶?	ƒÍ?33 ?DR,?à?ªÜ>ùÌ­:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   O=Ç“A> <¢>(Þy>]¨>Ä‰¸>Ñæå>ÝŠ?Æ?%\É?3Ç:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   P>Vuë>’Û×>¼da?l…?‹Õö?¢‰Ï?ª\J?Çï@ª@#W=:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   Q@R@@T¯Ÿ@Vò@p[W@—•@¬D@¯6'@T@Žý°@d)/:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   R?´SD?ÎÎÜ?çO˜@‹Û@V˜@uW@€PÅ@‰›@Œê·@sÏÛ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   S<ó¬Ô=(0¹=nÍ=Â%Œ>,R>Qä>_x>v|Ÿ>¸DY>ßÃ»:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   T>ì›?	Þ? ïü?[é¥?¢c?Üƒ ?úI?ØÜV?ð°!?èyc:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   U=“„=Ùb˜>û>cJL>²ÝÀ>Ç/>Ín‘>öÙ?%/Z?9G:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   V=ç¶Æ>	~Ñ>#ü?>W>³”>ÊOB>Ø7?zà?	xš?@Ž:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   W@N‘j@>Ý@-Ìß@ChÂ@{Œ@áu@¨Ã‰@ˆº@uù,@X%.:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   X>–­>—ŸÎ>œÁ>Âø`?
+HR?L¡?Ü?J ?*K>é P:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   Y@L@?RÜ@/Æ@8N@fC@‚Pô@‚í­@ZžÇ@8ÎÖ@®:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   Z@w@)l@O¤N@¡c­A³A,oA>ï@A=èAP?NAJ÷:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   [?AUñ?T™?cjô?›sÏ?òËí@ìë@¢“@Ûï@+Œ@2ßü:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   \>Œ·ú>¢0s>»µÍ?~2?Ri3?rªï?}þì?‡þ…?ƒ„½?p¢ú:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ]?•r?¡\Ï?®vp?Ìõ‡@ÿI@ @*®b@ÆÌ@!ó?òâ”:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   ^>>Fb>b>ÙÍâ?9?Zü,?iö?„¥×?“ÛÝ?–üÓ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   _>¦Š>Â¬I>Û	å?Ä?-rz?A³|?G°C?=~G?ˆÅ;?›ùv:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   `?ŠhZ?¡}{?¸íT?ÿ¦K@CAã@[<t@b•¸@y#ä@{¤c@`:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   a>½k•>ÑÎ>åÄ?[¡?f°Õ?„¦Å?ŠZ ?”÷?“)Ô?Š
+È:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   b?‚B¬?šª?¸ã‹@z@4ª	@oàL@ˆQ`@o¬*@Ÿ@yþ:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   c? âá? Ê£>þñ§?Ü¢?>½¾?iB/?xÝô?H?)9ª?:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼   d=‘*=±>=æŽm>2V€>ÍŽ>º >Éûá>Ý¾?}å? J:úXx:­2c;
+„é;Fb°;[‰Â;[‰Â;<œwK<’²R<¼                                                                                                                                                                                                                                                

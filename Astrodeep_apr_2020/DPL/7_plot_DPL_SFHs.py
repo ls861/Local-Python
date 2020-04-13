@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_MS_parameters_004.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/DPL/mock_MS_parameters_100_DPL.fits'
 data_fits = fits.open(fileName)
 #print(data_fits[1].header)
 alpha = data_fits[1].data['dpl_alpha']

@@ -10,11 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
 
-fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_MS_parameters_004.fits'
+fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/DE/mock_MS_parameters_100_DE.fits'
 data_fits = fits.open(fileName)
 #print(data_fits[1].header)
-alpha = data_fits[1].data['dpl_alpha']
-beta = data_fits[1].data['dpl_beta']
+msa = 10**data_fits[1].data['max_stellar_age']
 tau = 10**(data_fits[1].data['tau'])
 A = data_fits[1].data['A']
 sfr = data_fits[1].data['sfr']
@@ -24,18 +23,19 @@ ageUniv2 = 3228839870.9122815
 xlin = np.linspace(1, 1e10, 100000)
 grad = np.empty(len(A))
 
-# nice trick to find index in xlin which has value closest to ageUniv2
-idx = (np.abs(xlin - ageUniv2)).argmin()
-
 
 
 plt.figure(figsize=(10, 10))
 plt.xlim(0, 1e10)
-#plt.ylim(0, 50)
+plt.ylim(0, 1)
 
 for i in range(len(A)):
-#for i in [0]:
-    sfr_calc = A[i] / (((xlin/tau[i])**alpha[i])+((xlin/tau[i])**-beta[i]))
+#for i in [6]:
+    
+    # nice trick to find index in xlin which has value closest to ageUniv2
+    idx = (np.abs(xlin-ageUniv2).argmin())
+
+    sfr_calc = A[i] * (xlin-(ageUniv2-msa[i]))*np.exp(-(xlin-(ageUniv2-msa[i]))/tau[i])
 #    print(alpha[i], beta[i], tau[i], A[i], sfr[i], sfr_calc)
     plt.plot(xlin, sfr_calc/max(sfr_calc))
 #    plt.plot(xlin, np.gradient(sfr_calc, xlin))
@@ -52,12 +52,50 @@ plt.show()
 
 
 
+plt.figure(figsize=(10, 10))
+plt.xlim(0, 1e10)
+plt.ylim(0.9, 1)
+
+rising = np.array(range(len(A)))[grad<0]
+print(rising)
+
+for i in rising:
+#for i in [6]:
+    
+    # nice trick to find index in xlin which has value closest to ageUniv2
+    idx = (np.abs(xlin-ageUniv2).argmin())
+
+# replace msa with xlin-(ageUniv2-msa[i])
+    
+    sfr_calc = A[i] * (xlin-(ageUniv2-msa[i]))*np.exp(-(xlin-(ageUniv2-msa[i]))/tau[i])
+#    print(alpha[i], beta[i], tau[i], A[i], sfr[i], sfr_calc)
+    plt.plot(xlin, sfr_calc/max(sfr_calc))
+#    plt.plot(xlin, np.gradient(sfr_calc, xlin))
+    grad[i] = np.gradient(sfr_calc, xlin)[idx]
+    
+plt.show()
 
 
+plt.figure(figsize=(10, 10))
+plt.xlim(0, 1e10)
+plt.ylim(0.9, 1)
 
 
+falling = np.array(range(len(A)))[grad>0]
+print(falling)
 
+for i in falling:
+#for i in [6]:
+    
+    # nice trick to find index in xlin which has value closest to ageUniv2
+    idx = (np.abs(xlin-ageUniv2).argmin())
 
-
+    sfr_calc = A[i] * (xlin-(ageUniv2-msa[i]))*np.exp(-(xlin-(ageUniv2-msa[i]))/tau[i])
+#    print(alpha[i], beta[i], tau[i], A[i], sfr[i], sfr_calc)
+    plt.plot(xlin, sfr_calc/max(sfr_calc))
+#    plt.plot(xlin, np.gradient(sfr_calc, xlin))
+    grad[i] = np.gradient(sfr_calc, xlin)[idx]
+    
+plt.show()
 
 
