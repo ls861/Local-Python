@@ -46,7 +46,7 @@ ageUniv999 = cd.age(999.0, **cosmo)/cc.yr_s
 
 xlin = np.linspace(1, 1e10, 100000)
 
-for j in ID_fr_LE:
+for j in ID_ff_LE:
     
     i = (np.abs(ID - j)).argmin()
     

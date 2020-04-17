@@ -9,17 +9,18 @@ Created on Sun Apr  5 16:22:23 2020
 import numpy as np
 from astropy.table import Table
 from astropy.io import fits
+import matplotlib.pyplot as plt
 
-param = 'DPL'
-revision = '012_010'
+param = 'DE'
+revision = '105'
 
-samples = 100
+samples = 10
 
 # =============================================================================
 # OUTPUT - get BEAGLE parameters (<100)
 # =============================================================================
 
-fileName = '/Users/lester/Documents/PhD/param_{}/fit_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(param, revision)
+fileName = '/Users/lester/Documents/PhD/param_100/fit_{}_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(revision, param)
 data_fits = fits.open(fileName)
 
 id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int)
@@ -37,7 +38,7 @@ for ID in IDs:
     # Get OUTPUT SEDs
     # =============================================================================
     
-    data_fits = fits.open('/Users/lester/Documents/PhD/param_{}/fit_{}/{}_BEAGLE.fits.gz'.format(param, revision, ID))
+    data_fits = fits.open('/Users/lester/Documents/PhD/param_100/fit_{}_{}/{}_BEAGLE.fits.gz'.format(revision, param, ID))
     # print(data_fits.info())
     # print(data_fits['POSTERIOR PDF'].header)
     
@@ -67,7 +68,7 @@ outputTable = Table(outputDict)
 #outputTable.write("012_010_chi2.fits", overwrite=True)
 
 
-
+plt.hist(outputTable['chi2'])
 
 
 

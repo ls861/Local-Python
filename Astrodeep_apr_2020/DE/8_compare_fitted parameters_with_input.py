@@ -13,9 +13,10 @@ import cosmolopy.constants as cc
 from scipy.integrate import quad
 
 params = ['DE']
-revisions = ['100']
+revisions = ['100', '101', '102', '103', '104']
+revisions = ['106']
 
-fsize = 4
+fsize = 5
 size = 8
 
 for param1 in params:    
@@ -41,6 +42,7 @@ for param1 in params:
         nebular_logU = data_fits[1].data['nebular_logU']
         tau = 10**(data_fits[1].data['tau'])
         nebular_xi = data_fits[1].data['nebular_xi']
+        redshift = np.full(len(id_i), 2.)
         
         A = data_fits[1].data['A']
         sfr = np.log10(data_fits[1].data['sfr'])
@@ -90,17 +92,36 @@ for param1 in params:
         msa_b1 = 10**data_fits['POSTERIOR PDF'].data['max_stellar_age_mean']
         tauV_eff_b1 = data_fits['POSTERIOR PDF'].data['tauv_eff_mean']
         metallicity_b1 = data_fits['POSTERIOR PDF'].data['metallicity_mean']
-        nebular_logU_b1 = data_fits['POSTERIOR PDF'].data['nebular_logu_mean']
         tau_b1 = 10**data_fits['POSTERIOR PDF'].data['tau_mean']
-        nebular_xi_b1 = data_fits['POSTERIOR PDF'].data['nebular_xi_mean']
         
         mass_68_b1 = data_fits['POSTERIOR PDF'].data['mass_68.00']
         msa_68_b1 = 10**data_fits['POSTERIOR PDF'].data['max_stellar_age_68.00']
         tauV_eff_68_b1 = data_fits['POSTERIOR PDF'].data['tauv_eff_68.00']
         metallicity_68_b1 = data_fits['POSTERIOR PDF'].data['metallicity_68.00']
-        nebular_logU_68_b1 = data_fits['POSTERIOR PDF'].data['nebular_logu_68.00']
         tau_68_b1 = 10**data_fits['POSTERIOR PDF'].data['tau_68.00']
-        nebular_xi_68_b1 = data_fits['POSTERIOR PDF'].data['nebular_xi_68.00']
+
+        
+        
+        if revision1 in ['101']:
+            nebular_logU_b1 = np.full(len(id_b1), -2.5)
+            nebular_logU_68_b1 = np.full((len(id_b1),2), -2.5)
+        else:
+            nebular_logU_b1 = data_fits['POSTERIOR PDF'].data['nebular_logu_mean']        
+            nebular_logU_68_b1 = data_fits['POSTERIOR PDF'].data['nebular_logu_68.00']      
+
+        if revision1 in ['103', '105', '106']:
+            nebular_xi_b1 = np.full(len(id_b1), 0.3)
+            nebular_xi_68_b1 = np.full((len(id_b1),2), 0.3)
+        else:
+            nebular_xi_b1 = data_fits['POSTERIOR PDF'].data['nebular_xi_mean']      
+            nebular_xi_68_b1 = data_fits['POSTERIOR PDF'].data['nebular_xi_68.00']
+            
+        if revision1 in ['105', '106']:
+            redshift_b1 = data_fits['POSTERIOR PDF'].data['redshift_mean']
+            redshift_68_b1 = data_fits['POSTERIOR PDF'].data['redshift_68.00']
+        else:
+            redshift_b1 = np.full(len(id_b1), 2.)
+            redshift_68_b1 = np.full((len(id_b1),2), 2.)
         
         data_fits.close()
         
@@ -149,16 +170,16 @@ for param1 in params:
         # PLOT comparing individual parameters
         # =============================================================================
         
-        params_names = ['mass', 'msa', 'tauVeff', 'metallicity', 'nebularlogU', 'tau', 'nebularxi']
-        params = [mass, np.log10(msa), tauV_eff, metallicity, nebular_logU, np.log10(tau), nebular_xi]
-        params_b1 = [mass_b1, np.log10(msa_b1), tauV_eff_b1, metallicity_b1, nebular_logU_b1, np.log10(tau_b1), nebular_xi_b1]
-        params_68_b1 = [mass_68_b1, np.log10(msa_68_b1), tauV_eff_68_b1, metallicity_68_b1, nebular_logU_68_b1, np.log10(tau_68_b1), nebular_xi_68_b1]
+        params_names = ['mass', 'msa', 'tauVeff', 'metallicity', 'nebularlogU', 'tau', 'nebularxi', 'redshift']
+        params = [mass, np.log10(msa), tauV_eff, metallicity, nebular_logU, np.log10(tau), nebular_xi, redshift]
+        params_b1 = [mass_b1, np.log10(msa_b1), tauV_eff_b1, metallicity_b1, nebular_logU_b1, np.log10(tau_b1), nebular_xi_b1, redshift_b1]
+        params_68_b1 = [mass_68_b1, np.log10(msa_68_b1), tauV_eff_68_b1, metallicity_68_b1, nebular_logU_68_b1, np.log10(tau_68_b1), nebular_xi_68_b1, redshift_68_b1]
         
-        fig, axs = plt.subplots(2, 4, figsize=(4*fsize, 2*fsize))
+        fig, axs = plt.subplots(2, 4, figsize=(3.2*fsize, 1.6*fsize))
         fig.suptitle(title1)
         for j in [0, 1]:
             for i in range(4):
-                if j==1 and i==3:
+                if j==1 and i==3 and revision1 not in ['105', '106']:
                     break
                 
                 axs[j,i].set_title(params_names[i+4*j])
@@ -272,10 +293,10 @@ for param1 in params:
         plt.hist(abs(ssfr[id_b1]-ssfr_b1))
         plt.show()
         
-        good_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) < 0.3]
+        good_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) < 0.35]
         print(good_fit_idx+1)
         
-        bad_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) >= 1.2]
+        bad_fit_idx = id_b1[abs(ssfr[id_b1]-ssfr_b1) >= 0.35]
         print(bad_fit_idx+1)
     
         # =============================================================================
@@ -290,7 +311,8 @@ for param1 in params:
     
     
     
-    
+    if revision1 in ['105', '106']:
+        plt.hist(redshift_b1)
     
     
 

@@ -11,16 +11,11 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 
 param = 'DPL'
-revision = '012_001'
+revision = '100'
 
-samples = 100
+samples = 10
 
-#IDs = [1, 20, 23, 53, 75, 87, 89, 90, 99] # bad fit 012_001
-#IDs = [6, 11, 13, 14, 27, 31, 45, 61, 68, 80] # good fit 012_001 
-
-#IDs = [1, 20, 23, 26, 37, 43, 47, 52, 53, 67, 74, 75, 86, 87, 88, 89, 90, 99] # BAD 001 > 0.8
-IDs = [1, 4, 5, 6, 8, 9, 14, 16, 21, 24, 26, 29, 33, 34, 38, 43, 47, 51, 52, 53, 56, 62, 73, 74, 75, 77, 85, 86, 87, 89, 90, 94, 96, 98, 99] # BAD 010 > 0.8
-IDs=[20]
+IDs=[2, 3, 4, 5, 6, 7]
 
 fsize=10
 c = 299792458 # m s^-2
@@ -28,7 +23,6 @@ c = 299792458 # m s^-2
 
 for ID in IDs:
     
-    title = param + '-' + revision.replace('_', '-') + ' ID{}'.format(str(ID))
     title = '{}-{} ID{} {} samples'.format(param, revision.replace('_', '-'), str(ID), str(samples))
     
     # =============================================================================
@@ -51,7 +45,7 @@ for ID in IDs:
     # from INPUT fits file get SEDs and apparent ABMAG
     # =============================================================================
     
-    fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/mock_catalogue_DPL_001_15.fits'
+    fileName = '/Users/lester/Documents/PhD/param_100/mock_100_{}/mock_catalogue_{}_{}.fits'.format(param, revision, param)
     data_fits = fits.open(fileName)
     #print(data_fits.info())
     
@@ -76,7 +70,7 @@ for ID in IDs:
     # get INPUT perturbed fluxes and errors
     # =============================================================================
     
-    fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_mar_2020/DPL/DPL_mock_fluxes.fits'
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/{}/{}_{}_mock_fluxes_CANDELS.fits'.format(param, revision, param)
     
     data_fits = fits.open(fileName)
     # print(data_fits.info())
@@ -91,8 +85,9 @@ for ID in IDs:
     for i in range(len(filters)):
         ptbferr_phot_mock[i] = data_fits[1].data[filter_err[i]][ID-1] # uJy    
         
-    # adding 1% min rel error to errors:
-    ptbferr_phot_mock = ( (ptbferr_phot_mock**2) + ((0.01*ptbf_phot_mock)**2) ) ** 0.5
+    # adding min rel error to errors: 
+    min_rel_error = np.array([0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.05, 0.1, 0.1])
+    ptbferr_phot_mock = ( (ptbferr_phot_mock**2) + ((min_rel_error*ptbf_phot_mock)**2) ) ** 0.5
     
     ptblfl_phot_mock = (ptbf_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
     ptblflerr_phot_mock = (ptbferr_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
@@ -103,7 +98,7 @@ for ID in IDs:
     # Get OUTPUT SEDs
     # =============================================================================
     
-    data_fits = fits.open('/Users/lester/Documents/PhD/param_{}/fit_{}/{}_BEAGLE.fits.gz'.format(param, revision, ID))
+    data_fits = fits.open('/Users/lester/Documents/PhD/param_{}/fit_{}_{}/{}_BEAGLE.fits.gz'.format(revision, revision, param, ID))
     # print(data_fits.info())
     # print(data_fits['POSTERIOR PDF'].header)
     

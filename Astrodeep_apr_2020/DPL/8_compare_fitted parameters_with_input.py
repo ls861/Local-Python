@@ -13,7 +13,7 @@ import cosmolopy.constants as cc
 from scipy.integrate import quad
 
 params = ['DPL']
-revisions = ['100']
+revisions = ['101']
 
 fsize = 4
 size = 8

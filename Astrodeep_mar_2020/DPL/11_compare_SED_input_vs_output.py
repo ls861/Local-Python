@@ -91,8 +91,9 @@ for ID in IDs:
     for i in range(len(filters)):
         ptbferr_phot_mock[i] = data_fits[1].data[filter_err[i]][ID-1] # uJy    
         
-    # adding 1% min rel error to errors:
-    ptbferr_phot_mock = ( (ptbferr_phot_mock**2) + ((0.01*ptbf_phot_mock)**2) ) ** 0.5
+    # adding min rel error to errors: 
+    min_rel_error = np.array([0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.05, 0.1, 0.1])
+    ptbferr_phot_mock = ( (ptbferr_phot_mock**2) + ((min_rel_error*ptbf_phot_mock)**2) ) ** 0.5
     
     ptblfl_phot_mock = (ptbf_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
     ptblflerr_phot_mock = (ptbferr_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
