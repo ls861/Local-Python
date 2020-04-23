@@ -12,7 +12,7 @@ from astropy.io import fits
 import matplotlib.pyplot as plt
 
 param = 'DE'
-revision = '105'
+revision = '108'
 
 samples = 10
 
@@ -66,10 +66,12 @@ outputDict['chi2']              = chi2_fit_arr_allID
 outputTable = Table(outputDict)
     
 #outputTable.write("012_010_chi2.fits", overwrite=True)
+#outputTable.write("/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/ASTRODEEP/108_DE_chi2.fits", overwrite=True)
 
+plt.hist(outputTable['chi2'], bins=100)
+plt.ylim(0, 10)
+plt.show()
 
-plt.hist(outputTable['chi2'])
-
-
-
+plt.hist(outputTable['chi2'], bins=100, range=(0, 200))
+plt.show()
 

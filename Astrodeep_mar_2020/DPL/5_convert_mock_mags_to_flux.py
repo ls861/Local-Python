@@ -32,18 +32,18 @@ data_fits = fits.open(fileName)
 m = []
 for i in range(len(filters)):
     m.append(np.array(data_fits['APPARENT MAGNITUDES'].data[filters[i]]))
-    
+
 data_fits.close()
 
 f = []
 for i in range(len(filters)):
-    f.append(10**( (23.9 - m[i]) / 2.5 )) #mJy (in frequency not wavelength)
+    f.append(10**( (23.9 - m[i]) / 2.5 )) #uJy (in frequency not wavelength)
 
 # =============================================================================
 # FIND ERRORS
 # =============================================================================
-    
-#sig_mag5 = np.array([29.4, 29.6, 29.7, 29.8, 29.4, 29.4, 29.1])    
+
+#sig_mag5 = np.array([29.4, 29.6, 29.7, 29.8, 29.4, 29.4, 29.1])
 #sig_mag5 = np.full(len(filters), 30.0) # original for 012_001
 sig_mag5 = np.array([28.95, 29.35, 28.84, 28.45, 28.34, 28.34, 28.16, 26.45, 26.52, 26.25])    # CANDELS for 012_010, NOTE, 140 wasn't in table, hence duplicated 125.
 
@@ -51,9 +51,9 @@ sig_flux5 = 10**( (23.9 - sig_mag5) / 2.5 )     # microJy
 sig_flux = sig_flux5 / 5.
 
 print(sig_flux)
-    
+
 # =============================================================================
-# Create ASCII file    
+# Create ASCII file
 # =============================================================================
 
 #header_string = '#ID F090W F115W F150W F200W F277W F356W F444W errF090W errF115W errF150W errF200W errF277W errF356W errF444W\n'
@@ -67,29 +67,15 @@ header_string = '#ID b_B435 b_V606 b_I814 b_Y105 b_J125 b_JH140 b_H160 b_Ks b_CH
 #
 #for i in range(len(m[0])):
 #    row = str(i+1)
-#    
+#
 #    for j in range(len(filters)):
 #        row = row + ' ' + str(f[j][i] + np.random.normal(loc=0.0, scale=sig_flux[j]))
-#    
+#
 #    for j in range(len(sig_flux)):
 #        row = row + ' ' + str(sig_flux[j])
 #
-#    row = row + '\n'    
+#    row = row + '\n'
 #    file1.write(row)
 #
 #file1.close()
 # =============================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
