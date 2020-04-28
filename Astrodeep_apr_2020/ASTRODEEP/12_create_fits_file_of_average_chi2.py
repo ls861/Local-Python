@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 
 param = 'DE'
 revision = '108'
+summary = '004'
 
 samples = 10
 
@@ -20,7 +21,7 @@ samples = 10
 # OUTPUT - get BEAGLE parameters (<100)
 # =============================================================================
 
-fileName = '/Users/lester/Documents/PhD/param_100/fit_{}_{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(revision, param)
+fileName = '/Users/lester/Documents/PhD/param_100/fit_{}_{}/pyp-beagle/data_{}/BEAGLE_summary_catalogue.fits'.format(revision, param, summary)
 data_fits = fits.open(fileName)
 
 id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int)
@@ -67,6 +68,8 @@ outputTable = Table(outputDict)
     
 #outputTable.write("012_010_chi2.fits", overwrite=True)
 #outputTable.write("/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/ASTRODEEP/108_DE_chi2.fits", overwrite=True)
+
+outputTable.write("/Users/lester/Documents/GitHub/Local-Python/Astrodeep_apr_2020/ASTRODEEP/{}_{}_chi2_{}.fits".format(revision, param, summary), overwrite=True)
 
 plt.hist(outputTable['chi2'], bins=100)
 plt.ylim(0, 10)
