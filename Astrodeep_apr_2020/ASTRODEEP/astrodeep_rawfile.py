@@ -156,12 +156,21 @@ cat       = np.hstack(catalogs_z)
 
 
 
+# =============================================================================
+# FITS FILE
+# =============================================================================
+
+from astropy.table import Table
+from astropy.io import fits
 
 
+outputDict = {}
 
-
-
-
+for name in cat.dtype.names:
+    outputDict[name] = cat[name]
+outputTable = Table(outputDict)
+    
+#outputTable.write("ASTRODEEP_full_cat_ABZ.fits", overwrite=True)
 
 
 
