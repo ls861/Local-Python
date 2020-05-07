@@ -28,13 +28,84 @@ def flux(mag):
 
 
 # dtype=[('field', '<f8'), ('ID', '<f8'), ('ZBEST', '<f8'), ('ZBEST_SIQR', '<f8'), ('MAGNIF', '<f8'), ('ZSPECFLAG', '<f8'), ('chi2', '<f8'), ('MSTAR', '<f8'), ('MASTAR_MIN', '<f8'), ('MSTAR_MAX', '<f8'), ('SFR', '<f8'), ('SFR_MIN', '<f8'), ('SFR_MAX', '<f8'), ('chi2_NEB', '<f8'), ('MASTAR_NEB', '<f8'), ('MASS_MIN_NEB', '<f8'), ('MASS_MAX_NEB', '<f8'), ('SFR_NEB', '<f8'), ('SFR_MIN_NEB', '<f8'), ('SFR_MAX_NEB', '<f8'), ('RELFLAG', '<f8'), ('a_ID', '<f8'), ('RA', '<f8'), ('DEC', '<f8'), ('B435', '<f8'), ('V606', '<f8'), ('I814', '<f8'), ('Y105', '<f8'), ('J125', '<f8'), ('JH140', '<f8'), ('H160', '<f8'), ('Ks', '<f8'), ('CH1', '<f8'), ('CH2', '<f8'), ('errB435', '<f8'), ('errV606', '<f8'), ('errI814', '<f8'), ('errY105', '<f8'), ('errJ125', '<f8'), ('errJH140', '<f8'), ('errH160', '<f8'), ('errKs', '<f8'), ('errCH1', '<f8'), ('errCH2', '<f8'), ('b_ID', '<f8'), ('b_B435', '<f8'), ('b_V606', '<f8'), ('b_I814', '<f8'), ('b_Y105', '<f8'), ('b_J125', '<f8'), ('b_JH140', '<f8'), ('b_H160', '<f8'), ('b_Ks', '<f8'), ('b_CH1', '<f8'), ('b_CH2', '<f8'), ('b_errB435', '<f8'), ('b_errV606', '<f8'), ('b_errI814', '<f8'), ('b_errY105', '<f8'), ('b_errJ125', '<f8'), ('b_errJH140', '<f8'), ('b_errH160', '<f8'), ('b_errKs', '<f8'), ('b_errCH1', '<f8'), ('b_errCH2', '<f8')]
-
+    
 D = np.load('astrodeep_rawfile.npy')
+
+#('MAGNIF', '<f8'), ('ZSPECFLAG', '<f8'), ('chi2', '<f8'), ('MSTAR', '<f8'), ('MASTAR_MIN', '<f8'), ('MSTAR_MAX', '<f8'), ('SFR', '<f8'), ('SFR_MIN', '<f8'), ('SFR_MAX', '<f8'), ('chi2_NEB', '<f8'), ('MASTAR_NEB', '<f8'), ('MASS_MIN_NEB', '<f8'), ('MASS_MAX_NEB', '<f8'), ('SFR_NEB', '<f8'), ('SFR_MIN_NEB', '<f8'), ('SFR_MAX_NEB', '<f8'), ('RELFLAG', '<f8'), ('a_ID', '<f8'), ('RA', '<f8'), ('DEC', '<f8'), ('B435', '<f8'), ('V606', '<f8'), ('I814', '<f8'), ('Y105', '<f8'), ('J125', '<f8'), ('JH140', '<f8'), ('H160', '<f8'), ('Ks', '<f8'), ('CH1', '<f8'), ('CH2', '<f8'), ('errB435', '<f8'), ('errV606', '<f8'), ('errI814', '<f8'), ('errY105', '<f8'), ('errJ125', '<f8'), ('errJH140', '<f8'), ('errH160', '<f8'), ('errKs', '<f8'), ('errCH1', '<f8'), ('errCH2', '<f8'), ('b_ID', '<f8'), ('b_B435', '<f8'), ('b_V606', '<f8'), ('b_I814', '<f8'), ('b_Y105', '<f8'), ('b_J125', '<f8'), ('b_JH140', '<f8'), ('b_H160', '<f8'), ('b_Ks', '<f8'), ('b_CH1', '<f8'), ('b_CH2', '<f8'), ('b_errB435', '<f8'), ('b_errV606', '<f8'), ('b_errI814', '<f8'), ('b_errY105', '<f8'), ('b_errJ125', '<f8'), ('b_errJH140', '<f8'), ('b_errH160', '<f8'), ('b_errKs', '<f8'), ('b_errCH1', '<f8'), ('b_errCH2', '<f8'), ('c_ID', '<f8'), ('c_X', '<f8'), ('c_Y', '<f8'), ('c_XMIN', '<f8'), ('c_YMIN', '<f8'), ('c_XMAX', '<f8'), ('c_YMAX', '<f8'), ('c_CLASS_STAR', '<f8'), ('c_SEXFLAG', '<f8'), ('c_RESFLAG', '<f8'), ('c_VISFLAG', '<f8'), ('c_TPHOTFLAG_Ks', '<f8'), ('c_COVMAX_Ks', '<f8'), ('c_TPHOFLAG_IRAC1', '<f8'), ('c_COVMAX_IRAC1', '<f8'), ('c_TPHOTFLAG_IRAC2', '<f8'), ('c_COVMAX_IRAC2', '<f8')])
+
+D = np.load('astrodeep_rawfile_ABCZ.npy')
+
+print(len(D))
+print(len(D[D['RELFLAG']==1]))
 
 D0 = D[D['field']==1]
 
 #print(len(D))
 #print(len(D0))
+
+hm = D0['ID'][D0['H160'] > 90]
+
+print(hm)
+print(len(hm))
+
+h2 = D0[D0['errH160'] == 99]
+h2 = h2[h2['H160'] != 99]
+print(h2['H160'])
+print(len(h2))
+
+
+
+# =============================================================================
+# checking the flags
+# =============================================================================
+
+strings = ['ZSPECFLAG', 'RELFLAG', 'c_RESFLAG', 'c_SEXFLAG', 'c_VISFLAG', 'c_CLASS_STAR', 'c_TPHOTFLAG_Ks', 'c_COVMAX_Ks', 'c_TPHOFLAG_IRAC1', 'c_COVMAX_IRAC1', 'c_TPHOTFLAG_IRAC2', 'c_COVMAX_IRAC2']
+
+print('START START START')
+for string in strings:
+    D_string = D0[string]
+    print(min(D_string), max(D_string), len(D_string), len(np.unique(D_string)))
+    print(np.unique(D_string))
+    print(len(D_string[D_string==min(D_string)]))
+    print(len(D_string[D_string==max(D_string)]))
+    
+    plt.hist(D_string, bins=100)
+    plt.title(string.replace('_', ' '))
+    plt.yscale('log')
+#    plt.xscale('log')
+#    plt.xticks(np.arange(0, 20, step=1)) # just for SEXFLAG
+    plt.show()
+    
+print('END END END')
+
+
+strings = ['c_COVMAX_Ks', 'c_COVMAX_IRAC1', 'c_COVMAX_IRAC2']
+
+print('START START START')
+for string in strings:
+    D_string = D0[string]
+    print(len(D_string))
+    D_string = D_string[D_string<max(D_string)]
+    print(min(D_string), max(D_string), len(D_string), len(np.unique(D_string)))
+    print(np.unique(D_string))
+    print(len(D_string[D_string==min(D_string)]))
+    print(len(D_string[D_string==max(D_string)]))
+    
+    plt.hist(D_string, bins=100)
+    plt.title(string.replace('_', ' '))
+    plt.yscale('log')
+#    plt.xscale('log')
+    plt.show()
+    
+print('END END END')
+
+
+
+
+# =============================================================================
+# 
+# =============================================================================
+
 
 # TEST OF BASIC ONE
 

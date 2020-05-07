@@ -35,6 +35,7 @@ col_2 = ('ID', 'ZBEST', 'ZBEST_SIQR', 'MAGNIF', 'ZSPECFLAG', 'chi2', 'MSTAR', 'M
 
 col_z = ('ID', 'ZBEST', 'ZBEST_SIQR', 'MAGNIF', 'ZSPECFLAG', 'chi2', 'MSTAR', 'MASTAR_MIN', 'MSTAR_MAX', 'SFR', 'SFR_MIN', 'SFR_MAX', 'chi2_NEB', 'MASTAR_NEB', 'MASS_MIN_NEB', 'MASS_MAX_NEB', 'SFR_NEB', 'SFR_MIN_NEB', 'SFR_MAX_NEB', 'RELFLAG')
 
+
 A2744_c_z = np.genfromtxt(home + 'A2744cl_ZPHOT.cat', names=True, dtype=float, usecols=col_1)
 A2744_p_z = np.genfromtxt(home + 'A2744PAR_ZPHOT.cat', names=True, dtype=float, usecols=col_1)
 M0416_c_z = np.genfromtxt(home + 'M0416cl_ZPHOT.cat', names=True, dtype=float, usecols=col_1)

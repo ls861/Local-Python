@@ -137,7 +137,7 @@ cat       = np.hstack(catalogs_z)
 
 
 
-#np.save("astrodeep_rawfile", cat)
+#np.save("astrodeep_rawfile_ABCZ", cat)
 
 
 
@@ -158,12 +158,42 @@ outputTable = Table(outputDict)
 
 
 
+# =============================================================================
+# CREATE FITS FOR TIMING TEST SUBSET
+# =============================================================================
 
 
+D1_new = np.load('D1_new.npy')
+D1new_ABCZ = cat[cat['field']==1]
+D1new_ABCZ = D1new_ABCZ[np.isin(D1new_ABCZ['ID'], D1_new['ID'])]
 
-
-
+outputDict = {}
+for name in D1new_ABCZ.dtype.names:
+    outputDict[name] = D1new_ABCZ[name]
+outputTable = Table(outputDict)
     
+#outputTable.write("ASTRODEEP_field_1_subset_ABCZ.fits", overwrite=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
