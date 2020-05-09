@@ -60,7 +60,7 @@ print('relflag == 0', len(D[D['RELFLAG']==0]))
 D_RF1 = D[D['RELFLAG']==1]
 
 # select a field as a subset if needed 
-D_RF1 = D_RF1[D_RF1 ['field']==0]
+D_RF1 = D_RF1[D_RF1 ['field']<4]
 
 print('length of subset (field & relflag)', len(D_RF1))
 
@@ -130,11 +130,37 @@ for i, flux in enumerate(fluxes):
 #    print(max(D_RF1[flux][D_RF1[flux]>-65]))
 
 # =============================================================================
-# seeing how many objects have -67 set for ks, ch1 and ch2
+# seeing how many objects have -67 set for all three ks, ch1 and ch2
 # =============================================================================
     
 print(D_RF1['ID'][(D_RF1[flux_covs[0]]==-67)&(D_RF1[flux_covs[1]]==-67)&(D_RF1[flux_covs[2]]==-67)])
 print(D_RF1['field'][(D_RF1[flux_covs[0]]==-67)&(D_RF1[flux_covs[1]]==-67)&(D_RF1[flux_covs[2]]==-67)])
+
+
+# =============================================================================
+# plotting band with most negative flux against error to see if objects are feasible
+# =============================================================================
+
+
+
+D_RF1_flux = []
+D_RF1_flux_err = []
+rel_error = []
+for i in range(len(fluxes)):
+    for j in range(len(D_RF1)):
+        if D_RF1[fluxes[i]][j] < 0 and D_RF1[fluxes[i]][j] > -65:
+            D_RF1_flux.append(D_RF1[fluxes[i]][j])
+            D_RF1_flux_err.append(D_RF1[flux_errs[i]][j])            
+            rel_error.append(D_RF1[flux_errs[i]][j]/D_RF1[fluxes[i]][j]) 
+            if D_RF1[fluxes[i]][j] < -2:
+                print(j, fluxes[i], D_RF1['ID'][j], D_RF1[fluxes[i]][j])
+            
+plt.scatter(D_RF1_flux, D_RF1_flux_err, marker='x')
+plt.xlabel('-ve fluxes in any band')
+plt.ylabel('corresponding errors')
+plt.ylim(0, 4)
+plt.plot((-11., 0), (11./(100/20.), 0), color='r')
+plt.show()
 
 
 
@@ -147,7 +173,7 @@ header = ['b_B435', 'b_errB435', 'b_V606', 'b_errV606', 'b_I814', 'b_errI814', '
 header_string = '#ID b_B435 b_errB435 b_V606 b_errV606 b_I814 b_errI814 b_Y105 b_errY105 b_J125 b_errJ125 b_JH140 b_errJH140 b_H160 b_errH160 b_Ks b_errKs b_CH1 b_errCH1 b_CH2 b_errCH2 ZBEST field ID_original\n'
 
 
-#f= open("astrodeep_A2744_c_subset_RF1_001.txt","w+")
+###f= open("astrodeep_A2744_c_subset_RF1_001.txt","w+")
 #f.write(header_string)
 #
 #for i in range(len(D_RF1)):
@@ -160,8 +186,8 @@ header_string = '#ID b_B435 b_errB435 b_V606 b_errV606 b_I814 b_errI814 b_Y105 b
 #    f.write(row)
 #
 #f.close()
-
-#np.save("astrodeep_A2744_c_subset_RF1_001", D_RF1)
+#
+###np.save("astrodeep_A2744_c_subset_RF1_001", D_RF1)
 
 
 

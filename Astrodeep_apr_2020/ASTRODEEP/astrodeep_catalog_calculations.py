@@ -89,7 +89,7 @@ plt.ylabel('runtime (hours)')
 plt.show()               
 
 plt.hist(best_fit(D_log_H160_a, poly))
-plt.xlabel('predicited runtime (hours)')
+plt.xlabel('predicted runtime (hours)')
 plt.ylabel('count')
 plt.show()
 
@@ -220,7 +220,7 @@ plt.ylabel('runtime (hours)')
 plt.show()               
 
 plt.hist(best_fit(D_log_H160_a, poly))
-plt.xlabel('predicited runtime (hours)')
+plt.xlabel('predicted runtime (hours)')
 plt.ylabel('count')
 plt.show()
 
