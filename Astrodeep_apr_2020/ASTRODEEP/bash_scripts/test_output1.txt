@@ -1,0 +1,241 @@
+Mon 11 May 2020 22:24:09 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:22 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:30 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:35 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:36 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:42 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:43 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:51 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:53 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:24:59 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:25:02 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:25:19 BST
+  0A2744Cs # complete .gz files:        0
+  Running slurm file for 0A2744Cs
+Mon 11 May 2020 22:27:47 BST
+  0A2744C # complete .gz files:     2253
+  Running slurm file for 0A2744C
+Mon 11 May 2020 22:28:17 BST
+  0A2744C # complete .gz files:     2253
+  Running slurm file for 0A2744C
+Mon 11 May 2020 22:28:18 BST
+  0A2744C # complete .gz files:     2253
+  Running slurm file for 0A2744C
+Mon 11 May 2020 22:28:33 BST
+  0A2744C # complete .gz files:     2253
+  Running slurm file for 0A2744C
+SCRIPT COMPLETE
+SCRIPT START
+Mon 11 May 2020 22:30:33 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # complete .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:30:56 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # complete .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:37:25 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:37:30 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:37:31 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:38:16 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:38:17 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:38:32 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:38:33 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:39:07 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:39:12 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:39:13 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:40:22 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:40:24 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:40:27 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:40:54 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:40:55 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:41:05 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:41:27 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:41:30 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:41:42 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:46:21 BST
+  0A2744C # complete .gz files:     2253
+  0A2744C # empty .gz files:      243
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:46:36 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        5
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:47:03 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        5
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 22:50:46 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        5
+  Re-running slurm file for 0A2744C
+     
+SCRIPT START
+Mon 11 May 2020 22:51:20 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        5
+  Deleting lock and empty .gz files
+  Re-running slurm file for 0A2744C
+     
+SCRIPT START
+Mon 11 May 2020 23:05:32 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 23:05:52 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0
+SCRIPT COMPLETE
+     
+SCRIPT START
+SQUEUE IS NOT EMPTY
+     
+SCRIPT START
+Mon 11 May 2020 23:21:55 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0 (limit: 50)
+SCRIPT COMPLETE
+     
+SCRIPT START
+Mon 11 May 2020 23:23:11 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0 (limit: 50)
+SCRIPT COMPLETE
+     
+SCRIPT START
+SQUEUE IS NOT EMPTY
+     
+SCRIPT START
+Mon 11 May 2020 23:27:34 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0 (limit: 50)
+SCRIPT COMPLETE

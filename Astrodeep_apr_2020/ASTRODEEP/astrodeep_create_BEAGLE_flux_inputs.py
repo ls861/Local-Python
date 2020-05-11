@@ -46,8 +46,8 @@ covs = ['c_COVMAX_Ks', 'c_COVMAX_IRAC1', 'c_COVMAX_IRAC2']
 # read in the file + get some basic info
 # =============================================================================
 
-D = np.load('astrodeep_rawfile.npy')
-#D = np.load('astrodeep_rawfile_ABCZ.npy')
+#D = np.load('astrodeep_rawfile.npy')
+D = np.load('astrodeep_rawfile_ABCZ.npy')
 
 print('length of input catalog', len(D))
 print('relflag == 1', len(D[D['RELFLAG']==1]))
@@ -61,7 +61,7 @@ print('relflag == 0', len(D[D['RELFLAG']==0]))
 D_RF1 = D[D['RELFLAG']==1]
 
 # select a field as a subset if needed 
-D_RF1 = D_RF1[D_RF1 ['field']<40]
+D_RF1 = D_RF1[D_RF1 ['field']<4]
 
 print('length of subset (field & relflag)', len(D_RF1))
 
@@ -74,7 +74,7 @@ for i, flux in enumerate(fluxes):
     # if flux == 0 make flux == -66
     D_RF1[flux][D_RF1[flux]==0] = -66
     
-'''
+
 for i, flux_cov in enumerate(flux_covs):
     cov = covs[i]
     flux_cov_err = flux_cov_errs[i]
@@ -90,7 +90,7 @@ for i, flux_cov in enumerate(flux_covs):
     D_RF1[flux_cov][D_RF1[cov]>=1] = -67
 
     print('# -67s, covmax rejections', len(D_RF1[D_RF1[flux_cov]==-67]))    
-'''
+
 
 # =============================================================================
 # plotting some histograms
@@ -114,12 +114,12 @@ for i, flux_cov in enumerate(flux_covs):
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]
 
-#    print(min(D_RF1[flux_err][D_RF1[flux_err]>-65]))
+    print(min(D_RF1[flux_err][D_RF1[flux_err]>-65]))
 
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]
 
-#    print(min(D_RF1[flux][D_RF1[flux]>-65]))
+    print(min(D_RF1[flux][D_RF1[flux]>-65]))
     
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]

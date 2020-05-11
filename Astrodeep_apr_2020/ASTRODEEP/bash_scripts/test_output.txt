@@ -1,0 +1,6 @@
+     
+SCRIPT START
+Mon 11 May 2020 23:27:53 BST
+  0A2744C # complete .gz files:        5
+  0A2744C # empty .gz files:        0 (limit: 50)
+SCRIPT COMPLETE
