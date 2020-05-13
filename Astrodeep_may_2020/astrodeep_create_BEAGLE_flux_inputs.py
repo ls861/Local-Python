@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-mpl.rc('figure', figsize=(4,4))
+mpl.rc('figure', figsize=(2,2))
 
 '''
 
@@ -61,7 +61,7 @@ print('relflag == 0', len(D[D['RELFLAG']==0]))
 D_RF1 = D[D['RELFLAG']==1]
 
 # select a field as a subset if needed 
-D_RF1 = D_RF1[D_RF1 ['field']==1]
+D_RF1 = D_RF1[D_RF1 ['field']==4]
 
 print('length of subset (field & relflag)', len(D_RF1))
 
@@ -161,7 +161,7 @@ plt.scatter(D_RF1_flux, D_RF1_flux_err, marker='x')
 plt.xlabel('-ve fluxes in any band')
 plt.ylabel('corresponding errors')
 #plt.xlim(-10, 0)
-plt.ylim(0, 4)
+#plt.ylim(0, 4)
 plt.plot((-11., 0), (11./(100/20.), 0), color='r')
 plt.show()
 
@@ -177,6 +177,9 @@ header_string = '#ID b_B435 b_errB435 b_V606 b_errV606 b_I814 b_errI814 b_Y105 b
 
 
 ###f= open("astrodeep_A2744_c_subset_RF1_001.txt","w+")
+###f= open("astrodeep_A2744_p_subset_RF1_001.txt","w+")
+###f= open("astrodeep_M0416_c_subset_RF1_001.txt","w+")
+###f= open("astrodeep_M0416_p_subset_RF1_001.txt","w+")
 #f.write(header_string)
 #
 #for i in range(len(D_RF1)):
@@ -189,7 +192,7 @@ header_string = '#ID b_B435 b_errB435 b_V606 b_errV606 b_I814 b_errI814 b_Y105 b
 #    f.write(row)
 #
 #f.close()
-#
+
 ###np.save("astrodeep_A2744_c_subset_RF1_001", D_RF1)
 
 
