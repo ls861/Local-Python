@@ -36,6 +36,7 @@ ID_rr_DE = np.array([ 4,  5,  8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 21, 22, 23,
 ID_ff_DE = np.array([ 3, 59])
 ID_rf_DE = np.array([])
 ID_fr_DE = np.array([2,   7,   9,  15,  18, 33,  38,  40,  52,  69,  72,  74,  76,  77,  80,  82,  85,  86,87,  91,  97, 100])
+test = [(4)]
 
 
 cosmo = {'omega_M_0' : 0.3, 'omega_lambda_0' : 0.7, 'h' : 0.7}
@@ -45,7 +46,7 @@ ageUniv999 = cd.age(999.0, **cosmo)/cc.yr_s
 
 xlin = np.linspace(1, 1e10, 100000)
 
-for j in ID_rr_DE:
+for j in test:
     
     i = (np.abs(ID - j)).argmin()
     
