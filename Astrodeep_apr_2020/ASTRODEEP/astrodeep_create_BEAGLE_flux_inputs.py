@@ -61,7 +61,7 @@ print('relflag == 0', len(D[D['RELFLAG']==0]))
 D_RF1 = D[D['RELFLAG']==1]
 
 # select a field as a subset if needed 
-D_RF1 = D_RF1[D_RF1 ['field']<4]
+D_RF1 = D_RF1[D_RF1 ['field']==1]
 
 print('length of subset (field & relflag)', len(D_RF1))
 
@@ -114,12 +114,12 @@ for i, flux_cov in enumerate(flux_covs):
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]
 
-    print(min(D_RF1[flux_err][D_RF1[flux_err]>-65]))
+#    print(min(D_RF1[flux_err][D_RF1[flux_err]>-65]))
 
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]
 
-    print(min(D_RF1[flux][D_RF1[flux]>-65]))
+#    print(min(D_RF1[flux][D_RF1[flux]>-65]))
     
 for i, flux in enumerate(fluxes):
     flux_err = flux_errs[i]
@@ -154,7 +154,7 @@ for i in range(len(fluxes)):
             D_RF1_flux.append(D_RF1[fluxes[i]][j])
             D_RF1_flux_err.append(D_RF1[flux_errs[i]][j])            
             rel_error.append(D_RF1[flux_errs[i]][j]/D_RF1[fluxes[i]][j]) 
-            if D_RF1[fluxes[i]][j] < -1:
+            if D_RF1[fluxes[i]][j] < -2:
                 print(j, fluxes[i], D_RF1['field'][j], D_RF1['ID'][j], D_RF1[fluxes[i]][j], D_RF1[flux_errs[i]][j])
             
 plt.scatter(D_RF1_flux, D_RF1_flux_err, marker='x')
