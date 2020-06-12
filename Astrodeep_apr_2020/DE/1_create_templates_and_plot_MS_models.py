@@ -13,7 +13,7 @@ from scipy.stats import truncnorm
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-nObj = 1000000
+nObj = 1000
 
 intercept = -8.
 slope = 1.
@@ -119,6 +119,8 @@ plt.show()
 
 print(ageUniv)
 print(ageUniv5)
+
+print(slope2, intercept2)
 
 
 

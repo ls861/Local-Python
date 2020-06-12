@@ -1,0 +1,31 @@
+{
+"max_stellar_age": {
+  "range": [6.0, 10.0],
+  "label": "$\\log (\\textnormal{t} / \\textnormal{yr})$"},
+
+"tau": {
+  "range": [7.0, 10.5],
+  "label": "$\\log (\\tau / \\textnormal{yr})$"
+},
+
+"metallicity": {
+  "range": [-2.1, 0.3],
+  "label": "$\\log(Z/Z_\\odot)$"
+},
+
+"mass": {
+  "range": [5.0, 12.0],
+  "label": "$\\log (\\textnormal{M} / \\textnormal{M}_\\odot)$"
+},
+
+"redshift": {
+  "range": [0.0, 15.0],
+  "label": "$z$"
+},
+
+"tauV_eff": {
+  "range": [0.0, 2.0],
+  "label": "$\\log \\hat{\\tau}_V$"
+}
+
+}

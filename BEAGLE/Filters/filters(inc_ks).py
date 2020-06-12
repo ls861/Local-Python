@@ -11,6 +11,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+import matplotlib
+matplotlib.rcParams.update({'font.size': 10})
+
 ### FILTERS ###
 
 filter_label = np.array(['B435', 'V606', 'I814', 'Y105', 'J125', 'JH140', 'H160', 'Ks', 'CH1', 'CH2'])
@@ -26,11 +29,12 @@ height = np.array([1, 2, 3, 1, 2, 3, 4, 1, 2, 3])
 
 
 plt.figure(figsize=(16,5)) 
-plt.xlim(0, 60000)
+plt.title('Astrodeep Filters')
+plt.xlim(0, 52000)
 plt.ylim(-0.5, 5)
 ax = plt.axes()
 ax.axes.get_yaxis().set_visible(False)
-
+ax.set_xlabel(r'Wavelength / $\AA$')
 
     
 for i in range(len(height)):
@@ -43,11 +47,12 @@ plt.text(filter_fwhm_centre[3]-800, 0, 'HST WFC3')
 plt.text(filter_fwhm_centre[7]-800, 0, 'VLT')
 plt.text(filter_fwhm_centre[8]+3000, 0, 'Spitzer')
 
-plt.legend()
+#plt.legend()
 plt.show()
 
 
-
+import matplotlib as mpl
+mpl.rcParams.update(mpl.rcParamsDefault)
 
 
 

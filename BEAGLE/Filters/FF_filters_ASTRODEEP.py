@@ -3,6 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
 
+import matplotlib
+matplotlib.rcParams.update({'font.size': 18})
+
+
 filters = ['HST_ACS_WFC_F435W', 'HST_ACS_WFC_F606W', 'HST_ACS_WFC_F814W', 'HST_WFC3_IR_F105W', 'HST_WFC3_IR_F125W', 'HST_WFC3_IR_F140W', 'HST_WFC3_IR_F160W', 'Paranal_HAWKI_Ks', 'Spitzer_IRAC_I1', 'Spitzer_IRAC_I2']
 
 filter_label = ['F435W', 'F606W', 'F814W', 'F105W', 'F125W', 'F140W', 'F160W', 'Ks', 'IRAC 3.6 $\mu m$', 'IRAC 4.5 $\mu m$']
@@ -24,7 +28,7 @@ data_fits.close()
 
 ### PLOT ###
 
-fig, ax = plt.subplots(figsize=(10, 4))
+fig, ax = plt.subplots(figsize=(16, 6))
 fig.suptitle('Astrodeep Filters')
 
 for i in range(len(filters)):
@@ -39,5 +43,6 @@ plt.show()
 
 ### ###  ###
 
-
+import matplotlib as mpl
+mpl.rcParams.update(mpl.rcParamsDefault)
 

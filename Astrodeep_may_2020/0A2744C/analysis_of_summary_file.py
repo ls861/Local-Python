@@ -28,6 +28,9 @@ for field in fields:
         # =============================================================================
         
         fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_may_2020/{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(field)
+        
+        
+        
         data_fits = fits.open(fileName)
         
         id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int)
@@ -164,8 +167,8 @@ for field in fields:
         xlin = np.linspace(1, 1.1e10, 100000)
         
         IDs = ([20])
-        IDs = id_b1[-3:]
-        IDs=[21, 115, 3030]
+#        IDs = id_b1[-3:]
+#        IDs=[21, 115, 3030]
         
         for ID in IDs:
             
@@ -191,9 +194,10 @@ for field in fields:
         
         samples = 10
         
-        IDs=[22, 61, 63]
-        IDs = id_b1[:10]
-        IDs=[21, 115, 3030]
+        IDs=([22])
+#        IDs = id_b1[:10]
+#        IDs=[21, 115, 3030]
+        IDs=([783])
         
         fsize=10
         c = 299792458 # m s^-2
