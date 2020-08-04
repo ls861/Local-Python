@@ -1,0 +1,20 @@
+# The possible units that can be used are: Jy, milliJy, microJy, nanoJy
+# Alternatively one can pass a conversion factor to convert the fluxes in the
+# catalogue into [erg s^-1 cm^-2 Hz^-1], e.g.
+# flux:conversion:<conversion factor>
+units:microJy
+
+# Column in the photometric catalogue containing the object IDs
+object_ID:colName:ID
+
+# List of photometric filters included in the input photometric catalogue
+name:HST_ACS_WFC_F435W       flux:colName:b_B435   fluxErr:colName:b_errB435    min_rel_err:0.01
+name:HST_ACS_WFC_F606W       flux:colName:b_V606   fluxErr:colName:b_errV606    min_rel_err:0.01
+name:HST_ACS_WFC_F814W       flux:colName:b_I814   fluxErr:colName:b_errI814    min_rel_err:0.01
+name:HST_WFC3_IR_F105W       flux:colName:b_Y105   fluxErr:colName:b_errY105    min_rel_err:0.01
+name:HST_WFC3_IR_F125W       flux:colName:b_J125   fluxErr:colName:b_errJ125    min_rel_err:0.01
+name:HST_WFC3_IR_F140W       flux:colName:b_JH140  fluxErr:colName:b_errJH140   min_rel_err:0.01
+name:HST_WFC3_IR_F160W       flux:colName:b_H160   fluxErr:colName:b_errH160    min_rel_err:0.01
+name:Paranal_HAWKI_Ks        flux:colName:b_Ks     fluxErr:colName:b_errKs      min_rel_err:0.01
+name:Spitzer_IRAC_I1         flux:colName:b_CH1    fluxErr:colName:b_errCH1     min_rel_err:0.01
+name:Spitzer_IRAC_I2         flux:colName:b_CH2    fluxErr:colName:b_errCH2     min_rel_err:0.01

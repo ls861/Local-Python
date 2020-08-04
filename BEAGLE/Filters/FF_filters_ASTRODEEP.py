@@ -29,7 +29,7 @@ data_fits.close()
 ### PLOT ###
 
 fig, ax = plt.subplots(figsize=(16, 6))
-fig.suptitle('Astrodeep Filters')
+#fig.suptitle('Astrodeep Filters')
 
 for i in range(len(filters)):
     ax.fill_between(wl[i], f[i], alpha=0.7, label=filter_label[i])

@@ -12,8 +12,10 @@ from astropy.io import fits
 from astropy.table import Table
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
+from scipy.stats import norm
 
 fields = ['0A2744C', '1A2744P', '2M0416C', '3M0416P']
+#fields = ['0A2744C']
 runs = ['001']
 
 fsize = 5
@@ -24,40 +26,60 @@ for field in fields:
     for run in runs:
         
         # =============================================================================
-        # OUTPUT - get BEAGLE parameters
+        # GET DATA
         # =============================================================================
         
-        fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jun_2020/from_cluster/{}/data/BEAGLE_summary_catalogue.fits'.format(field[0])
+        directory = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jun_2020/from_cluster/'
         
-        
+        # BEAGLE OUTPUT SUMMARY
+        fileName = directory+'{}/pyp-beagle/data/BEAGLE_summary_catalogue.fits'.format(field[0])
         data_fits = fits.open(fileName)
-        
-        id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int)
-    
+#        print(data_fits.info())
+#        print(data_fits[1].header)
+        id_b1 = np.asarray(data_fits['POSTERIOR PDF'].data['ID'], dtype=int)    
         sfr_b1 = np.log10(data_fits['STAR FORMATION'].data['SFR_median'])
-        sfr_68_b1 = np.log10(data_fits['STAR FORMATION'].data['SFR_68.00'])
-        
+        sfr_68_b1 = np.log10(data_fits['STAR FORMATION'].data['SFR_68.00'])        
         ssfr_b1 = data_fits['STAR FORMATION'].data['sSFR_median']
-        ssfr_68_b1 = data_fits['STAR FORMATION'].data['sSFR_68.00']
-        
+        ssfr_68_b1 = data_fits['STAR FORMATION'].data['sSFR_68.00']        
         redshift_b1 = data_fits['POSTERIOR PDF'].data['redshift_median']
         mass_b1 = data_fits['POSTERIOR PDF'].data['mass_median']
         msa_b1 = 10**data_fits['POSTERIOR PDF'].data['max_stellar_age_median']
         tauV_eff_b1 = data_fits['POSTERIOR PDF'].data['tauv_eff_median']
         metallicity_b1 = data_fits['POSTERIOR PDF'].data['metallicity_median']
-        tau_b1 = 10**data_fits['POSTERIOR PDF'].data['tau_median']
- 
+        tau_b1 = 10**data_fits['POSTERIOR PDF'].data['tau_median'] 
         redshift_68_b1 = data_fits['POSTERIOR PDF'].data['redshift_68.00']       
         mass_68_b1 = data_fits['POSTERIOR PDF'].data['mass_68.00']
         msa_68_b1 = 10**data_fits['POSTERIOR PDF'].data['max_stellar_age_68.00']
         tauV_eff_68_b1 = data_fits['POSTERIOR PDF'].data['tauv_eff_68.00']
         metallicity_68_b1 = data_fits['POSTERIOR PDF'].data['metallicity_68.00']
         tau_68_b1 = 10**data_fits['POSTERIOR PDF'].data['tau_68.00']
-
         nebular_xi_b1 = np.full(len(id_b1), 0.3)
         nebular_xi_68_b1 = np.full((len(id_b1),2), 0.3)
+        data_fits.close()        
 
+        # BEAGLE OUTPUT CHI SQUARED
+        fileName = directory+'lester_run/{}_chi2.fits'.format(field)
+        data_fits = fits.open(fileName)
+#        print(data_fits.info())
+#        print(data_fits[1].header)
+        id_chi2 = np.asarray(data_fits[1].data['id'], dtype=int)
+        chi2 = data_fits[1].data['chi2']
         data_fits.close()
+
+        # BEAGLE INPUT FLUXES
+        fileName = directory+'{}/astrodeep_{}_{}_subset_RF1_001.fits'.format(field[0], field[1:-1], field[-1].lower()) 
+        data_fits = fits.open(fileName)
+#        print(data_fits.info())
+#        print(data_fits[1].header)
+        id_input = np.asarray(data_fits[1].data['ID'][id_b1-1], dtype=int)
+        field_original = np.asarray(data_fits[1].data['field'][id_b1-1], dtype=int)
+        id_original = np.asarray(data_fits[1].data['ID_original'][id_b1-1], dtype=int)
+        zbest = data_fits[1].data['ZBEST'][id_b1-1]
+        data_fits.close()
+
+        # ASTRODEEP CATALOG
+        catalog = np.load(directory[:-13]+'astrodeep_rawfile_ABCZ.npy')
+#        print(catalog.dtype.names)
         
         # =============================================================================
         # calculate fitted output gradient for rising or falling
@@ -88,32 +110,164 @@ for field in fields:
         plt.show()
 
         # =============================================================================
-        # PLOT MAIN SEQUENCE for z=2 to 3
+        # PLOT MAIN SEQUENCE per redshift bin
         # =============================================================================
-            
-        idx = abs(redshift_b1 - 2.5) < 0.5 
-        plt.scatter(mass_b1[idx], sfr_b1[idx])      
+         
+        
+        z_med = np.linspace(1.5, 9.5, 9)
+        z_gap = (z_med[1] - z_med[0]) / 2
+
+        for z in z_med:
+          idx = abs(redshift_b1 - z) < z_gap
+          plt.scatter(mass_b1[idx], sfr_b1[idx], label='{}  - {}'.format(z-z_gap, z+z_gap))  
+        plt.xlim(6, 11)
+        plt.ylim(-5, 5)
+        plt.legend(title='redshift')
         plt.show()
         
         
+        # =============================================================================
+        # PLOT adding in mass dependence somehow   
+        # =============================================================================
         
+        m_med = np.linspace(5.5, 11.5, 7)
+        m_gap = (m_med[1] - m_med[0]) / 2
+
+        for m in m_med:
+          idx = abs(mass_b1 - m) < m_gap
+          plt.scatter(mass_b1[idx], sfr_b1[idx], label='{}  - {}'.format(m-m_gap, m+m_gap))  
+        plt.xlim(6, 11)
+        plt.ylim(-5, 5)
+        plt.legend(title='mass')
+        plt.show()
+        
+        # =============================================================================
+        # PLOT combining redshift and mass     
+        # =============================================================================
+        
+#        for z in z_med:
+#          for m in m_med:
+#            z_idx = abs(redshift_b1 - z) < z_gap
+#            m_idx = abs(mass_b1 - m) < m_gap
+#            idx = z_idx & m_idx
+#            
+#            plt.scatter(mass_b1[idx], sfr_b1[idx], label='{}  - {}'.format(m-m_gap, m+m_gap))  
+#          plt.title('{} redshift {}  - {}'.format(field, z-z_gap, z+z_gap))
+#          plt.xlim(6, 11)
+#          plt.ylim(-5, 5)
+#          plt.legend(title='mass')
+#          plt.show()          
+            
+        # =============================================================================
+        # calculating alpha and beta for given redshifts (and sigma)
+        # =============================================================================
+           #%%   
+           
+#           
+#        alpha = []
+#        beta = []
+#        sigma = []
+#        
+#        for z in z_med:
+#          idx = abs(redshift_b1 - z) < z_gap
+#          
+#          # np.where is to sort the -inf SFR values at low redshift...
+#          lin = np.polyfit(mass_b1[idx], np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]), 1)
+#          
+#          alpha.append(lin[1])
+#          beta.append(lin[0])
+#  
+#
+#          plt.xlim(6, 11)
+#          plt.ylim(-5, 5)
+#          plt.plot((6, 11), ((6*lin[0] + lin[1]),(11*lin[0] + lin[1])))
+#          plt.scatter(mass_b1[idx], sfr_b1[idx], label='{}  - {}'.format(z-z_gap, z+z_gap))  
+#          plt.legend(title='redshift')
+#          plt.show()          
+#          
+#          # np.where is to sort the -inf SFR values at low redshift...
+#          data = np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]) - (mass_b1[idx]*lin[0] + lin[1])
+#          mean,std=norm.fit(data)
+#          sigma.append(std)
+#          
+#          
+#          testx = np.linspace(min(data), max(data), 1000)
+#          plt.hist(data, density=True)
+#          plt.plot(testx, norm.pdf(testx, mean, std))
+#          plt.show()
+#          
+#      
+#        plt.title('{} alpha vs redshift'.format(field))
+#        plt.scatter(z_med, alpha)
+#        plt.show()
+#        
+#        plt.title('{} beta vs redshift'.format(field))
+#        plt.scatter(z_med, beta)
+#        plt.show()
+#        
+#        plt.title('{} sigma vs redshift'.format(field))
+#        plt.scatter(z_med, sigma)
+#        plt.show()        
+#        
+          
+          
+     #%%     
+          
+#        # sigma vs redshift for given mass bin
+#          
+#        for m in m_med:     
+#          sigma = []
+#          for z in z_med:
+#
+#            z_idx = abs(redshift_b1 - z) < z_gap
+#            m_idx = abs(mass_b1 - m) < m_gap
+#            idx = z_idx & m_idx
+#            
+#
+#            if len(mass_b1[idx]) == 0:
+#              sigma.append(-1)
+#            else:
+#              # np.where is to sort the -inf SFR values at low redshift...
+#              lin = np.polyfit(mass_b1[idx], np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]), 1)
+#              data = np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]) - (mass_b1[idx]*lin[0] + lin[1])
+#              mean,std=norm.fit(data)
+#              sigma.append(std)          
+#          
+#          plt.title('{} sigma vs redshift: mass {}  - {}'.format(field, m-m_gap, m+m_gap))
+#          plt.scatter(z_med, sigma)
+#          plt.show()            
+#          
+#        # sigma vs mass for given redshift bin
+#          
+#        for z in z_med:     
+#          sigma = []
+#          for m in m_med:
+#
+#            z_idx = abs(redshift_b1 - z) < z_gap
+#            m_idx = abs(mass_b1 - m) < m_gap
+#            idx = z_idx & m_idx
+#            
+#
+#            if len(mass_b1[idx]) == 0:
+#              sigma.append(-1)
+#            else:
+#              # np.where is to sort the -inf SFR values at low redshift...
+#              lin = np.polyfit(mass_b1[idx], np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]), 1)
+#              data = np.where(sfr_b1[idx]<-50, -50, sfr_b1[idx]) - (mass_b1[idx]*lin[0] + lin[1])
+#              mean,std=norm.fit(data)
+#              sigma.append(std)          
+#          
+#          plt.title('{} sigma vs mass: redshift {}  - {}'.format(field, z-z_gap, z+z_gap))
+#          plt.scatter(m_med, sigma)
+#          plt.show()             
+#          
+          
+          #%%
+          
 
         # =============================================================================
         # plot Z fitted with BEAGLE vs ZBEST from Astrodeep
         # =============================================================================
-
-        fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jun_2020/from_cluster/{}/astrodeep_{}_{}_subset_RF1_001.fits'.format(field[0], field[1:-1], field[-1].lower())   
-        
-        data_fits = fits.open(fileName)
-        # print(data_fits.info())
-        # print(data_fits[1].header)
-
-        id_input = data_fits[1].data['ID'][id_b1-1]
-        zbest = data_fits[1].data['ZBEST'][id_b1-1]
-
-        data_fits.close()
-
-
 
         # Calculate the point density
         from scipy.stats import gaussian_kde
@@ -130,140 +284,102 @@ for field in fields:
         plt.scatter(x, y, c=z)
         plt.show()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
         # =============================================================================
-        # create fits file of average chi2 - TAKES AGES TO RUN COMMENT OUT FOR NOW
+        # MAIN SEQUENCE inc chi2 and magnification
         # =============================================================================
         
-   
-        ''' UNCOMMENT WHEN NEEDED
+        # note id_b1 == id_chi2 == id_input, for image 0, length 3033, max 3043
         
-        samples = 10
-        IDs = id_b1
-        chi2_fit_arr_allID = [] 
-        for ID in IDs:
-            
-#            title = '{}-{} ID{} {} samples'.format(param, revision.replace('_', '-'), str(ID), str(samples))
-            
-            # =============================================================================
-            # Get OUTPUT SEDs
-            # =============================================================================
+        #id_b1
+        #sfr_b1
+        #mass_b1
         
-            data_fits = fits.open('/Users/lester/Documents/PhD/{}/fit_{}/{}_BEAGLE.fits.gz'.format(field, run, ID))
-            
-            # print(data_fits.info())
-            # print(data_fits['POSTERIOR PDF'].header)
-            
-            chi2_fit_total = data_fits['POSTERIOR PDF'].data['chi_square']
-            
-            #needs float64 to provide precision needed for the random.choice weights
-            temp_probs = np.float64(data_fits['POSTERIOR PDF'].data['probability'])
-            temp_probs = temp_probs/np.sum(temp_probs)
-              
-            chi2_fit_arr = []
-            
-            for i in range(samples):
-                
-                #here's the key line - take weighted samples from the multinest output!
-                idx = np.random.choice(len(temp_probs), size=1, p=temp_probs)
-                
-                # CHI SQUARED
-                chi2_fit_arr.append(data_fits['POSTERIOR PDF'].data['chi_square'][idx][0])
+        #id_chi2
+        #chi2
         
-            chi2_fit_arr_allID.append(np.average(chi2_fit_arr))
-
+        #field_original
+        #id_original
+        #id_input
         
-        print(len(id_b1.astype(str)))
-        print(len(chi2_fit_arr_allID))
+        #catalog['MAGNIF']
+        
+        xsize = 6
+        ysize = 6
+        
+        idx_field = (catalog['field']==float(field[0]))
+        catalog_subset = catalog[idx_field] # take field subset of total catalog
+        
+        idx_id = np.isin(catalog_subset['ID'], id_original)
+        catalog_subset = catalog_subset[idx_id] # take ID subset of total catalog
+        
+        idx_chi2 = (chi2 < 9.5)
+        catalog_subset = catalog_subset[idx_chi2] # take chi2 subset of total catalog
+        
+        mag = np.log10(catalog_subset['MAGNIF'])
         
         
-        outputDict = {}
-        outputDict['id']                = id_b1.astype(str)
-        outputDict['chi2']              = chi2_fit_arr_allID
-        outputTable = Table(outputDict)
-        
-#        outputTable.write('{}_{}_chi2.fits'.format(field, run), overwrite=True)
-        print('LESTER')
-        plt.hist(outputTable['chi2'], bins=100)
-        plt.show()
-                
-        plt.hist(outputTable['chi2'], bins=100)
-        plt.ylim(0, 10)
+        # plot main sequence
+        plt.figure(figsize=(xsize, ysize))
+        plt.title('{} Main Sequence'.format(field))
+        x = mass_b1
+        y = sfr_b1
+        xerr = mass_68_b1
+        yerr = sfr_68_b1
+        plt.xlim(6, 12)
+        plt.ylim(-5, 5)
+        plt.scatter(x, y, marker='x', zorder=2)
+        plt.errorbar(x, y, xerr=[x-xerr[:,0],xerr[:,1]-x], yerr=[y-yerr[:,0],yerr[:,1]-y], linestyle="None", elinewidth=0.5, color='k', zorder=1)
         plt.show()
         
-        plt.hist(outputTable['chi2'], bins=100, range=(0, 200))
+        # plot main sequence filtered by chi2
+        plt.figure(figsize=(xsize, ysize))
+        plt.title('{} Main Sequence, chi2 less than 9.5'.format(field))
+        x = mass_b1[idx_chi2]
+        y = sfr_b1[idx_chi2]
+        xerr = mass_68_b1[idx_chi2]
+        yerr = sfr_68_b1[idx_chi2]
+        plt.xlim(6, 12)
+        plt.ylim(-5, 5)
+        plt.scatter(x, y, marker='x', zorder=2)
+        plt.errorbar(x, y, xerr=[x-xerr[:,0],xerr[:,1]-x], yerr=[y-yerr[:,0],yerr[:,1]-y], linestyle="None", elinewidth=0.5, color='k', zorder=1)
         plt.show()
-        print('LESTER')
-        print(len(outputTable['chi2']))
-        print(len(outputTable['chi2'][outputTable['chi2']<=25]))
-        print(len(outputTable['chi2'][outputTable['chi2']>25]))
         
+        # plot main sequence filtered by chi2 including magnification
+        plt.figure(figsize=(xsize, ysize))
+        plt.title('{} Main Sequence, chi2 less than 9.5, adjusted for magnification'.format(field))
+        x = mass_b1[idx_chi2]-mag
+        y = sfr_b1[idx_chi2]-mag
+        xerr = mass_68_b1[idx_chi2]-np.array([mag, mag]).transpose()
+        yerr = sfr_68_b1[idx_chi2]-np.array([mag, mag]).transpose()
+        plt.xlim(6, 12)
+        plt.ylim(-5, 5)
+        plt.scatter(x, y, marker='x', zorder=2)
+        plt.errorbar(x, y, xerr=[x-xerr[:,0],xerr[:,1]-x], yerr=[y-yerr[:,0],yerr[:,1]-y], linestyle="None", elinewidth=0.5, color='k', zorder=1)
+        plt.show()
         
-        UNCOMMENT WHEN NEEDED '''
-              
-        # =============================================================================
-        # PLOT SPECIFIC SFHs GIVEN ID (eg for diagnostics given poor chi2)        
-        # =============================================================================
-                
-#        fsize=2        
-#        ageUniv = cd.age(redshift_b1, **cosmo)/cc.yr_s
-#        
-#        xlin = np.linspace(1, 1.1e10, 100000)
-#        
-#        IDs = ([20])
-#        IDs = id_b1[-3:]
-#        IDs=[21, 115, 3030]
-#        
-#        for ID in IDs:
-#            
-#            i = (np.abs(id_b1 - ID)).argmin()
-#            
-#            plt.figure(figsize=(4*fsize, fsize))
-#            plt.xlim(0, 1.1e10)
-#            plt.ylim(0.0, 1.1)
-#            
-#            sfr_out = 1 * (xlin-(ageUniv[i]-msa_b1[i]))*np.exp(-(xlin-(ageUniv[i]-msa_b1[i]))/tau_b1[i])
-#            plt.plot(xlin, sfr_out/max(sfr_out), label='OUTPUT SFH')
-#            
-#            plt.plot((ageUniv[i], ageUniv[i]), (0, 1))
-#            plt.legend()
-#            plt.show()
-#            
-#            print(10**mass_b1[i], msa_b1[i], tau_b1[i])
         
 
-            
-        # =============================================================================
-        # ASTRODEEP filter info
-        # =============================================================================
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================================================================
+# ASTRODEEP filter info
+# =============================================================================
+
 #        # column name from apparent mag table in BEAGLE mock (same as left column in config + _APP)
 #        filters = ['HST_ACS_WFC_F435W_APP', 'HST_ACS_WFC_F606W_APP', 'HST_ACS_WFC_F814W_APP', 'HST_WFC3_IR_F105W_APP', 'HST_WFC3_IR_F125W_APP', 'HST_WFC3_IR_F140W_APP', 'HST_WFC3_IR_F160W_APP', 'Paranal_HAWKI_Ks_APP', 'Spitzer_IRAC_I1_APP', 'Spitzer_IRAC_I2_APP']
 #        
@@ -275,34 +391,8 @@ for field in fields:
 #        
 #        filter_fwhm_centre = np.array([4348.65, 5926.47, 7975.65, 10530.87, 12495.71, 13976.13, 15433.07, 21440.35, 35465.62, 45024.31])
 #        filter_fwhm = np.array([939, 2322.94, 1856, 2917.03, 3005.2, 3940.88, 2874.18, 3249.92, 7431.71, 10096.82])
-        
-        # =============================================================================
-        # get INPUT perturbed fluxes and errors
-        # =============================================================================
-        
-#        fileName = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jun_2020/from_cluster/{}/astrodeep_{}_{}_subset_RF1_001.fits'.format(field[0], field[1:-1], field[-1].lower())   
-#        
-#        data_fits = fits.open(fileName)
-#        # print(data_fits.info())
-#        # print(data_fits[1].header)
-#        
-#        # PHOTOMETRY 
-#        ptbf_phot_mock = np.zeros(len(filter_label))
-#        for i in range(len(filters)):
-#            ptbf_phot_mock[i] = data_fits[1].data[filter_label[i]][ID-1] # uJy
-#
-#        ptbferr_phot_mock = np.zeros(len(filter_label))
-#        for i in range(len(filters)):
-#            ptbferr_phot_mock[i] = data_fits[1].data[filter_err[i]][ID-1] # uJy    
-#            
-#        # adding min rel error to errors: 
-#        min_rel_error = np.array([0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.05, 0.1, 0.1])
-#        ptbferr_phot_mock = ( (ptbferr_phot_mock**2) + ((min_rel_error*ptbf_phot_mock)**2) ) ** 0.5
-#        
-#        ptblfl_phot_mock = (ptbf_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
-#        ptblflerr_phot_mock = (ptbferr_phot_mock/filter_fwhm_centre)*(1e-10 / 3.34) # erg cm-2 s-1
-#        
-#        data_fits.close()
+
+
         
 
 
