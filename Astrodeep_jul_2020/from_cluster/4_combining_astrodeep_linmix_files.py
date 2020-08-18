@@ -26,17 +26,23 @@ fields = ['0A2744C', '1A2744P', '2M0416C', '3M0416P', '4M0717C', '5M0717P', '6M1
 #fields = ['0A2744C']
 runs = ['001']
 
+massType = '_mStar'
+#massType = '_mTot'
+
+sfrType = '_delayed'
+#sfrType = ''
+
 #massLim = '8p5'
 #redshift_center     = 2.0
 #redshift_width      = 0.5 # either side, so 0.5 is 1.5 to 2.5
 #chi2_max            = 9.5
 
-massLim = '8p5'
-redshift_center     = 4.5 # 2.5, 3.5, 4.5
-redshift_width      = 0.5 # either side
-chi2_max            = 95 # 2.5, 9.5
+massLim = '8p4'
+redshift_center     = 1.65 # 2.5, 3.5, 4.5
+redshift_width      = 0.035 # either side
+chi2_max            = 9.5 # 2.5, 9.5
 dimension           = '2d' # 2d or 3d - 3d includes redshift in the GMM fit
-comment             = '001'
+comment             = '101'
 
 
 #massLim = '7p0'
@@ -143,7 +149,7 @@ for field in fields:
 #        print(catalog.dtype.names)
 
         # GMM INPUTS (sorted by ID)
-        sbf = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/linmix_inputs/linmix_inputs_GMM_{}_{}/'.format(dimension, field[0])
+        sbf = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/linmix_inputs/linmix_inputs_GMM_{}_{}{}{}/'.format(dimension, field[0], massType, sfrType)
 
         GMMid       = np.asarray(np.load(sbf+massLim+'_'+'id.npy'), dtype=int)             # BEAGLE ID
 
@@ -344,14 +350,32 @@ if dimension == '3d':
 print(len(GMMx))
 from os import mkdir
 from os import path
-sbf = './linmix_AD_combined/linmix_npy_files_z{}_w{}_chi{}_dim{}_{}/'.format(zLim, wLim, chi2Lim, dimension, comment)
+sbf = './linmix_AD_combined/linmix_npy_files_z{}_w{}_chi{}_dim{}{}{}_{}/'.format(zLim, wLim, chi2Lim, dimension, massType, sfrType, comment)
 
 if not path.exists(sbf):
     mkdir(sbf)
 
 sbf = '{}{}_'.format(sbf, massLim)
 
+
+# =============================================================================
+# adding field information
+# =============================================================================
+k = 0
+field_indicator = 0
+field_test = []
+for i in range(len(GMMid)):
+    if GMMid[i] < k:
+        field_indicator += 1
+    field_test.append(field_indicator)
+    k = GMMid[i]
+field_test = np.array(field_test)
+# =============================================================================
+# 
+# =============================================================================
+
 np.save(sbf+'id', GMMid)
+np.save(sbf+'field', field_test)
 np.save(sbf+'pi_err', pi_err)
 np.save(sbf+'GMMx', GMMx)
 np.save(sbf+'GMMy', GMMy)
@@ -380,7 +404,7 @@ if dimension == '3d':
 #%%
 x = np.array([7.0,11.0])
 m = 1.0
-c = -7.07
+c = -7.01
 y = m*x + c
 
 plt.figure(figsize=(10,10))

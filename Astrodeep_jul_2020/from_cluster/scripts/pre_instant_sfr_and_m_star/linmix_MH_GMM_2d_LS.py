@@ -84,7 +84,7 @@ class Chain(object):
         self.proposalscale_alpha = 0.1
         self.proposalscale_beta = 0.1
         self.proposalscale_sig_0 = 0.005
-        self.proposalscale_k = 0.0 # usually 0.01
+        self.proposalscale_k = 0.01 # usually 0.01
 
         if rng is None:
             self.rng = np.random.RandomState()
@@ -984,9 +984,9 @@ nChains     = np.load(sbf+'nChains.npy')        # 2
 minIter     = np.load(sbf+'minIter.npy')        # 3000
 maxIter     = np.load(sbf+'maxIter.npy')        # 3000
 
-comment2    = '003'
+comment2    = '005'
 nChains     = 4
-minIter     = 600 # if i%(niter/10.0) == 0:
+minIter     = 100 # if i%(niter/10.0) == 0:
 maxIter     = minIter
 
 lm = LinMix(GMMx, GMMy, GMMxsig, GMMysig, xycovArr=GMMxycov, K=nK, nGMM_err=nGauss, pi_err=pi_err, nchains=nChains)

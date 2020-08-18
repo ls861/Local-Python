@@ -7,6 +7,7 @@ import sys
 import copy
 from sklearn import mixture
 from astropy.io import fits
+from scipy import integrate
 warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
@@ -176,25 +177,11 @@ if args.GMM is True:
 
                 if not args.delayed:
                     temp_sfr = np.float64(data['STAR FORMATION'].data['SFR'])
-                    sfr = np.log10(np.where(temp_sfr<=0, 1e-50, temp_sfr))
+                    sfr = np.log10(np.where(temp_sfr<=0, 1e-30, temp_sfr))
 
                 else:
-                    tau = np.power(10,data['POSTERIOR PDF'].data['tau'])
-                    age = np.power(10,data['POSTERIOR PDF'].data['max_stellar_age'])
-                    norm_denom = ( (-tau*np.exp(-age/tau)*(tau+age) )+np.power(tau,2))
-
-                    norm_idx = (norm_denom < 1e-20)
-                    norm_denom[norm_idx] = 1.0
-
-                    norm = np.power(10,data['POSTERIOR PDF'].data['mass'])/ norm_denom
-
-                    exp_idx = (-age/tau < -50.0)
-                    exp_term = -age/tau
-                    exp_term[exp_idx] = -1.0
-
-                    sfr = np.log10(norm*age*np.exp(exp_term))
-                    sfr[norm_idx] = -666.0
-                    sfr[exp_idx] = -667.0
+                    ID = file.replace('_BEAGLE.fits.gz','')
+                    sfr = np.load(args.folder+'{}_log_instant_sfr.npy'.format(ID))
 
                 probs_prop = np.array(data['POSTERIOR PDF'].data['probability'], np.float64)
                 probs_prop = probs_prop/probs_prop.sum().astype(np.float64)
@@ -252,7 +239,7 @@ if args.Gibbs:
     data['mTot'] = {'value':np.log10(np.asarray(data_fits['GALAXY PROPERTIES'].data['M_tot_median'], dtype=np.float64))}
     data['mStar'] = {'value':np.log10(np.asarray(data_fits['GALAXY PROPERTIES'].data['M_star_median'], dtype=np.float64))}
     temp_sfr = np.asarray(data_fits['STAR FORMATION'].data['SFR_median'], dtype=np.float64)
-    data['sfr'] = {'value':np.log10( np.where(temp_sfr==0, 1e-50, temp_sfr) )}
+    data['sfr'] = {'value':np.log10( np.where(temp_sfr==0, 1e-30, temp_sfr) )}
     data_fits.close()
     pickle.dump([data, ids], open(args.folder+'results.p', 'wb'))
 
