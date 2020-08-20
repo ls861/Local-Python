@@ -150,4 +150,114 @@ plt.colorbar()
 plt.show()
 
 
+# =============================================================================
+# count of redshift
+# =============================================================================
+
+#%%
+
+
+
+plt.figure(figsize=(8, 6))
+plt.rcParams.update({'font.size': 16})
+plt.title('Count of Objects plotted against Photometric Redshift')
+plt.xlabel('Redshift')
+plt.ylabel('Count')
+plt.hist(AD['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Total')
+plt.hist(AD_c['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Clusters')
+plt.hist(AD_p['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Parallels')
+plt.legend()
+plt.show()
+
+
+# =============================================================================
+# count of magnification
+# =============================================================================
+#%%
+plt.figure(figsize=(8, 6))
+plt.rcParams.update({'font.size': 16})
+plt.title('Count of Objects plotted against Magnification')
+plt.xlabel('Magnification')
+plt.ylabel('Count')
+#plt.hist(AD['MAGNIF'], bins=np.linspace(1, 80, 10), histtype='step', linewidth=2, label='Total')
+plt.hist(AD_c['MAGNIF'], bins=np.linspace(1, 80, 10), histtype='step', linewidth=2, label='Clusters', color='#ff7f0e')
+#plt.hist(AD_p['MAGNIF'], bins=np.linspace(1, 80, 10), histtype='step', linewidth=2, label='Parallels')
+#plt.xscale('log')
+plt.yscale('log')
+plt.legend()
+plt.show()
+
+
+
+
+# =============================================================================
+# checking counts
+# =============================================================================
+#%%
+
+AD_location = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/astrodeep_rawfile_1234_ABCZ.npy'
+AD = np.load(AD_location)
+
+Hlim = 27.5
+
+Mlow = 8.3
+Mhigh = 10.2
+
+zLow = 1.3
+zHigh = 2.0
+
+wLim = (zHigh - zLow) / 2.0
+zLim = zLow + wLim
+
+print('AD catalogue: {}'.format(len(AD)))
+
+i = AD['H160']<Hlim
+AD = AD[i]
+print('H160 cut: {}'.format(len(AD)))
+
+i = abs(AD['ZBEST']-zLim) < wLim
+AD = AD[i]
+print('Redshift cut: {}'.format(len(AD)))
+
+i = AD['MASTAR_NEB'] > 0
+AD = AD[i]
+print('MASTAR_NEB>0: {}'.format(len(AD)))
+    
+i = (np.log10(AD['MASTAR_NEB']*1e9)) > Mlow
+AD = AD[i]
+print('Lower mass cut: {}'.format(len(AD)))
+
+i = AD['RELFLAG']==1.0
+AD = AD[i]
+print('Relflag: {}'.format(len(AD)))
+
+i = np.log10(AD['MASTAR_NEB']*1e9) - np.log10(AD['MAGNIF']) < Mhigh
+AD = AD[i]
+print('Upper mass cut: {}'.format(len(AD)))
+
+i = AD['field']%2.0==0.0
+AD = AD[i]
+print('Clusters only: {}'.format(len(AD)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

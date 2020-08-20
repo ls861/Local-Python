@@ -107,18 +107,34 @@ def run_main(args):
     
 #    plt.hist(redshift_med, bins=30)
 #    plt.show()
-    
+    print(len(redshift_med), len(redshift_med[abs(redshift_med-1.65)<0.35]))
     for i in range(len(mass_med)):
         tempIdx = (np.where(inputCat[1].data['ID'] == idArr[i]))[0][0]
 #        print(tempIdx)
             
-        lambda_1280 = 1280*(redshift_med[i]+1)
-        lambda_2600 = 2600*(redshift_med[i]+1)
         
+        
+        
+        lambda_1280 = 1280*(redshift_med[i]+1.0)
+        lambda_2600 = 3100*(redshift_med[i]+1.0) # 3100 ensures 2 filters available at z==1.3
+        
+        
+#        l1280 = 1280*(1.3+1.0)
+#        l2600 = 3100*(1.3+1.0)
+#        
+#        h1280 = 1280*(2.0+1.0)
+#        h2600 = 3100*(2.0+1.0)       
+        
+
         temp_fnu_lester = []
         appMagArr = []
         appMagErr = []
         lambdaArr = []
+        
+#        print(filter_high)
+#        print(filter_low)       
+#        print(l1280, l2600, h1280, h2600)
+        
         
 #        print(filterInfo[1].header['TFIELDS'])
         
@@ -158,6 +174,8 @@ def run_main(args):
 
     idx_santini = np.isin(idArr, SFR_santini_ID)
 
+    print(len(redshift_med[idx_santini]), len(redshift_med[idx_santini][abs(redshift_med[idx_santini]-1.65)<0.35]))
+    
     
 #    plt.scatter(mass_med[idx_santini], SFR_santini)
 #    plt.show()
@@ -165,7 +183,7 @@ def run_main(args):
 
     print(np.polyfit(mass_med[idx_santini], SFR_santini, 1))
     
-
+    print(len(SFR_santini))
     
     sbf = './results/{}_'.format(args.resultsDir[-2])
     np.save(sbf+'mass_santini.npy', mass_med[idx_santini])
@@ -221,6 +239,7 @@ args = parser.parse_args()
 
 f = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/'
 fields = ['A2744_c','A2744_p','M0416_c','M0416_p','M0717_c','M0717_p','M1149_c','M1149_p']
+#fields = ['A2744_c']
 
 for i in range(len(fields)):
     args.resultsDir = '{}fields/{}/'.format(f, str(i))
