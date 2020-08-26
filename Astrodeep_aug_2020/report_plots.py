@@ -17,6 +17,11 @@ import pickle
 from numpy import errstate,isneginf
 import sys
 
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+#rc('font',**{'family':'serif','serif':['Times']})
+rc('text', usetex=False)
+
 
 
 AD_location = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/astrodeep_rawfile_1234_ABCZ.npy'
@@ -142,7 +147,17 @@ for i, field in enumerate(fields):
 print(len(z_AD_arr))
 print(len(z_BEAGLE_arr))
 
-plt.scatter(z_BEAGLE_arr, z_AD_arr)
+x = np.linspace(min(z_BEAGLE_arr), max(z_BEAGLE_arr), 2)
+
+plt.scatter(z_AD_arr, z_BEAGLE_arr, alpha=0.03)
+plt.xlabel('ASTRODEEP')
+plt.ylabel('BEAGLE')
+plt.xlim(0, 10)
+plt.ylim(0, 10)
+plt.plot(x, x, color='k')
+#plt.plot(x, ((4000.0/912.0)*(1.0+x))-1.0, color='k')
+plt.plot(x, ((3646.0/1216.0)*(1.0+x))-1.0, color='k')
+#plt.plot(x, ((912.0/3646.0)*(1.0+x))-1.0, color='r')
 plt.show()
 
 plt.hist2d(z_BEAGLE_arr, z_AD_arr, bins=20)
@@ -160,15 +175,16 @@ plt.show()
 
 plt.figure(figsize=(8, 6))
 plt.rcParams.update({'font.size': 16})
-plt.title('Count of Objects plotted against Photometric Redshift')
+#plt.title('Count of Objects plotted against Photometric Redshift')
 plt.xlabel('Redshift')
 plt.ylabel('Count')
 plt.hist(AD['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Total')
 plt.hist(AD_c['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Clusters')
 plt.hist(AD_p['ZBEST'], bins=np.linspace(0, 10, 11), histtype='step', linewidth=2, label='Parallels')
 plt.legend()
+plt.tight_layout()
+#plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/333_count_redshift.png')
 plt.show()
-
 
 # =============================================================================
 # count of magnification
@@ -176,7 +192,7 @@ plt.show()
 #%%
 plt.figure(figsize=(8, 6))
 plt.rcParams.update({'font.size': 16})
-plt.title('Count of Objects plotted against Magnification')
+#plt.title('Count of Objects plotted against Magnification')
 plt.xlabel('Magnification')
 plt.ylabel('Count')
 #plt.hist(AD['MAGNIF'], bins=np.linspace(1, 80, 10), histtype='step', linewidth=2, label='Total')
@@ -185,9 +201,9 @@ plt.hist(AD_c['MAGNIF'], bins=np.linspace(1, 80, 10), histtype='step', linewidth
 #plt.xscale('log')
 plt.yscale('log')
 plt.legend()
+plt.tight_layout()
+#plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/333_count_magnification.png')
 plt.show()
-
-
 
 
 # =============================================================================
@@ -195,7 +211,7 @@ plt.show()
 # =============================================================================
 #%%
 
-AD_location = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/astrodeep_rawfile_1234_ABCZ.npy'
+#AD_location = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/astrodeep_rawfile_1234_ABCZ.npy'
 AD = np.load(AD_location)
 
 Hlim = 27.5
@@ -242,18 +258,25 @@ print('Clusters only: {}'.format(len(AD)))
 
 
 
+# =============================================================================
+# DPL input vs output 012_010 heatplot...
+# =============================================================================
+
+# =============================================================================
+# speagle
+# =============================================================================
+
+log SFR(M∗, t) = (0.84 ± 0.02 − 0.026 ± 0.003 × t ) logM∗−(6.51 ± 0.24 − 0.11 ± 0.03 × t ),
 
 
+t = age of uni in Gyr
+
+t = 3.22884
+logSFR = (0.84−0.026*t)logMSTAR − (6.51− 0.11*t)
 
 
-
-
-
-
-
-
-
-
+print(0.84 - 0.026*t)
+print(6.51 - 0.11*t)
 
 
 

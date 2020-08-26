@@ -185,8 +185,8 @@ for revision1 in revisions:
     
     plt.figure(figsize=(fsize, fsize))
     plt.title('Input Mass (DPL) vs Output Mass ({})'.format(title1), size=size)
-    plt.xlabel(r'$\text{Input - log}(m_{tot}/M_{\odot})$', size=size)
-    plt.ylabel(r'$\text{Output - log}(m_{tot}/M_{\odot})$', size=size)
+    plt.xlabel(r'$\mathrm{Input - log}(m_{tot}/M_{\odot})$', size=size)
+    plt.ylabel(r'$\mathrm{Output - log}(m_{tot}/M_{\odot})$', size=size)
 
     plt.scatter(mass[id_b1][idx_rr], mass_b1[idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
     plt.scatter(mass[id_b1][idx_ff], mass_b1[idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff))      
@@ -211,8 +211,8 @@ for revision1 in revisions:
 
     plt.figure(figsize=(fsize, fsize))
     plt.title('Input SFR (DE) vs Output SFR ({})'.format(title1), size=size)
-    plt.xlabel(r'$\text{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
-    plt.ylabel(r'$\text{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+    plt.xlabel(r'$\mathrm{Input - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
+    plt.ylabel(r'$\mathrm{Output - log}(\Psi / M_{\odot} yr^{-1})$', size=size)
 
     plt.scatter(sfr[id_b1][idx_rr], sfr_b1[idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
     plt.scatter(sfr[id_b1][idx_ff], sfr_b1[idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff))      
@@ -240,8 +240,8 @@ for revision1 in revisions:
    
     plt.figure(figsize=(fsize, fsize))
     plt.title('Input SSFR (DE) vs Output SSFR ({})'.format(title1), size=size)
-    plt.xlabel(r'$\text{Input - log}(\text{SSFR} / yr^{-1})$', size=size)
-    plt.ylabel(r'$\text{Output - log}(SSFR / yr^{-1})$', size=size)
+    plt.xlabel(r'$\mathrm{Input - log}(\mathrm{SSFR} / yr^{-1})$', size=size)
+    plt.ylabel(r'$\mathrm{Output - log}(SSFR / yr^{-1})$', size=size)
     
     plt.scatter(ssfr[id_b1][idx_rr], ssfr_b1[idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
     plt.scatter(ssfr[id_b1][idx_ff], ssfr_b1[idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff))      

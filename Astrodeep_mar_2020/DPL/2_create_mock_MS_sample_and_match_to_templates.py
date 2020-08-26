@@ -153,15 +153,44 @@ plt.scatter(np.log10(mass)[closest_ind], np.log10(sfr)[closest_ind], zorder=0)
 # =============================================================================
 
 
+# =============================================================================
+# plot for first year report
+# =============================================================================
+#%%
+
+import matplotlib
+matplotlib.rcdefaults 
 
 
+from matplotlib import rc
+#rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+#rc('font',**{'family':'serif','serif':['Times']})
+rc('text', usetex=False)
 
+t=len(sfr)
+print(len(sfr))
+cb = tau[:t]
 
+xlin = np.array([7, 12])
+ylin = slope*xlin + intercept
 
+#mock_fit = np.polyfit(Marr, Sfr, deg=1)
 
+plt.figure(figsize=(14, 10))
+plt.rcParams.update({'font.size': 16})
+plt.xlabel(r'$\mathrm{log}(m_{tot}/M_{\odot})$')
+plt.ylabel(r'$\mathrm{log}(\Psi / M_{\odot} yr^{-1})$')
+plt.xlim(7, 12)
+plt.ylim(-1, 3)
 
-
-
+plt.scatter(np.log10(mass[:t]), np.log10(sfr[:t]), s=5, c=cb, label='Template Bank') # templates
+plt.plot(xlin, ylin, color='k', label='Speagle+14, $z=2$') # straight line - input relation
+plt.colorbar(label=r'$\tau$')
+plt.scatter(np.load('Marr.npy'), np.load('sfr_mock.npy'), color='r', marker='x', s=60, label='Mock Sample') # mock sample
+#plt.plot(xlin, mock_fit[0]*xlin + mock_fit[1], color='r') # straight line fit - mock sample
+plt.legend()
+plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/313_DPL_mock_catalogue.png')
+#plt.show()
 
 
 

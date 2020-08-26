@@ -13,7 +13,7 @@ from scipy.stats import truncnorm
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-nObj = 1000
+nObj = 10000
 
 intercept = -8.
 slope = 1.
@@ -34,6 +34,13 @@ mass = 10**np.random.uniform(low=7, high=12, size=nObj)                         
 #new beta and tau - weighted distributions
 beta = 10**(truncnorm.rvs(-2, 0, scale=2, loc=3, size=nObj))
 tau = truncnorm.rvs(-2, 0, scale=ageUniv/2, loc=ageUniv, size=nObj)
+
+plt.hist(beta)
+plt.show()
+plt.hist(truncnorm.rvs(-2, 0, scale=2, loc=3, size=nObj))
+plt.show()
+plt.hist(10**(truncnorm.rvs(-2, 0, scale=2, loc=3, size=nObj)))
+plt.show()
 
 A = np.zeros(nObj)
 
