@@ -16,6 +16,7 @@ param1 = 'DPL'
 revisions = ['004', '005', '006', '007', '008', '009', '010', '010_002', '011', '012_001']
 revisions = ['012_006', '012_007', '012_008', '012_009']
 revisions = ['012_010']
+#revisions = ['010']
 
 fsize = 4
 size = 8
@@ -179,6 +180,54 @@ for revision1 in revisions:
             axs[j,i].legend()
     plt.show()
 
+
+    # =======================================================================f======
+    # PLOT comparing individual parameters - FIRST YEAR REPORT
+    # =============================================================================
+    #%%
+    
+    import matplotlib
+    matplotlib.rcParams.update({'font.size': 16})
+    
+    params_names = [r'$M_\mathrm{tot}$', r'$\Psi$', r'$\mathrm{log}(\alpha)$', r'$\mathrm{log}(\beta)$', r'$\hat{\tau}_V$', r'$Z/\mathrm{Z_\odot}$', r'$\mathrm{log}(U_\mathrm{S})$', r'$\mathrm{log}(\tau/\mathrm{yr})$']
+    params = [mass, sfr, np.log10(dpl_alpha), np.log10(dpl_beta), tauV_eff, metallicity, nebular_logU, np.log10(tau)]
+    params_b1 = [mass_b1, sfr_b1, np.log10(dpl_alpha_b1), np.log10(dpl_beta_b1), tauV_eff_b1, metallicity_b1, nebular_logU_b1, np.log10(tau_b1), nebular_xi_b1]
+    params_68_b1 = [mass_68_b1, sfr_68_b1, np.log10(dpl_alpha_68_b1), np.log10(dpl_beta_68_b1), tauV_eff_68_b1, metallicity_68_b1, nebular_logU_68_b1, np.log10(tau_68_b1)]
+    
+    fig, axs = plt.subplots(2, len(params)/2, figsize=(4*fsize, 2*fsize))
+#    fig.suptitle(title1)
+    for j in [0, 1]:
+        for i in range(len(params)/2):
+            axs[j,i].set_title(params_names[i+4*j])
+            
+            axs[j,i].scatter(params[i+4*j][id_b1][idx_rr], params_b1[i+4*j][idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
+            axs[j,i].scatter(params[i+4*j][id_b1][idx_fr], params_b1[i+4*j][idx_fr], s=10, zorder=2, color='m', label='FR {}'.format(sum_fr), marker='o')  
+            axs[j,i].scatter(params[i+4*j][id_b1][idx_ff], params_b1[i+4*j][idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff)) 
+            axs[j,i].scatter(params[i+4*j][id_b1][idx_rf], params_b1[i+4*j][idx_rf], s=10, zorder=2, color='c', label='RF {}'.format(sum_rf), marker='o')
+                
+             
+            axs[j,i].errorbar(params[i+4*j][id_b1], params_b1[i+4*j], yerr=[params_b1[i+4*j] - params_68_b1[i+4*j][:, 0], params_68_b1[i+4*j][:, 1] - params_b1[i+4*j]], linestyle="None", elinewidth=0.5, color='k', zorder=1)
+            
+            min_ax = min(min(params[i+4*j][id_b1]), min(params_b1[i+4*j]))
+#            min_ax = 9.3
+            max_ax = max(max(params[i+4*j][id_b1]), max(params_b1[i+4*j]))
+            
+            axs[j,i].plot((min_ax, max_ax), (min_ax, max_ax), color='k', zorder=0)
+            
+            axs[j,i].set_xlim(min_ax, max_ax)
+            axs[j,i].set_ylim(min_ax, max_ax)
+            axs[j,i].legend()
+            
+            if j == 1:
+                axs[j,i].set_xlabel('Input')
+            if i == 0:
+                axs[j,i].set_ylabel('Fitted Output')
+            
+    fig.tight_layout(pad=1.0)
+#    plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/315_010.png')
+    plt.show()
+    
+    #%%
     # =============================================================================
     # PLOT - input mass vs output mass 1
     # =============================================================================

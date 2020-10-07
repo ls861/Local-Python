@@ -47,7 +47,7 @@ print(len(AD))
 #print(len(AD))
 
 #AD = AD[(np.log10(AD['MASTAR_NEB']*1e9)+np.log10(AD['MAGNIF'])) > 8.3]
-AD = AD[(np.log10(AD['MASTAR_NEB']*1e9)) > 8.3]
+AD = AD[(np.log10(AD['MASTAR_NEB']*1e9)) > 8.4]
 print(len(AD))
 
 # =============================================================================
@@ -372,6 +372,7 @@ while outliers > 0:
     
     plt.scatter(mass, sfr)
     plt.show()
+    print('LEN MASS', len(mass))
 
 
 # =============================================================================
@@ -392,7 +393,7 @@ beta_san = A_san
 alpha_err_san = (B_err_san**2 + (9.7*A_err_san)**2) ** 0.5
 beta_err_san = A_err_san
 
-x = np.linspace(min(mass), max(mass))
+x = np.linspace(7, 10.5)
 
 plt.figure(figsize=(10, 10))
 plt.scatter(mass1, sfr1)
@@ -408,6 +409,8 @@ plt.show()
 
 print(fit[0], fit[1])
 
+
+print(beta_san[0], alpha_san[0])
 
 
 #print(id_AD[66])
@@ -442,7 +445,27 @@ plt.show()
 
 
 
+# =============================================================================
+# FIRST YEAR REPORT
+# =============================================================================
 
+#%%
+
+plt.figure(figsize=(10, 10))
+plt.xlabel(r'$M_\mathrm{tot}$')
+plt.ylabel(r'$\Psi$')
+plt.scatter(mass1, sfr1, marker='x')
+plt.scatter(mass, sfr, marker='x')
+plt.plot(x, fit1[0]*x + fit1[1], color='#1f77b4', label='Without clipping', linewidth=4)
+plt.plot(x, fit[0]*x + fit[1], color='r', label='With clipping', linewidth=4)
+plt.plot(x, beta_san[0]*x + alpha_san[0], color='#2ca02c', label='Santini+17', linewidth=4)
+#plt.title(field.replace('_',''))
+plt.xlim(7, 10.5)
+plt.ylim(-2, 3)
+plt.legend()
+plt.tight_layout()
+#plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/334_santini.png')
+plt.show()
 
 
 # =============================================================================
@@ -453,8 +476,10 @@ plt.show()
 mass = mass_AD_neb
 sfr = sfr_santini_arr
 
-iterations = 100
-samples = 400      # len(mass)==596
+print(len(mass_AD_neb))
+
+iterations = 10000 # 10000 for report
+samples = 1000      # len(mass)== 1310
 
 alpha = []
 beta = []
@@ -519,33 +544,58 @@ for i in range(iterations):
     alpha.append(fit[1])
     beta.append(fit[0])
     
-plt.title('alpha - intercept')
+#plt.title('alpha - intercept')
+plt.xlabel(r'$\alpha$')
+plt.ylabel('Count')
 y, x, _ = plt.hist(alpha, bins=20)
-plt.plot((alpha_san[0], alpha_san[0]), (0, y.max()))
+plt.plot((alpha_san[0], alpha_san[0]), (0, y.max()), label='Santini+17', linewidth=4)
+plt.plot((np.median(alpha), np.median(alpha)), (0, y.max()), label='Median', linewidth=4)
+plt.legend()
 plt.show()
 
-plt.title('beta - slope')
+
+
+#plt.title('beta - slope')
+plt.xlabel(r'$\beta$')
+plt.ylabel('Count')
 y, x, _ = plt.hist(beta, bins=20)
-plt.plot((beta_san[0], beta_san[0]), (0, y.max()))
+plt.plot((beta_san[0], beta_san[0]), (0, y.max()), label='Santini+17', linewidth=4)
+plt.plot((np.median(beta), np.median(beta)), (0, y.max()), label='Median', linewidth=4)
+plt.legend()
 plt.show()
 
 
+# =============================================================================
+# FIRST YEAR REPORT
+# =============================================================================
+
+#%%
 
 
 
+#plt.title('alpha - intercept')
+plt.xlabel(r'$\alpha$')
+plt.ylabel('Count')
+y, x, _ = plt.hist(alpha, bins=20)
 
+plt.plot((np.median(alpha), np.median(alpha)), (0, y.max()), label='Median', color='#ff7f0e', linewidth=4)
+plt.plot((alpha_san[0], alpha_san[0]), (0, y.max()), label='Santini+17', color='#2ca02c', linewidth=4)
+plt.legend()
+plt.tight_layout()
+plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/334_alpha_bootstrap.png')
+plt.show()
 
+#plt.title('beta - slope')
+plt.xlabel(r'$\beta$')
+plt.ylabel('Count')
+y, x, _ = plt.hist(beta, bins=20)
 
-
-
-
-
-
-
-
-
-
-
+plt.plot((np.median(beta), np.median(beta)), (0, y.max()), label='Median', color='#ff7f0e', linewidth=4)
+plt.plot((beta_san[0], beta_san[0]), (0, y.max()), label='Santini+17', color='#2ca02c', linewidth=4)
+plt.legend()
+plt.tight_layout()
+plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/334_beta_bootstrap.png')
+plt.show()
 
 
 

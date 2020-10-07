@@ -45,6 +45,15 @@ plt.hist(AD_p['MAGNIF'], bins=50, range=(1, 2), log=True)
 plt.show()
 
 
+print(len(AD))
+print(len(AD[AD['RELFLAG']==1]))
+for i in range(8):
+    print(len(AD[AD['field']==i]))
+    print(len(AD[AD['field']==i][AD['RELFLAG'][AD['field']==i]==1]))
+
+
+
+#%%
 
 # =============================================================================
 # -ve mags
@@ -147,7 +156,7 @@ for i, field in enumerate(fields):
 print(len(z_AD_arr))
 print(len(z_BEAGLE_arr))
 
-x = np.linspace(min(z_BEAGLE_arr), max(z_BEAGLE_arr), 2)
+x = np.linspace(0, 10, 2)
 
 plt.scatter(z_AD_arr, z_BEAGLE_arr, alpha=0.03)
 plt.xlabel('ASTRODEEP')
@@ -163,6 +172,33 @@ plt.show()
 plt.hist2d(z_BEAGLE_arr, z_AD_arr, bins=20)
 plt.colorbar()
 plt.show()
+
+# =============================================================================
+# BEAGLE vs AD
+# =============================================================================
+
+import matplotlib
+matplotlib.rcParams.update({'font.size': 16})
+plt.figure(figsize=(10, 10))
+plt.scatter(z_AD_arr, z_BEAGLE_arr, alpha=0.1)
+plt.xlabel('ASTRODEEP redshift')
+plt.ylabel('BEAGLE redshift')
+plt.xlim(0, 10)
+plt.ylim(0, 10)
+plt.plot(x, x, color='k', label='1 to 1', linewidth=4)
+#plt.plot(x, ((4000.0/912.0)*(1.0+x))-1.0, color='k', linestyle=':', label='')
+plt.plot(x, ((3646.0/1216.0)*(1.0+x))-1.0, color='k', linestyle=':', label='Break mismatch', linewidth=4)
+#plt.plot(x, ((912.0/3646.0)*(1.0+x))-1.0, color='r')
+plt.legend(loc='lower right')
+plt.tight_layout()
+#plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/334_redshift_comparison.png')
+plt.show()
+
+
+
+
+
+
 
 
 # =============================================================================
@@ -266,17 +302,38 @@ print('Clusters only: {}'.format(len(AD)))
 # speagle
 # =============================================================================
 
-log SFR(M∗, t) = (0.84 ± 0.02 − 0.026 ± 0.003 × t ) logM∗−(6.51 ± 0.24 − 0.11 ± 0.03 × t ),
+#log SFR(M∗, t) = (0.84 ± 0.02 − 0.026 ± 0.003 × t ) logM∗−(6.51 ± 0.24 − 0.11 ± 0.03 × t ),
 
 
-t = age of uni in Gyr
+#t = age of uni in Gyr
+#
+#t = 3.22884
+#logSFR = (0.84−0.026*t)logMSTAR − (6.51− 0.11*t)
+#
+#
+#print(0.84 - 0.026*t)
+#print(6.51 - 0.11*t)
 
-t = 3.22884
-logSFR = (0.84−0.026*t)logMSTAR − (6.51− 0.11*t)
 
 
-print(0.84 - 0.026*t)
-print(6.51 - 0.11*t)
+
+# =============================================================================
+# calculating ages from redshift
+# =============================================================================
+
+#%%
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
+
+z_med_spe = [0., 0.6, 1., 2.5, 3., 5., 10.]
+t_med_spe = cosmo.age(z_med_spe).value
+
+print(t_med_spe) # Gyr
+
+# lookback
+print(t_med_spe[0]-t_med_spe)
+
+print(2.5/13.467)
 
 
 

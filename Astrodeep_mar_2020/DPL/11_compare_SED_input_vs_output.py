@@ -203,7 +203,43 @@ for ID in IDs:
     plt.legend()
     plt.show()
     
+    # =============================================================================
+    # PLOT with fitted SEDs shaded - FIRST YEAR REPORT
+    # =============================================================================
+    import matplotlib
+    matplotlib.rcParams.update({'font.size': 16})
+    plt.figure(figsize=(15, 5))
+#    plt.title(title + ', chi2 = {0:.3g}'.format(np.average(chi2_fit_arr)), fontsize=14)
+    plt.xlabel('Wavelength $\lambda$ ($\AA$)')
+    plt.ylabel('Flux $\lambda F_\lambda$ ($erg\:s^{-1}\:cm^{-2}$)')
 
+    
+    plt.plot(wl_spec_mock, lfl_spec_mock, linewidth=0.5, zorder=2, label='Input SED')
+    plt.errorbar(filter_fwhm_centre, lfl_phot_mock, xerr=filter_fwhm/2, linestyle="None", color='c', zorder=3, label='Input Photometry')
+    plt.scatter(filter_fwhm_centre, ptblfl_phot_mock, color='k', marker='x', zorder=5, label='Perturbed Input Fluxes')
+    plt.errorbar(filter_fwhm_centre, lfl_phot_fit_min, yerr=[np.zeros(len(lfl_phot_fit_min)), lfl_phot_fit_max - lfl_phot_fit_min], linestyle="None", linewidth=10, color='r', zorder=4, label='Fitted Photometry samples')
+    plt.fill_between(wl_spec_mock, lfl_spec_fit_min, lfl_spec_fit_max, alpha=0.4, color='k', linewidth=0, zorder=1, label='Fitted SED samples') 
+    
+    plt.errorbar(filter_fwhm_centre, ptblfl_phot_mock, yerr= ptblflerr_phot_mock, linestyle="None", color='k', zorder=5)
+
+    idx_lim1 = (np.abs(wl_spec_mock - 45000)).argmin()
+    y_lim1 = lfl_spec_mock[idx_lim1]
+    
+    idx_lim2 = (np.abs(wl_spec_mock - 12500)).argmin()
+    y_lim2 = lfl_spec_mock[idx_lim2]
+    
+    plt.xlim(0, 50000)
+#    plt.xlim(10000, 15000)
+#    plt.ylim(0.9*y_lim1, 1.5*y_lim2)
+    plt.ylim(0.8*min(ptblfl_phot_mock), 1.5*max(ptblfl_phot_mock))
+    
+    plt.yscale('log')
+    plt.legend()
+    plt.tight_layout()
+#    plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/315_SED_plot.png')
+    plt.show()
+    
+    
     # =============================================================================
     # chi_squared random comparisons
     # =============================================================================

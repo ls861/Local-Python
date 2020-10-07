@@ -39,10 +39,10 @@ sfrType = '_delayed'
 
 massLim = '8p4'
 redshift_center     = 1.65 # 2.5, 3.5, 4.5
-redshift_width      = 0.035 # either side
+redshift_width      = 0.35 # either side
 chi2_max            = 9.5 # 2.5, 9.5
 dimension           = '2d' # 2d or 3d - 3d includes redshift in the GMM fit
-comment             = '101'
+comment             = '201'
 
 
 #massLim = '7p0'
@@ -210,7 +210,7 @@ for field in fields:
             GMMxzcov        = GMMxzcov[idx_z]
             GMMyzcov        = GMMyzcov[idx_z]
 
-
+        print(len(GMMx))
         # =============================================================================
         # filter by chi2 (id_b1 == id_chi2 == id_input)
         # =============================================================================
@@ -239,6 +239,8 @@ for field in fields:
             GMMzsig = GMMzsig[idx_chi2]
             GMMxzcov = GMMxzcov[idx_chi2]
             GMMyzcov = GMMyzcov[idx_chi2]
+            
+        print(len(GMMx))
 
         # =============================================================================
         # include magnification
@@ -324,6 +326,7 @@ idx2 = (GMMmass > 10.5)
 # removing anomalously high sfr at high mass
 idx3 = (GMMsfr > 2.1)
 
+print(len(GMMx))
 print(len(GMMx[idx1]), len(GMMx[idx2]), len(GMMx[idx3]))
 
 random_cuts = np.invert(np.logical_or.reduce((idx1, idx2, idx3)))

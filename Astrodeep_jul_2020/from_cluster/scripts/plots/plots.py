@@ -224,7 +224,12 @@ xs = [sfr_instant,
       mass_AD[idx_santini][idx_redshift],
       (mass_AD-mag_AD)[idx_santini][idx_redshift],
       redshift_AD,
-      redshift_AD[idx_santini][idx_redshift]]
+      redshift_AD[idx_santini][idx_redshift],
+      sfr_AD_neb[idx_santini], 
+      sfr_AD_neb[idx_santini][idx_redshift],
+      redshift_AD,
+      mass_AD_neb,
+      sfr_AD_neb]
 
 ys = [sfr,
       sfr_AD,
@@ -238,15 +243,20 @@ ys = [sfr,
       mStar[idx_santini][idx_redshift],
       (mStar-mag_AD)[idx_santini][idx_redshift],
       redshift,
-      redshift[idx_santini][idx_redshift]]
+      redshift[idx_santini][idx_redshift],
+      sfr_santini, 
+      sfr_santini[idx_redshift],
+      redshift,
+      mStar,
+      sfr_instant]
 
 print(mStar)
 print(mStar-mag_AD)
 print(mag_AD)
-xlow = [-4, -4, -4, -4, -4, -4, -4, -4, 6, 6, 6, 0, 0]
-xhigh = [4, 4, 4, 4, 4, 4, 4, 4, 10, 10, 10, 10, 10]
-ylow = [-4, -4, -4, -4, -4, -4, -4, -4, 6, 6, 6, 0, 0]
-yhigh = [4, 4, 4, 4, 4, 4, 4, 4, 10, 10, 10, 10, 10]
+xlow = [-4, -4, -4, -4, -4, -4, -4, -4, 6, 6, 6, 0, 0, -4, -4, 0, 6, -4]
+xhigh = [4, 4, 4, 4, 4, 4, 4, 4, 10, 10, 10, 10, 10, 4, 4, 10, 10, 4]
+ylow = [-4, -4, -4, -4, -4, -4, -4, -4, 6, 6, 6, 0, 0, -4, -4, 0, 6, -4]
+yhigh = [4, 4, 4, 4, 4, 4, 4, 4, 10, 10, 10, 10, 10, 4, 4, 10, 10, 4]
 
 xlabel = ['sfr instant',
           'sfr instant',
@@ -260,7 +270,12 @@ xlabel = ['sfr instant',
           'massAD',
           'massAD',
           'redshiftAD',
-          'redshiftAD']
+          'redshiftAD',
+          'sfr AD neb',
+          'sfr AD neb',
+          'redshift AD',
+          'mass AD neb',
+          'sfr AD neb']
 
 ylabel = ['sfr',
           'sfr AD',
@@ -274,7 +289,12 @@ ylabel = ['sfr',
           'mStar',
           'mStar',
           'redshift',
-          'redshift']
+          'redshift',
+          'sfr santini',
+          'sfr santini',
+          'redshift',
+          'mStar',
+          'sfr instant']
 
 title = ['sfr',
          'sfr',
@@ -288,7 +308,12 @@ title = ['sfr',
          'mStar 1.3$<$z$<$2.0',
          'mStar w MAG 1.3$<$z$<$2.0',
          'redshift',
-         'redshift 1.3$<$z$<$2.0']
+         'redshift 1.3$<$z$<$2.0', 
+         'sfr',
+         'sfr 1.3$<$z$<$2.0',
+         'redshift',
+         'mStar',
+         'sfr']
 
 
 for i in range(len(xs)):

@@ -16,9 +16,10 @@ from scipy.integrate import quad
 params = ['DE']
 revisions = ['100', '101', '102', '103', '104']
 revisions = ['106']
+revisions = ['100']
 
-fsize = 5
-size = 8
+fsize = 8
+size = 16
 
 for param1 in params:    
     
@@ -255,7 +256,62 @@ for param1 in params:
         plt.ylim(min_ax, max_ax)
         plt.legend()
         plt.show()
+
+        # =============================================================================
+        # PLOT - input mass vs output mass 1 - FIRST YEAR REPORT
+        # =============================================================================
+        
+        plt.figure(figsize=(6,6))
+        import matplotlib
+        matplotlib.rcParams.update({'font.size': 18})
+#        plt.title('Input Mass (DE) vs Output Mass ({})'.format(title1), size=size)
+        plt.xlabel(r'Input - $M_\mathrm{tot}$')
+        plt.ylabel(r'Output - $M_\mathrm{tot}$')
     
+        plt.scatter(mass[id_b1][idx_rr], mass_b1[idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
+        plt.scatter(mass[id_b1][idx_fr], mass_b1[idx_fr], s=10, zorder=2, color='m', label='FR {}'.format(sum_fr), marker='o')  
+        plt.scatter(mass[id_b1][idx_ff], mass_b1[idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff))      
+        plt.scatter(mass[id_b1][idx_rf], mass_b1[idx_rf], s=10, zorder=2, color='c', label='RF {}'.format(sum_rf), marker='o')
+        
+        plt.errorbar(mass[id_b1], mass_b1, yerr=[mass_b1 - mass_68_b1[:, 0], mass_68_b1[:, 1] - mass_b1], linestyle="None", elinewidth=0.5, color='k', zorder=1)
+        
+        min_ax = 7.5
+        max_ax = 11.0
+        
+        plt.plot((min_ax, max_ax), (min_ax, max_ax), color='k', zorder=0)
+        plt.xlim(min_ax, max_ax)
+        plt.ylim(min_ax, max_ax)
+        plt.legend()
+        plt.tight_layout()
+#        plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/315_DE_mass.png')
+        plt.show()
+    
+        # =============================================================================
+        # PLOT - input sfr vs output sfr 1 - FIRST YEAR REPORT
+        # =============================================================================
+    
+        plt.figure(figsize=(6, 6))
+#        plt.title('Input SFR (DE) vs Output SFR ({})'.format(title1), size=size)
+        plt.xlabel(r'Input - $\Psi$')
+        plt.ylabel(r'Output - $\Psi$')
+    
+        plt.scatter(sfr[id_b1][idx_rr], sfr_b1[idx_rr], s=10, zorder=2, color='r', label='RR {}'.format(sum_rr))
+        plt.scatter(sfr[id_b1][idx_fr], sfr_b1[idx_fr], s=10, zorder=2, color='m', label='FR {}'.format(sum_fr), marker='o')
+        plt.scatter(sfr[id_b1][idx_ff], sfr_b1[idx_ff], s=10, zorder=2, color='b', label='FF {}'.format(sum_ff))      
+        plt.scatter(sfr[id_b1][idx_rf], sfr_b1[idx_rf], s=10, zorder=2, color='c', label='RF {}'.format(sum_rf), marker='o')
+        
+        plt.errorbar(sfr[id_b1], sfr_b1, yerr=[sfr_b1 - sfr_68_b1[:, 0], sfr_68_b1[:, 1] - sfr_b1], linestyle="None", elinewidth=0.5, color='k', zorder=1)
+        
+        min_ax = -1.0
+        max_ax = 3.5
+        
+        plt.plot((min_ax, max_ax), (min_ax, max_ax), color='k', zorder=0)
+        plt.xlim(min_ax, max_ax)
+        plt.ylim(min_ax, max_ax)
+        plt.legend()
+        plt.tight_layout()
+#        plt.savefig('/Users/lester/Dropbox/PhD/20_Summer/First Year Report/RawFigs/315_DE_sfr.png')  
+        plt.show()   
     
         # =============================================================================
         # PLOT - input sfr vs output ssfr 1
