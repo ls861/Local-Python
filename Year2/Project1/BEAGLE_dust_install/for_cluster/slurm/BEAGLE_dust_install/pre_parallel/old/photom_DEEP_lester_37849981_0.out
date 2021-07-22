@@ -1,0 +1,40 @@
+Changed directory to /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install.
+
+JobID: 37849981
+======, 0
+=======
+Time: Wed 14 Apr 18:34:42 BST 2021
+Running on master node: cpu-e-453
+Current directory: /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install
+
+Nodes allocated:
+================
+cpu-e-453
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ls861/.pyenv/versions/anaconda2-5.3.0/bin/python /home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/scripts/BEAGLE_dust_install/run_GMM_2d_on_cluster.py -f /home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_results/BEAGLE_dust_install/3/fit_001/ --n-gauss 3 --delayed
+
+2_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+4_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+5_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+3_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+6_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+2_BEAGLE_GMM_2d.p
+4_BEAGLE_GMM_2d.p
+3_BEAGLE_GMM_2d.p
+6_BEAGLE_GMM_2d.p
+5_BEAGLE_GMM_2d.p
+('dumped: ', '/home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_results/BEAGLE_dust_install/3/fit_001/')

@@ -1,0 +1,234 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 27 17:07:08 2020
+
+@author: lester
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from astropy.cosmology import FlatLambdaCDM
+
+norm = 9.7
+#norm = 0
+
+# =============================================================================
+# Santini+17 'True' values - delayed SFH, SFR from UV slope
+# =============================================================================
+# logSFR = alpha log(M / M_9.7) + beta
+z_san = np.array((1.65, 2.5, 3.5, 4.5, 5.5))
+A_san = np.array((1.04, 1.16, 1.02, 0.94, 0.92))
+A_err_san = np.array((0.03, 0.03, 0.04, 0.06, 0.15))
+B_san = np.array((1.01, 1.22, 1.37, 1.37, 1.99))
+B_err_san = np.array((0.04, 0.03, 0.03, 0.05, 0.13))
+
+# converting normalisation
+alpha_san = B_san - 9.7*A_san
+alpha_err_san = (B_err_san**2 + (9.7*A_err_san)**2) ** 0.5
+beta_san = A_san
+beta_err_san = A_err_san
+
+alpha_san_n = alpha_san + (norm*beta_san) # santini normalised
+alpha_err_san_n = (alpha_err_san**2 - (norm*beta_err_san)**2) ** 0.5
+
+# =============================================================================
+# Santini+17 Original values - obtained by eye - delayed SFH, SFR from UV slope
+# =============================================================================
+# logSFR = alpha log(M / M_9.7) + beta
+z_san0 = np.array((1.65, 2.5, 3.5, 4.5, 5.5))
+A_san0 = np.array((1.05, 1.1, 0.9, 0.75, 0.55))
+A_err_san0 = np.array((0.03, 0.03, 0.04, 0.05, 0.18))
+B_san0 = np.array((1.0, 1.15, 1.25, 1.2, 1.5))
+B_err_san0 = np.array((0.05, 0.03, 0.03, 0.06, 0.12))
+
+# converting normalisation
+alpha_san0 = B_san0 - 9.7*A_san0
+alpha_err_san0 = (B_err_san0**2 + (9.7*A_err_san0)**2) ** 0.5
+beta_san0 = A_san0
+beta_err_san0 = A_err_san0
+
+alpha_san0_n = alpha_san0 + (norm*beta_san0) # santini normalised
+alpha_err_san0_n = (alpha_err_san0**2 - (norm*beta_err_san0)**2) ** 0.5
+
+# =============================================================================
+# Speagle+14 - errors calculated dodgily
+# =============================================================================
+# log SFR(M∗, t) = (0.84 ± 0.02 − 0.026 ± 0.003 × t ) logM∗−(6.51 ± 0.24 − 0.11 ± 0.03 × t ), where t is the age of the universe in Gyr.
+
+cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
+
+z_speagle = np.linspace(0.5, 6.5, 1000)
+t_speagle = cosmo.age(z_speagle).value # Gyr
+
+alpha_speagle = -(6.51 - (0.11*t_speagle) )
+alpha_err_speagle = 0.24 + (0.03*t_speagle)
+beta_speagle = 0.84 - (0.026*t_speagle)
+beta_err_speagle = 0.02 + (0.003*t_speagle)
+
+alpha_speagle_n = alpha_speagle + (norm*beta_speagle) # santini normalised
+
+
+# =============================================================================
+# Schreiber+15 - ignoring high mass
+# =============================================================================
+#r ≡ log10(1 + z) and m ≡ log10(M∗/10**9 M):
+#log10(SFRMS[M/yr]) = m − m0 + a0r − a1 max(0,m − m1 − a2 r)**2, 
+#with m0 = 0.5 ± 0.07, a0 = 1.5 ± 0.15, a1 = 0.3 ± 0.08, m1 = 0.36 ± 0.3 and a2 = 2.5 ± 0.6.
+
+z_schreiber = np.linspace(0.5, 4.0, 1000)
+r_schreiber = np.log10(1+z_schreiber)
+
+m0_schreiber = 0.5
+a0_schreiber = 1.5
+#a1 = 0.3
+#m1 = 0.36
+#a2 = 2.5
+
+# m - m1 - a2r is usually < 0, except high mass, low redshift, IGNORED FOR NOW
+#print( np.log10((10**9.9)/(1e9))- m1 - (a2*r_schreiber))
+
+alpha_schreiber = - (9.0 + m0_schreiber - (a0_schreiber*r_schreiber))
+beta_schreiber = np.linspace(1.0, 1.0, 1000)
+
+alpha_schreiber_n = alpha_schreiber + (norm*beta_schreiber) # santini normalised
+
+
+# =============================================================================
+# Salmon+15
+# =============================================================================
+#log(SFR/M yr−1) = a log(M/M) + b
+z_salmon = np.array((4.0, 5.0, 6.0))
+
+alpha_salmon = np.array((-5.7, -4.4, -3.9))
+alpha_err_salmon = np.array((2.1, 2.6, 1.6))
+beta_salmon = np.array((0.7, 0.59, 0.54))
+beta_err_salmon = np.array((0.21, 0.26, 0.16))
+
+alpha_salmon_n = alpha_salmon + (norm*beta_salmon) # santini normalised
+
+
+# =============================================================================
+# Steinhardt+14
+# =============================================================================
+#log SFR(M yr−1) = α × (logM∗/M − 10.5) + β,
+z_steinhardt = np.array(((4.0 + 4.8)/2, (4.8 + 6.0)/2))
+
+beta_steinhardt = np.array((0.78, 0.78))
+beta_err_steinhardt = np.array((0.02, 0.02))
+
+alpha_steinhardt = np.array((1.976, 2.110)) - (10.5*beta_steinhardt)
+
+alpha_steinhardt_n = alpha_steinhardt + (norm*beta_steinhardt) # santini normalised
+
+
+# =============================================================================
+# Tomczak+16 - Not obvious how to get these, also maybe not just star forming?!
+# =============================================================================
+
+# =============================================================================
+# Schreiber+16 - single point, hard to find paper
+# =============================================================================
+
+# =============================================================================
+# Kurczynski+16 - nice table, also mentions purpose of rescaling which I haven't included here
+# =============================================================================
+#log SFR = a ´ log M* + b + N (0, sIS).
+z_kurc = np.array(((0.5 + 1.0)/2, (1.0 + 1.5)/2, (1.5 + 2.0)/2, (2.0 + 2.5)/2, (2.5 + 3.0)/2))
+
+alpha_kurc = np.array((-8.394, -7.474, -7.484, -7.513, -7.729))
+alpha_err_kurc = np.array((0.011, 0.010, 0.011, 0.018, 0.015))
+beta_kurc = np.array((0.919, 0.825, 0.867, 0.849, 0.899))
+beta_err_kurc = np.array((0.017, 0.012, 0.013, 0.021, 0.017))
+
+alpha_kurc_n = alpha_kurc + (norm*beta_kurc) # santini normalised
+
+
+
+# =============================================================================
+# UPDATED COMPARISONS SINCE HAVING SANTINI RESULTS
+# =============================================================================
+
+inc = 0.03 # increment in offset
+
+# =============================================================================
+# PLOT slope
+# =============================================================================
+
+plt.figure(figsize=(12, 6))
+plt.title('slope')
+
+plt.scatter(z_san, beta_san, label='Santini+17')
+plt.errorbar(z_san, beta_san, yerr=beta_err_san, ls='none')
+plt.scatter(z_san0, beta_san0, label='Santini+17 Raw')
+plt.errorbar(z_san0, beta_san0, yerr=beta_err_san0, ls='none')
+plt.scatter(z_salmon, beta_salmon, label='Salmon+15')
+plt.errorbar(z_salmon, beta_salmon, yerr=beta_err_salmon, ls='none')
+plt.scatter(z_steinhardt, beta_steinhardt, label='Steinhardt+14')
+plt.errorbar(z_steinhardt, beta_steinhardt, yerr=beta_err_steinhardt, ls='none')
+plt.scatter(z_kurc, beta_kurc, label='Kurczynski+16')
+plt.errorbar(z_kurc, beta_kurc, yerr=beta_err_kurc, ls='none')
+
+
+plt.plot(z_speagle, beta_speagle, label='Speagle+14')
+plt.plot(z_schreiber, beta_schreiber, label='Schreiber+15')
+plt.ylim(0.2, 1.4)
+plt.legend()
+plt.show()
+
+## =============================================================================
+## PLOT intercept
+## =============================================================================
+#plt.figure(figsize=(6, 6))
+#plt.title('intercept')
+#
+#plt.scatter(z_san, alpha_san, label='Santini+17')
+#plt.errorbar(z_san, alpha_san, yerr=alpha_err_san, ls='none')
+##plt.plot([], [])
+#plt.scatter(z_san0, alpha_san0, label='Santini+17 Raw')
+#plt.errorbar(z_san0, alpha_san0, yerr=alpha_err_san0, ls='none')
+##plt.plot([], [])
+#plt.scatter(z_salmon, alpha_salmon, label='Salmon+15')
+#plt.scatter(z_steinhardt, alpha_steinhardt, label='Steinhardt+14')
+#plt.scatter(z_kurc, alpha_kurc, label='Kurczynski+16')
+#
+#
+#
+#plt.plot(z_speagle, alpha_speagle, label='Speagle+14')
+#plt.plot(z_schreiber, alpha_schreiber, label='Schreiber+15')
+#plt.ylim(-11, -2)
+#plt.legend()
+#plt.show()
+
+# =============================================================================
+# PLOT normalised as in Santini - slope unaffected
+# =============================================================================
+plt.figure(figsize=(12, 6))
+plt.title('santini normalised intercept')
+
+plt.scatter(z_san, alpha_san_n, label='Santini+17')
+plt.errorbar(z_san, alpha_san_n, yerr=alpha_err_san_n, ls='none')
+#plt.plot([], [])
+plt.scatter(z_san0, alpha_san0_n, label='Santini+17 Raw')
+plt.errorbar(z_san0, alpha_san0_n, yerr=alpha_err_san0_n, ls='none')
+#plt.plot([], [])
+plt.scatter(z_salmon, alpha_salmon_n, label='Salmon+15')
+plt.scatter(z_steinhardt, alpha_steinhardt_n, label='Steinhardt+14')
+plt.scatter(z_kurc, alpha_kurc_n, label='Kurczynski+16')
+
+
+plt.plot(z_speagle, alpha_speagle_n, label='Speagle+14')
+plt.plot(z_schreiber, alpha_schreiber_n, label='Schreiber+15')
+plt.ylim(0.4, 2.4)
+#plt.ylim(-11, -2)
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+

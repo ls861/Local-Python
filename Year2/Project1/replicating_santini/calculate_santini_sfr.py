@@ -22,6 +22,7 @@ def Santini_SFR(appMagArr, appMagErr, lambdaArr, z):
     #correct luminosity using Meurer 1999 A1600 = 4.43+1.99*beta
     Meurer_correction = 4.43 + 1.99*beta
     Lnu = appMagToLnu(mag_1600, z)
+    print(mag_1600, mag_1600-Meurer_correction)
     Lnu_corr = appMagToLnu(mag_1600-Meurer_correction, z)
     #Then use assumed intrinsic UV slope of -2.23 assumed for the Meurer relation to find Lnu_corr_1500
     beta_int = -2.23
@@ -37,6 +38,7 @@ def Santini_SFR(appMagArr, appMagErr, lambdaArr, z):
     Lnu_err = appMagErrToLnuErr(appMagArr[minIdx], appMagErr[minIdx], z)
     log_Lnu_err = (0.434*(Lnu_err/Lnu))
     log_sfr_err = np.sqrt(log_Lnu_err**2+0.55**2)#adding in scatter in Meurer relation in quadrature
+    print(Lnu_corr)
     return log_sfr, log_sfr_err, Meurer_correction
 
 def appMagToLnu(appMag, z):
@@ -44,7 +46,7 @@ def appMagToLnu(appMag, z):
 	#lumD calculated this way is in Mpc
     lumD = lumdist(z)
     fnu = appMagToFnu(appMag)
-
+#    print(fnu)
     #Lnu requires lumD in cm
     pcInCm = 3.08567758E18
     Lnu = fnu * 4 * math.pi * (lumD * 1.E6 * pcInCm)**2
@@ -68,14 +70,18 @@ def appMagToFnu(appMag):
 def lumdist(z):
     from astropy.cosmology import FlatLambdaCDM
     cosmo = FlatLambdaCDM(H0=70, Om0=0.3)
-    lumD = cosmo.luminosity_distance(z)    
+    lumD = cosmo.luminosity_distance(z)   
+#    print(lumD)
     return lumD.value
 
 
 AD_location = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/astrodeep_rawfile_1234_ABCZ.npy'
 AD = np.load(AD_location)
-print(AD.dtype.names)
-print(len(AD))
+#print(AD.dtype.names)
+#print(len(AD))
+
+# SUBSET FOR TESTING
+AD = AD[:20]
 
 redshift_med = AD['ZBEST']
 
@@ -119,7 +125,7 @@ for i in range(len(redshift_med)):
         SFR_santini.append(temp_sfr)
         SFR_err_santini.append(temp_sfr_err)
         Meurer_correction_arr.append(meurer_correction)
-
+#        print(temp_sfr)
     else:
         SFR_santini.append(-99.0)
         SFR_err_santini.append(-99.0)
@@ -128,6 +134,7 @@ for i in range(len(redshift_med)):
 SFR_santini = np.array(SFR_santini)
 SFR_err_santini = np.array(SFR_err_santini)
 Meurer_correction_arr = np.array(Meurer_correction_arr)
+
 
 '''
 sbf = './calculate_santini_sfr_results/'

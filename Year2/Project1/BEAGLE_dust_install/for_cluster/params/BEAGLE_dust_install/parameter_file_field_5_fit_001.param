@@ -1,0 +1,81 @@
+[main]
+# Verbose mode: 0 ---> no info
+#               1 ----> print only errors
+#               2 ---> print errors and warnings
+#               3 ----> print errors, warnings and info
+VERBOSE = 3
+
+# Seed for the random number generator
+# SEED = 994189
+
+#****************************************************************
+#******************** COSMOLOGICAL PARAMETERS *******************
+#****************************************************************
+
+# If left blank, default parameter values will be used.
+
+HUBBLE_0 = 70
+OMEGA_MATTER = 0.3
+OMEGA_LAMBDA = 0.7
+
+#****************************************************************
+# ******************* TEMPLATES  *****************************
+#****************************************************************
+
+TEMPLATES NEBULAR = $BEAGLE_TEMPLATES/ineb_June16/mup100/cb2016_n2_mup100_N015_O01_deplO70_C100_June16
+EMISSION LINES CONFIGURATION = $BEAGLE_TEMPLATES/ineb_June16/mup100/cb2016_Jan16_line_wavelengths_may2017.dat
+
+#SHRINK TEMPLATES WL RANGE = 900 60000
+REBIN TEMPLATES = 10
+
+#****************************************************************
+# ******************* PHOTOMETRY *****************************
+#****************************************************************
+
+FILTERS THROUGHPUTS = $BEAGLE_FILTERS/BEAGLE_dust_install/astrodeep_filters.fits
+FILTERS CONFIGURATION = $BEAGLE_FILTERS/BEAGLE_dust_install/astrodeep_filters_config_4_5_10pc_min_rel_error.dat
+
+PHOTOMETRIC CATALOGUE = $BEAGLE_DATA/BEAGLE_dust_install/astrodeep_field_5_subset_RF1_001.fits
+
+#****************************************************************
+#******************** IGM ABSORPTION *******
+#****************************************************************
+
+IGM ABSORPTION = Inoue
+
+# **************************************************
+# ************** SF BIN #1 **************************
+# **************************************************
+
+SF_PARAMETER  = name:sfh_type                 type:fixed  char_value:delayed
+SF_PARAMETER  = name:max_stellar_age          type:fitted  prior:distribution:gaussian prior:mean:8.  prior:sigma:2.  prior:range:[6.,10.]
+SF_PARAMETER  = name:tau                      type:fitted  prior:distribution:uniform  prior:range:[7.,10.5]
+SF_PARAMETER  = name:metallicity              type:fitted  prior:distribution:uniform  prior:range:[-2.1,0.3]
+SF_PARAMETER  = name:mass                     type:fitted  prior:distribution:uniform  prior:range:[5.,12.]
+
+#****************************************************************
+# ******************* PRINTED OUTPUT  *****************************
+#****************************************************************
+
+RESULTS DIRECTORY = $BEAGLE_RESULTS/BEAGLE_dust_install/5/fit_001/
+
+PRINT PHOTOMETRY = T
+PRINT SPECTRUM = F
+PRINT CONTINUUM = F
+PRINT SPECTRAL INDICES = F
+PRINT SF AND ChE HISTORIES = F
+
+#****************************************************************
+# ******************* PARAMETERS HANDLING  *****************************
+#****************************************************************
+
+PDF SAMPLER FILE = $BEAGLE_PARAM_DIR/BEAGLE_dust_install/MCMC_new_beagle_001.param
+
+PARAMETER  = name:redshift                    type:fitted  prior:distribution:uniform  prior:range:[0.,15.]
+PARAMETER  = name:nebular_logU                type:dependent
+PARAMETER  = name:nebular_xi                  type:fixed    value:0.3
+PARAMETER  = name:nebular_Z                   type:dependent
+
+PARAMETER  = name:attenuation_type            type:fixed  char_value:CF00
+PARAMETER  = name:tauV_eff                    type:fitted  prior:distribution:exponential   prior:range:[0.,6.]
+PARAMETER  = name:mu                          type:fixed   value:0.4

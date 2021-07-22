@@ -48,7 +48,7 @@ option_sig0_and_k_scatter       = 0 # SCATTER + 2D histogram
 
 option_plot_MS_fits             = 0
 option_santini                  = 0
-option_santini_ff               = 1
+option_santini_ff               = 0
 option_speagle                  = 0
 option_speagle_paper            = 0
 
@@ -74,7 +74,7 @@ xi_min = 8.5
 # =============================================================================
 # GET DATA
 # =============================================================================
-
+'''
 sbf = '/Users/lester/Documents/GitHub/Local-Python/Astrodeep_jul_2020/from_cluster/linmix_AD_combined/linmix_npy_files_z{}_w{}_chi{}_dim{}_{}/{}_'.format(zLim, wLim, chi2Lim, dimension, comment, massLim)
 
 pi_err      = np.load(sbf+'pi_err.npy')         # 3x probability of each posterior gaussian
@@ -95,7 +95,7 @@ GMMredshift        = np.load(sbf+'GMMredshift.npy') # posterior median
 GMMchi2     = np.load(sbf+'GMMchi2.npy') # calculated elsewhere by me
 GMMmass     = np.load(sbf+'GMMmass.npy') # posterior median
 GMMsfr      = np.load(sbf+'GMMsfr.npy') # posterior median
-        
+   '''     
 # =============================================================================
 # PLOT MAIN SEQUENCE
 # =============================================================================

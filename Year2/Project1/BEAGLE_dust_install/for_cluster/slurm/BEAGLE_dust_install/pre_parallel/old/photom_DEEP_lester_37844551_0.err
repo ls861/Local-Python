@@ -1,0 +1,4 @@
+/home/ls861/.pyenv/versions/anaconda2-5.3.0/lib/python2.7/site-packages/scipy/interpolate/interpolate.py:610: RuntimeWarning: invalid value encountered in subtract
+  slope = (y_hi - y_lo) / (x_hi - x_lo)[:, None]
+WARNING: AstropyDeprecationWarning: "clobber" was deprecated in version 2.0 and will be removed in a future version. Use argument "overwrite" instead. [pyp_beagle.beagle_summary_catalogue]
+WARNING:astropy:AstropyDeprecationWarning: "clobber" was deprecated in version 2.0 and will be removed in a future version. Use argument "overwrite" instead.

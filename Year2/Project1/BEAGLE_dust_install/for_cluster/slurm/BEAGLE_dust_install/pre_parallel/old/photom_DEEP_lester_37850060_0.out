@@ -1,0 +1,145 @@
+Changed directory to /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install.
+
+JobID: 37850060
+======, 0
+=======
+Time: Wed 14 Apr 18:34:42 BST 2021
+Running on master node: cpu-e-734
+Current directory: /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install
+
+Nodes allocated:
+================
+cpu-e-734
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ls861/.pyenv/versions/anaconda2-5.3.0/bin/python /home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/scripts/BEAGLE_dust_install/run_GMM_3d_on_cluster.py -f /home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_results/BEAGLE_dust_install/5/fit_001/ --n-gauss 3 --delayed
+
+2_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+fitting GMM
+4_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+10_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+1_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+17_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+21_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+12_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+23_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+25_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+8_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+19_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+27_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+13_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+29_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+14_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+16_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+7_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+30_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+5_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+11_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+3_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+20_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+9_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+26_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+22_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+28_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+24_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+6_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+31_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+15_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+18_BEAGLE.fits.gz
+definitely fitting to Mstar
+fitting GMM
+17_BEAGLE_GMM_3d.p
+20_BEAGLE_GMM_3d.p
+10_BEAGLE_GMM_3d.p
+29_BEAGLE_GMM_3d.p
+21_BEAGLE_GMM_3d.p
+7_BEAGLE_GMM_3d.p
+5_BEAGLE_GMM_3d.p
+11_BEAGLE_GMM_3d.p
+15_BEAGLE_GMM_3d.p
+12_BEAGLE_GMM_3d.p
+16_BEAGLE_GMM_3d.p
+2_BEAGLE_GMM_3d.p
+28_BEAGLE_GMM_3d.p
+4_BEAGLE_GMM_3d.p
+3_BEAGLE_GMM_3d.p
+22_BEAGLE_GMM_3d.p
+27_BEAGLE_GMM_3d.p
+30_BEAGLE_GMM_3d.p
+13_BEAGLE_GMM_3d.p
+18_BEAGLE_GMM_3d.p
+19_BEAGLE_GMM_3d.p
+9_BEAGLE_GMM_3d.p
+8_BEAGLE_GMM_3d.p
+14_BEAGLE_GMM_3d.p
+26_BEAGLE_GMM_3d.p
+6_BEAGLE_GMM_3d.p
+1_BEAGLE_GMM_3d.p
+25_BEAGLE_GMM_3d.p
+31_BEAGLE_GMM_3d.p
+24_BEAGLE_GMM_3d.p
+23_BEAGLE_GMM_3d.p
+('dumped: ', '/home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_results/BEAGLE_dust_install/5/fit_001/')

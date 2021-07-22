@@ -1,0 +1,110 @@
+Changed directory to /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install.
+
+JobID: 37761151
+======, 4
+=======
+Time: Mon 12 Apr 23:37:20 BST 2021
+Running on master node: cpu-e-719
+Current directory: /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install
+
+Nodes allocated:
+================
+cpu-e-719
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ls861/rds/rds-rm665-beagle_shared/BEAGLE_dust_install/bin/BEAGLE --parameter-file /home/ls861/BEAGLE-general/params/BEAGLE_dust_install/parameter_file_field_2_fit_001.param --fit
+
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+                                                                                                     
+ Skipping           30  header lines
+                                                                                                     
+                                                                                                     
+ Reading         220  lines
+                                                                                                     
+ ---> fitted: max_stellar_age
+ ---> fitted: tau
+ ---> fitted: metallicity
+ ---> fitted: mass
+ ---> fitted: redshift
+ ---> fitted: tauv_eff
+ n_fitted:            6

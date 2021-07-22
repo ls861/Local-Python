@@ -13,7 +13,7 @@ from scipy.stats import truncnorm
 import cosmolopy.distance as cd
 import cosmolopy.constants as cc
 
-nObj = 1000
+nObj = 10000
 
 intercept = -8.
 slope = 1.

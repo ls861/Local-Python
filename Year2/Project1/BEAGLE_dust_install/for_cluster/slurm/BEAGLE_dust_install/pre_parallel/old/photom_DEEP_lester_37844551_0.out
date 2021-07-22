@@ -1,0 +1,19 @@
+Changed directory to /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install.
+
+JobID: 37844551
+======, 0
+=======
+Time: Wed 14 Apr 16:38:33 BST 2021
+Running on master node: cpu-e-734
+Current directory: /rds/project/rm665/rds-rm665-beagle_shared/lester_shared/lester_run/new_beagle/slurm/BEAGLE_dust_install
+
+Nodes allocated:
+================
+cpu-e-734
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ls861/.pyenv/shims/pyp_beagle -r /home/ls861/rds/rds-rm665-beagle_shared/lester_shared/lester_results/BEAGLE_dust_install/4/fit_001/ --compute-summary --json-summary summary_config.json --credible-interval 68
+
