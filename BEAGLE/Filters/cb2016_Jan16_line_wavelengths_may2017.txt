@@ -1,0 +1,13 @@
+wl:1025.73  use:T print:T label:HLyB@1026 
+wl:1215.67  use:T print:T label:HLyA@1216
+wl:1548.19  use:T print:T label:C4@1548
+wl:1908.73  use:T print:T label:C3@1910
+wl:3729.23  use:T print:T label:O2@3729
+wl:4101.74  use:T print:T label:HBaD@4102
+wl:4340.47  use:T print:T label:HBaG@4340
+wl:4861.33  use:T print:T label:HBaB@4861
+wl:5006.84  use:T print:T label:O3@5007
+wl:6548.05  use:T print:T label:N2@6548
+wl:6562.82  use:T print:T label:HBaA@6563
+wl:6583.45  use:T print:T label:N2@6584 # no wl:6584.00   in nist
+wl:6730.82  use:T print:T label:S2@6731

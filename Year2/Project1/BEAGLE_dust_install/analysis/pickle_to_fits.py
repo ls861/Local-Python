@@ -103,6 +103,27 @@ for s in range(len(fields)):
     outputTable.write(fileName.replace('.p','.fits'), overwrite=True)
 
 
+#%%
 
+fields = ['clusters', 'clusters', 'clusters', 'clusters', 'clusters', 'clusters', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels']
+z_bins = ['z1p25-6p0', 'z1p25-2p0', 'z2p0-3p0', 'z3p0-4p0', 'z4p0-5p0', 'z5p0-6p0', 'z1p25-6p0', 'z1p25-2p0', 'z2p0-3p0', 'z3p0-4p0', 'z4p0-5p0', 'z5p0-6p0']
+
+#fields = ['clusters']
+#z_bins = ['z3p0-6p0']
+
+for s in range(len(fields)):
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_{}_{}.p'.format(fields[s], z_bins[s])
+    
+    data = pickle.load(open(fileName,'r'))
+    
+    outputTable = Table(data)
+    outputTable.write(fileName.replace('.p','.fits'), overwrite=True)
+    
+    
+    
+    
+    
+    
+    
 
 

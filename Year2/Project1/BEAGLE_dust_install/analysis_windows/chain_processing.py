@@ -75,13 +75,80 @@ filenames = ['lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_12_001.p']
 filenames = ['lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_17_001.p']
 
 
+filenames = ['lm_chain_scenario_29_clusters_z1p25-2p0_4x20000_18_001.p']
 
+
+
+filenames = ['lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_18_001.p',
+             'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_19_001.p',
+             'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_20_001.p',
+             'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_21_001.p',
+
+             'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_18_001.p',
+             'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_19_001.p',
+             'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_20_001.p',
+             'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_21_001.p',
+             
+             'lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_20_001.p',
+             'lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_21_001.p',
+             'lm_chain_scenario_29_clusters_z4p0-5p0_4x50000_21_001.p']
+
+
+filenames = ['lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_21_001.p',
+             'lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_21_001.p',
+             'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_21_001.p',
+             'lm_chain_scenario_29_clusters_z4p0-5p0_4x50000_21_001.p']
+
+
+filenames = ['lm_chain_scenario_31_clusters_z1p25-2p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_21_001.p']
+
+filenames = ['lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_19_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_19_001.p',
+             'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_20_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_20_001.p']
+
+
+filenames = ['lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_19_001.p']
+
+
+
+
+filenames = ['lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_19_001.p',
+             'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_19_001.p',
+             'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_19_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_19_001.p',
+             
+             'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_20_001.p',
+             'lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_20_001.p',
+             'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_20_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_20_001.p',
+
+             'lm_chain_scenario_31_clusters_z1p25-2p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_21_001.p',
+             'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_21_001.p']
+
+
+# filenames = ['lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_20_001.p',
+
+#              'lm_chain_scenario_31_clusters_z1p25-2p0_4x50000_21_001.p',
+#              'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_21_001.p',
+#              'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_21_001.p',
+#              'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_21_001.p']
+
+
+
+
+# FULL CHAINS
 
 #%%
 for filename in filenames:
 
-    with open('/Users/LSand/Documents/linmix_files/{}'.format(filename), 'rb') as f:
-     chain_original = pickle.load(f, encoding='latin1')
+    with open('/Users/lester/Documents/linmix_files/{}'.format(filename), 'rb') as f:
+        chain_original = pickle.load(f, encoding='latin1')
     
 
     # names = ['alphaN_a', 'alphaN_b', 'beta_a', 'beta_b', 'sig0', 'k', 'pbad', 'outlier_mean', 'outlier_sigma']
@@ -137,10 +204,12 @@ for i in range(len(chain['xi'][0])):
     '''
 #%%
 for filename in filenames:
-    with open('/Users/LSand/Documents/linmix_files/{}'.format(filename), 'rb') as f:
-     chain_original = pickle.load(f, encoding='latin1')
+    with open('/Users/lester/Documents/linmix_files/{}'.format(filename), 'rb') as f:
+        chain_original = pickle.load(f, encoding='latin1')
     
-    names = ['alphaN_a', 'alphaN_b', 'beta_a', 'beta_b', 'sig0', 'k', 'pbad', 'outlier_mean', 'outlier_sigma']
+    # names = ['alphaN_a', 'alphaN_b', 'beta_a', 'beta_b', 'sig0', 'k', 'pbad', 'outlier_mean', 'outlier_sigma']
+    
+    names = ['alphaN_a', 'beta_a', 'sig0', 'pbad', 'outlier_mean', 'outlier_sigma']
 #    names = ['pi', 'mu', 'tausqr']
 #    names = chain_original.dtype.names
     nChains=4
@@ -170,10 +239,11 @@ for filename in filenames:
         plt.plot(chain[name])
         plt.show()    
     print(' ')
-    pickle.dump(chain, open('/Users/LSand/Documents/linmix_files/PROCESSED_{}'.format(filename),'wb'))
+    
+    pickle.dump(chain, open('/Users/lester/Documents/linmix_files/PROCESSED_{}'.format(filename),'wb'))
 
 
-    idx = np.random.choice(len(chain['alphaN_a']), size=1000, replace=True)
+    idx = np.random.choice(len(chain['alphaN_a']), size=100000, replace=False)
     names = ['alphaN_a', 'alphaN_b', 'beta_a', 'beta_b', 'sig0', 'k', 'pbad', 'outlier_mean', 'outlier_sigma']
 
     sample_chain = {}
@@ -184,18 +254,41 @@ for filename in filenames:
         plt.title('{}\n{}, burn:{}, cap:{}'.format(filename, name, burn, cap).replace('_',' '))
         plt.plot(sample_chain[name])
         plt.show()
-    pickle.dump(sample_chain, open('/Users/LSand/Documents/linmix_files/1000_sample_chains/PROCESSED_{}'.format(filename),'wb'))
+    pickle.dump(sample_chain, open('/Users/lester/Documents/linmix_files/100000_sample_chains/PROCESSED_{}'.format(filename),'wb'))
 
 
     #%%
+    
+    
     ## =============================================================================
     ## Corner Plots
     ## =============================================================================
 
-    chain_corner = sample_chain
+for filename in filenames:
+    with open('/Users/lester/Documents/linmix_files/100000_sample_chains/PROCESSED_{}'.format(filename), 'rb') as f:
+        chain_corner = pickle.load(f, encoding='latin1')
     
-    names_plot = ['ssfr a', 'beta a', 'sig0', 'pbad', 'outlier mean', 'outlier sigma']
-    data_corner = np.array([chain_corner['alphaN_a'][:], chain_corner['beta_a'][:], chain_corner['sig0'][:], chain_corner['pbad'][:], chain_corner['outlier_mean'][:], chain_corner['outlier_sigma'][:]]).T
+
+    if filename == 'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_19_001.p' or \
+        filename == 'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_19_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_19_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_19_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_19_001.p' or \
+        filename == 'lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_29_clusters_z4p0-5p0_4x50000_21_001.p'or \
+        filename == 'lm_chain_scenario_31_clusters_z1p25-2p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_21_001.p' or \
+        filename == 'lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_21_001.p':     
+            
+        names_plot = ['ssfr a', 'beta a', 'sig0']
+        data_corner = np.array([chain_corner['alphaN_a'][:], chain_corner['beta_a'][:], chain_corner['sig0'][:]]).T
+    
+    else:
+        names_plot = ['ssfr a', 'beta a', 'sig0', 'pbad', 'outlier mean', 'outlier sigma']
+        data_corner = np.array([chain_corner['alphaN_a'][:], chain_corner['beta_a'][:], chain_corner['sig0'][:], chain_corner['pbad'][:], chain_corner['outlier_mean'][:], chain_corner['outlier_sigma'][:]]).T
 
 #    names_plot = ['ssfr a', 'beta a', 'sig0', 'outlier mean', 'outlier sigma']
 #    data_corner = np.array([chain_corner['alphaN_a'], chain_corner['beta_a'], chain_corner['sig0'], chain_corner['outlier_mean'], chain_corner['outlier_sigma']]).T
@@ -214,4 +307,12 @@ for filename in filenames:
                            show_titles=True, title_kwargs={"fontsize": 20})
 
 
-
+    plt.suptitle('{}\n{}, burn:{}, cap:{}'.format(filename, name, burn, cap).replace('_',' '), fontsize=20, y=1.1)
+    plt.show()
+    
+    
+    
+    
+    
+    
+    

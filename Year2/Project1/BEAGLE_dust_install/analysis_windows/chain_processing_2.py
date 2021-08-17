@@ -219,30 +219,80 @@ def get_medians(chain_MS):
     
 if load:
     
-    folder = "C:/Users/LSand/Documents/linmix_files/1000_sample_chains/"
+    folder = "/Users/lester/Documents/linmix_files/100000_sample_chains/"
 
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x10000_12_001.p", 'rb') as f:
-        chain_MS_29_12_c1 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x10000_12_001.p", 'rb') as f:
-        chain_MS_29_12_c2 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_12_001.p", 'rb') as f:
-        chain_MS_29_12_c3 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z4p0-5p0_4x10000_12_001.p", 'rb') as f:
-        chain_MS_29_12_c4 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z5p0-6p0_4x10000_12_001.p", 'rb') as f:
-        chain_MS_29_12_c5 = pickle.load(f, encoding='latin1') 
 
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x10000_14_001.p", 'rb') as f:
-        chain_MS_29_14_c1 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x10000_14_001.p", 'rb') as f:
-        chain_MS_29_14_c2 = pickle.load(f, encoding='latin1')  
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_14_001.p", 'rb') as f:
-        chain_MS_29_14_c3 = pickle.load(f, encoding='latin1')   
+    ### ON WINDOWS MACHINE
+    # folder = "C:/Users/lester/Documents/linmix_files/1000_sample_chains/"
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x10000_12_001.p", 'rb') as f:
+    #     chain_MS_29_12_c1 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x10000_12_001.p", 'rb') as f:
+    #     chain_MS_29_12_c2 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_12_001.p", 'rb') as f:
+    #     chain_MS_29_12_c3 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z4p0-5p0_4x10000_12_001.p", 'rb') as f:
+    #     chain_MS_29_12_c4 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z5p0-6p0_4x10000_12_001.p", 'rb') as f:
+    #     chain_MS_29_12_c5 = pickle.load(f, encoding='latin1') 
 
-    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_14_001.p", 'rb') as f:
-        chain_MS_29_14_c3_50k = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x10000_14_001.p", 'rb') as f:
+    #     chain_MS_29_14_c1 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x10000_14_001.p", 'rb') as f:
+    #     chain_MS_29_14_c2 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x10000_14_001.p", 'rb') as f:
+    #     chain_MS_29_14_c3 = pickle.load(f, encoding='latin1')   
 
-    '''
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_14_001.p", 'rb') as f:
+    #     chain_MS_29_14_c3_50k = pickle.load(f, encoding='latin1')  
+
+
+
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_18_001.p", 'rb') as f:
+    #     chain_MS_29_18_c1 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_18_001.p", 'rb') as f:
+    #     chain_MS_29_18_c3 = pickle.load(f, encoding='latin1')  
+        
+    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_19_001.p", 'rb') as f:
+        chain_MS_29_19_c1 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_19_001.p", 'rb') as f:
+        chain_MS_31_19_c2 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_19_001.p", 'rb') as f:
+    #     chain_MS_29_19_c3 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_19_001.p", 'rb') as f:
+        chain_MS_31_19_c3 = pickle.load(f, encoding='latin1')          
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_19_001.p", 'rb') as f:
+        chain_MS_31_19_c4 = pickle.load(f, encoding='latin1')          
+        
+    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_20_001.p", 'rb') as f:
+        chain_MS_29_20_c1 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_20_001.p", 'rb') as f:
+        chain_MS_29_20_c2 = pickle.load(f, encoding='latin1')
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_20_001.p", 'rb') as f:
+    #     chain_MS_29_20_c3 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_20_001.p", 'rb') as f:
+        chain_MS_31_20_c3 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_20_001.p", 'rb') as f:
+        chain_MS_31_20_c4 = pickle.load(f, encoding='latin1')  
+        
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z1p25-2p0_4x50000_21_001.p", 'rb') as f:
+    #     chain_MS_29_21_c1 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z2p0-3p0_4x50000_21_001.p", 'rb') as f:
+    #     chain_MS_29_21_c2 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z3p0-4p0_4x50000_21_001.p", 'rb') as f:
+    #     chain_MS_29_21_c3 = pickle.load(f, encoding='latin1')  
+    # with open(folder+"PROCESSED_lm_chain_scenario_29_clusters_z4p0-5p0_4x50000_21_001.p", 'rb') as f:
+    #     chain_MS_29_21_c4 = pickle.load(f, encoding='latin1')  
+        
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z1p25-2p0_4x50000_21_001.p", 'rb') as f:
+        chain_MS_31_21_c1 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z2p0-3p0_4x50000_21_001.p", 'rb') as f:
+        chain_MS_31_21_c2 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z3p0-4p0_4x50000_21_001.p", 'rb') as f:
+        chain_MS_31_21_c3 = pickle.load(f, encoding='latin1')  
+    with open(folder+"PROCESSED_lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_21_001.p", 'rb') as f:
+        chain_MS_31_21_c4 = pickle.load(f, encoding='latin1')
+        
+
     # AD catalogue
     AD_location = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/new_beagle/data/astrodeep_rawfile_1234_ABCZ.npy'
     AD = np.load(AD_location)
@@ -274,32 +324,92 @@ if load:
 
     fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_29_clusters_z5p0-6p0.fits'
     s29z5 = fits.open(fileName)[1].data 
-    '''
-    rc_12_c1 = read_chain(1.25, 2.0, chain_MS_29_12_c1, 'const_beta_linear_alpha')
-    rc_12_c2 = read_chain(2.0, 3.0, chain_MS_29_12_c2, 'const_beta_linear_alpha')
-    rc_12_c3 = read_chain(3.0, 4.0, chain_MS_29_12_c3, 'const_beta_linear_alpha')
-    rc_12_c4 = read_chain(4.0, 5.0, chain_MS_29_12_c4, 'const_beta_linear_alpha')
-    rc_12_c5 = read_chain(5.0, 6.0, chain_MS_29_12_c5, 'const_beta_linear_alpha')
 
-    rc_14_c1 = read_chain(1.25, 2.0, chain_MS_29_14_c1, 'const_beta_linear_alpha')
-    rc_14_c2 = read_chain(2.0, 3.0, chain_MS_29_14_c2, 'const_beta_linear_alpha')
-    rc_14_c3 = read_chain(3.0, 4.0, chain_MS_29_14_c3, 'const_beta_linear_alpha')
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_clusters_z1p25-2p0.fits'
+#    s29z1 = fits.open(fileName)
+#    print(s29z1.info())
+#    print(s29z1[1].header)
+    s31z1 = fits.open(fileName)[1].data 
 
-    rc_14_c3_50k = read_chain(3.0, 4.0, chain_MS_29_14_c3_50k, 'const_beta_linear_alpha')    
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_clusters_z2p0-3p0.fits'
+    s31z2 = fits.open(fileName)[1].data 
+
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_clusters_z3p0-4p0.fits'
+    s31z3 = fits.open(fileName)[1].data 
+
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_clusters_z4p0-5p0.fits'
+    s31z4 = fits.open(fileName)[1].data 
+
+    fileName = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_31_clusters_z5p0-6p0.fits'
+    s31z5 = fits.open(fileName)[1].data 
+    
+    
+    # rc_12_c1 = read_chain(1.25, 2.0, chain_MS_29_12_c1, 'const_beta_linear_alpha')
+    # rc_12_c2 = read_chain(2.0, 3.0, chain_MS_29_12_c2, 'const_beta_linear_alpha')
+    # rc_12_c3 = read_chain(3.0, 4.0, chain_MS_29_12_c3, 'const_beta_linear_alpha')
+    # rc_12_c4 = read_chain(4.0, 5.0, chain_MS_29_12_c4, 'const_beta_linear_alpha')
+    # rc_12_c5 = read_chain(5.0, 6.0, chain_MS_29_12_c5, 'const_beta_linear_alpha')
+
+    # rc_14_c1 = read_chain(1.25, 2.0, chain_MS_29_14_c1, 'const_beta_linear_alpha')
+    # rc_14_c2 = read_chain(2.0, 3.0, chain_MS_29_14_c2, 'const_beta_linear_alpha')
+    # rc_14_c3 = read_chain(3.0, 4.0, chain_MS_29_14_c3, 'const_beta_linear_alpha')
+
+    # rc_14_c3_50k = read_chain(3.0, 4.0, chain_MS_29_14_c3_50k, 'const_beta_linear_alpha')    
+
+    # rc_29_18_c1 = read_chain(1.25, 2.0, chain_MS_29_18_c1, 'const_beta_linear_alpha')
+    # rc_29_18_c3 = read_chain(2.0, 3.0, chain_MS_29_18_c3, 'const_beta_linear_alpha')
+
+    rc_29_19_c1 = read_chain(1.25, 2.0, chain_MS_29_19_c1, 'const_beta_linear_alpha')
+    rc_31_19_c2 = read_chain(2.0, 3.0, chain_MS_31_19_c2, 'const_beta_linear_alpha')
+    # rc_29_19_c3 = read_chain(3.0, 4.0, chain_MS_29_19_c3, 'const_beta_linear_alpha')
+    rc_31_19_c3 = read_chain(3.0, 4.0, chain_MS_31_19_c3, 'const_beta_linear_alpha')
+    rc_31_19_c4 = read_chain(4.0, 5.0, chain_MS_31_19_c4, 'const_beta_linear_alpha')
+
+    rc_29_20_c1 = read_chain(1.25, 2.0, chain_MS_29_20_c1, 'const_beta_linear_alpha')
+    rc_29_20_c2 = read_chain(2.0, 3.0, chain_MS_29_20_c2, 'const_beta_linear_alpha')
+    # rc_29_20_c3 = read_chain(3.0, 4.0, chain_MS_29_20_c3, 'const_beta_linear_alpha')
+    rc_31_20_c3 = read_chain(3.0, 4.0, chain_MS_31_20_c3, 'const_beta_linear_alpha')
+    rc_31_20_c4 = read_chain(4.0, 5.0, chain_MS_31_20_c4, 'const_beta_linear_alpha')
+    
+    # rc_29_21_c1 = read_chain(1.25, 2.0, chain_MS_29_21_c1, 'const_beta_linear_alpha')
+    # rc_29_21_c2 = read_chain(2.0, 3.0, chain_MS_29_21_c2, 'const_beta_linear_alpha')
+    # rc_29_21_c3 = read_chain(3.0, 4.0, chain_MS_29_21_c3, 'const_beta_linear_alpha')
+    # rc_29_21_c4 = read_chain(4.0, 5.0, chain_MS_29_21_c4, 'const_beta_linear_alpha')
+    
+    rc_31_21_c1 = read_chain(1.25, 2.0, chain_MS_31_21_c1, 'const_beta_linear_alpha')
+    rc_31_21_c2 = read_chain(2.0, 3.0, chain_MS_31_21_c2, 'const_beta_linear_alpha')
+    rc_31_21_c3 = read_chain(3.0, 4.0, chain_MS_31_21_c3, 'const_beta_linear_alpha')
+    rc_31_21_c4 = read_chain(4.0, 5.0, chain_MS_31_21_c4, 'const_beta_linear_alpha')   
+    
     
 
 #%%
 # =============================================================================
 # redshift bin heatplots
 # =============================================================================
+'''
+s = [s29z1, s29z3, s29z1, s29z3, s29z3, s29z4, s29z1, s29z2, s29z3, s29z3, s29z4, s29z1, s29z2, s29z3, s29z4, s29z1, s29z2, s29z3, s29z4]
+rcs = [rc_29_18_c1, rc_29_18_c3, rc_29_19_c1, rc_29_19_c3, rc_31_19_c3, rc_31_19_c4, rc_29_20_c1, rc_29_20_c2, rc_29_20_c3, rc_31_20_c3, rc_31_20_c4, rc_29_21_c1, rc_29_21_c2, rc_29_21_c3, rc_29_21_c4, rc_31_21_c1, rc_31_21_c2, rc_31_21_c3, rc_31_21_c4]
+z_lower = [1.25, 3.0, 1.25, 3.0, 3.0, 4.0, 1.0, 2.0, 3.0, 3.0, 4.0, 1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0, 4.0]
+z_upper = [2.0, 4.0, 2.0, 4.0, 4.0, 5.0, 2.0, 3.0, 4.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0]
+chain = [chain_MS_29_18_c1, chain_MS_29_18_c3, chain_MS_29_19_c1, chain_MS_29_19_c3, chain_MS_31_19_c3, chain_MS_31_19_c4, chain_MS_29_20_c1, chain_MS_29_20_c2, chain_MS_29_20_c3, chain_MS_31_20_c3, chain_MS_31_20_c4, chain_MS_29_21_c1, chain_MS_29_21_c2, chain_MS_29_21_c3, chain_MS_29_21_c4, chain_MS_31_21_c1, chain_MS_31_21_c2, chain_MS_31_21_c3, chain_MS_31_21_c4]
+# rcs = [rc_12_c1, rc_12_c2, rc_12_c3, rc_12_c4, rc_12_c5, rc_14_c1, rc_14_c2, rc_14_c3, rc_14_c3_50k]
+rcs = [rc_29_18_c1, rc_29_18_c3, rc_29_19_c1, rc_29_19_c3, rc_31_19_c3, rc_31_19_c4, rc_29_20_c1, rc_29_20_c2, rc_29_20_c3, rc_31_20_c3, rc_31_20_c4, rc_29_21_c1, rc_29_21_c2, rc_29_21_c3, rc_29_21_c4, rc_31_21_c1, rc_31_21_c2, rc_31_21_c3, rc_31_21_c4]
+rcs_string = ['rc_29_18_c1', 'rc_29_18_c3', 'rc_29_19_c1', 'rc_29_19_c3', 'rc_31_19_c3', 'rc_31_19_c4', 'rc_29_20_c1', 'rc_29_20_c2', 'rc_29_20_c3', 'rc_31_20_c3', 'rc_31_20_c4', 'rc_29_21_c1', 'rc_29_21_c2', 'rc_29_21_c3', 'rc_29_21_c4', 'rc_31_21_c1', 'rc_31_21_c2', 'rc_31_21_c3', 'rc_31_21_c4']
+'''
 
-s = [s29z1, s29z1, s29z1[(s29z1['mass_BEAGLE_stellar'] + s29z1['mag_AD']) > 8.5], s29z1[(s29z1['mass_BEAGLE_stellar'] + s29z1['mag_AD']) > 9.0], s29z2, s29z3, s29z4, s29z5, s29z3[(s29z3['sfr_BEAGLE_instant'] > -1.0) & (s29z3['sfr_BEAGLE_instant'] < 1.5)]]
+
+s = [s29z1, s31z2, s31z3, s31z4, s29z1, s29z2, s31z3, s31z4, s31z1, s31z2, s31z3, s31z4]
+rcs = [rc_29_19_c1, rc_31_19_c2, rc_31_19_c3, rc_31_19_c4, rc_29_20_c1, rc_29_20_c2, rc_31_20_c3, rc_31_20_c4, rc_31_21_c1, rc_31_21_c2, rc_31_21_c3, rc_31_21_c4]
+z_lower = [1.25, 2.0, 3.0, 4.0, 1.25, 2.0, 3.0, 4.0, 1.25, 2.0, 3.0, 4.0]
+z_upper = [2.0, 3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0]
+chain = [chain_MS_29_19_c1, chain_MS_31_19_c2, chain_MS_31_19_c3, chain_MS_31_19_c4, chain_MS_29_20_c1, chain_MS_29_20_c2, chain_MS_31_20_c3, chain_MS_31_20_c4, chain_MS_31_21_c1, chain_MS_31_21_c2, chain_MS_31_21_c3, chain_MS_31_21_c4]
 
 
-rc = [rc_c1, rc_c1_lm8p0, rc_c1_lm8p5, rc_c1_lm9p0, rc_c2, rc_c3, rc_c4, rc_c5, rc_c3_nohogg]
-z_lower = [1.25, 1.25, 1.25, 1.25, 2.0, 3.0, 4.0, 5.0, 3.0]
-z_upper = [2.0, 2.0, 2.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0]
-chain = [chain_MS_29_c1, chain_MS_29_c1_lm8p0, chain_MS_29_c1_lm8p5, chain_MS_29_c1_lm9p0, chain_MS_29_c2, chain_MS_29_c3, chain_MS_29_c4, chain_MS_29_c5, chain_MS_29_c3_nohogg]
+rcs_string = ['rc_29_19_c1', 'rc_31_19_c2', 'rc_31_19_c3', 'rc_31_19_c4', 'rc_29_20_c1', 'rc_29_20_c2', 'rc_31_20_c3', 'rc_31_20_c4', 'rc_31_21_c1', 'rc_31_21_c2', 'rc_31_21_c3', 'rc_31_21_c4']
+
+
+
 
 # need scenario 29 GMM values, and median values, both in ADx
 # need to select just object with median within 1.25 - 2.0
@@ -358,14 +468,14 @@ for f in range(len(s)):
     #ax1.plot((10.0,10.0), (ylow, yhigh), color='w', linestyle='dashed', linewidth=2)
     
     x_tmp = np.array([xlow, xhigh])
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0], color='r', linewidth=lw, label=r'Our Work, {} $<$ z $<$ {}'.format(str(z_lower[f]), str(z_upper[f])))
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0], color='r', linewidth=lw, label=r'Our Work, {} $<$ z $<$ {}'.format(str(z_lower[f]), str(z_upper[f])))
     #ax1.plot(x_tmp, (x_tmp-9.7)*rc_c1['beta_50_arr'][0] + rc_c1['alpha_50_arr'][0], color='w')
     
     xi_min = 8.5
     xi_max = 10.0    
-    sig = rc[f]['sig0_50_arr'][0] * ( ((1.0-rc[f]['k_50_arr'][0])*(x_tmp-xi_max)/(xi_max-xi_min)) + 1.0 )
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0] + sig, color='r', linestyle='dashed', linewidth=lw, label=r'Our Work, Intrinsic Scatter')
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0] - sig, color='r', linestyle='dashed', linewidth=lw)
+    sig = rcs[f]['sig0_50_arr'][0] * ( ((1.0-rcs[f]['k_50_arr'][0])*(x_tmp-xi_max)/(xi_max-xi_min)) + 1.0 )
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0] + sig, color='r', linestyle='dashed', linewidth=lw, label=r'Our Work, Intrinsic Scatter')
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0] - sig, color='r', linestyle='dashed', linewidth=lw)
     
     '''
     print(rc_c1['alpha_50_arr'][0])
@@ -390,11 +500,11 @@ for f in range(len(s)):
     print('beta', (s1_alpha*(1 - 9.7) + s1_beta) - (s1_alpha*(0 - 9.7) + s1_beta) )
     '''
     
-    #ax1.plot(s_x, s_y, color='k', linewidth=lw, label=r'Santini+17, 1.3 $<$ z $<$ 2.0')
-    #ax1.plot(s_x, s_y+s_y_intrinsic, color='k', linestyle='--', linewidth=lw, label=r'Santini+17, Intrinsic Scatter')
-    #ax1.plot(s_x, s_y-s_y_intrinsic, color='k', linestyle='--', linewidth=lw)
-    #ax1.plot(s_x, s_y+s_y_observed, color='k', linestyle=':', linewidth=lw, label=r'Santini+17, Observed Scatter')
-    #ax1.plot(s_x, s_y-s_y_observed, color='k', linestyle=':', linewidth=lw)
+    ax1.plot(s_x, s_y, color='k', linewidth=lw, label=r'Santini+17, 1.3 $<$ z $<$ 2.0')
+    ax1.plot(s_x, s_y+s_y_intrinsic, color='k', linestyle='--', linewidth=lw, label=r'Santini+17, Intrinsic Scatter')
+    ax1.plot(s_x, s_y-s_y_intrinsic, color='k', linestyle='--', linewidth=lw)
+    ax1.plot(s_x, s_y+s_y_observed, color='k', linestyle=':', linewidth=lw, label=r'Santini+17, Observed Scatter')
+    ax1.plot(s_x, s_y-s_y_observed, color='k', linestyle=':', linewidth=lw)
     
     ax1.set_xlim(xlow, xhigh)
     ax1.set_xlabel(r'$\log(\mathrm{Stellar} \, \mathrm{Mass} \, / \, \mathrm{M_{\odot}})$', labelpad=10)
@@ -428,7 +538,9 @@ for f in range(len(s)):
     
     ax1.legend(bbox_to_anchor=(1, 0), loc='lower right', frameon=True, fontsize=0.8*fontsize_legend)
     
-
+    plt.suptitle(rcs_string[f])
+    plt.show()
+    
     # =============================================================================
     # redshift bin MS colour coded by MS probability
     # =============================================================================
@@ -472,11 +584,11 @@ for f in range(len(s)):
     ax1.plot((9.7,9.7), (ylow, yhigh), color='gray', linestyle='dashed', linewidth=2)
     
     x_tmp = np.array([xlow, xhigh])
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0], color='r', linewidth=lw, label=r'Our Work, {} $<$ z $<$ {}'.format(str(z_lower[f]), str(z_upper[f])))
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0], color='r', linewidth=lw, label=r'Our Work, {} $<$ z $<$ {}'.format(str(z_lower[f]), str(z_upper[f])))
      
-    sig = rc[f]['sig0_50_arr'][0] * ( ((1.0-rc[f]['k_50_arr'][0])*(x_tmp-xi_max)/(xi_max-xi_min)) + 1.0 )
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0] + sig, color='r', linestyle='dashed', linewidth=lw, label=r'Our Work, Intrinsic Scatter')
-    ax1.plot(x_tmp, (x_tmp-9.7)*rc[f]['beta_50_arr'][0] + rc[f]['alpha_50_arr'][0] - sig, color='r', linestyle='dashed', linewidth=lw)
+    sig = rcs[f]['sig0_50_arr'][0] * ( ((1.0-rcs[f]['k_50_arr'][0])*(x_tmp-xi_max)/(xi_max-xi_min)) + 1.0 )
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0] + sig, color='r', linestyle='dashed', linewidth=lw, label=r'Our Work, Intrinsic Scatter')
+    ax1.plot(x_tmp, (x_tmp-9.7)*rcs[f]['beta_50_arr'][0] + rcs[f]['alpha_50_arr'][0] - sig, color='r', linestyle='dashed', linewidth=lw)
     
     # SANTINI, log(SFR) = alpha log(M / M_9p7) + beta
     # 1.3 < z < 2
@@ -491,11 +603,11 @@ for f in range(len(s)):
     s_y_intrinsic = np.array([0.36, 0.35, 0.0])
     s_y_observed = np.array([0.51, 0.46, 0.26])
     
-    #ax1.plot(s_x, s_y, color='k', linewidth=lw, label=r'Santini+17, 1.3 $<$ z $<$ 2.0')
-    #ax1.plot(s_x, s_y+s_y_intrinsic, color='k', linestyle='--', linewidth=lw, label=r'Santini+17, Intrinsic Scatter')
-    #ax1.plot(s_x, s_y-s_y_intrinsic, color='k', linestyle='--', linewidth=lw)
-    #ax1.plot(s_x, s_y+s_y_observed, color='k', linestyle=':', linewidth=lw, label=r'Santini+17, Observed Scatter')
-    #ax1.plot(s_x, s_y-s_y_observed, color='k', linestyle=':', linewidth=lw)
+    ax1.plot(s_x, s_y, color='k', linewidth=lw, label=r'Santini+17, 1.3 $<$ z $<$ 2.0')
+    ax1.plot(s_x, s_y+s_y_intrinsic, color='k', linestyle='--', linewidth=lw, label=r'Santini+17, Intrinsic Scatter')
+    ax1.plot(s_x, s_y-s_y_intrinsic, color='k', linestyle='--', linewidth=lw)
+    ax1.plot(s_x, s_y+s_y_observed, color='k', linestyle=':', linewidth=lw, label=r'Santini+17, Observed Scatter')
+    ax1.plot(s_x, s_y-s_y_observed, color='k', linestyle=':', linewidth=lw)
     
     ax1.set_xlim(xlow, xhigh)
     ax1.set_xlabel(r'$\log(\mathrm{Stellar} \, \mathrm{Mass} \, / \, \mathrm{M_{\odot}})$', labelpad=10)
@@ -523,8 +635,9 @@ for f in range(len(s)):
     #cb.set_ticklabels(['', 1, 2, 3, 4, 5, 6, ''])
     cb.set_label(r'$\mathrm{MS}\longleftarrow \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, \longrightarrow \mathrm{Outliers}$', rotation=270, labelpad=30)
     cb.ax.tick_params(axis='y', size=0, width=2, direction='in', labelsize=0*fontsize_axes)
-    
 
+    plt.suptitle(rcs_string[f])    
+    plt.show()
 
 
 #%%
@@ -533,7 +646,8 @@ for f in range(len(s)):
 # Parameter vs redshift
 # =============================================================================
 
-rcs = [rc_12_c1, rc_12_c2, rc_12_c3, rc_12_c4, rc_12_c5, rc_14_c1, rc_14_c2, rc_14_c3, rc_14_c3_50k]
+
+
 
 fig = plt.figure(figsize=(2*figuresize, 1*figuresize))
 xlow = -0.3
@@ -564,24 +678,44 @@ for ax in axes:
 count = 0
 
 
-for rc in rcs:
+for r, rc in enumerate(rcs):
 
     for a, ax in enumerate(axes):
-        ax.plot(rc['z']-min(rc['z'])+count, rc['{}_50_arr'.format(param[a])])
+        ax.plot(rc['z']-min(rc['z'])+count, rc['{}_50_arr'.format(param[a])], label=rcs_string[r])
         ax.fill_between(rc['z']-min(rc['z'])+count, rc['{}_16_arr'.format(param[a])], rc['{}_84_arr'.format(param[a])], alpha=0.3, zorder=0)
     count+=1
 
 for a, ax in enumerate(axes):
-    ax.plot(0, 0, color='#1f77b4', label='12 z1')
-    ax.plot(0, 0, color='#ff7f0e', label='12 z2')
-    ax.plot(0, 0, color='#2ca02c', label='12 z3')
-    ax.plot(0, 0, color='#d62728', label='12 z4')
-    ax.plot(0, 0, color='#9467bd', label='12 z5')
-    ax.plot(0, 0, color='#8c564b', label='14 z1')
-    ax.plot(0, 0, color='#e377c2', label='14 z2')
-    ax.plot(0, 0, color='gray', label='14 z3')
-    ax.plot(0, 0, color='yellow', label='14 z3 50k')
-    ax.legend(loc='upper right', frameon=False, fontsize=fontsize_legend)
+    # ax.plot(0, 0, color='#1f77b4', label='12 z1')
+    # ax.plot(0, 0, color='#ff7f0e', label='12 z2')
+    # ax.plot(0, 0, color='#2ca02c', label='12 z3')
+    # ax.plot(0, 0, color='#d62728', label='12 z4')
+    # ax.plot(0, 0, color='#9467bd', label='12 z5')
+    # ax.plot(0, 0, color='#8c564b', label='14 z1')
+    # ax.plot(0, 0, color='#e377c2', label='14 z2')
+    # ax.plot(0, 0, color='gray', label='14 z3')
+    # ax.plot(0, 0, color='yellow', label='14 z3 50k')
+    # ax.legend(loc='upper right', frameon=False, fontsize=fontsize_legend)
+    pass
+
+ax6.legend(loc='upper right', frameon=False, fontsize=fontsize_legend)
+
+# SANTINI, log(SFR) = alpha log(M / M_9p7) + beta
+# 1.3 < z < 4
+s_alpha = np.array([1.04, 1.16, 1.02, 0.94])
+s_beta = np.array([1.01, 1.22, 1.37, 1.37])
+s_alpha_err = np.array([0.03, 0.03, 0.04, 0.06])
+s_beta_err = np.array([0.04, 0.03, 0.03, 0.05])
+
+    
+san_slope = s_alpha
+san_norm = s_beta
+
+
+for i in range(len(san_slope)):
+    ax1.plot((xlow, xhigh),(san_slope[i], san_slope[i]), color='k', linewidth=0.3)
+    ax2.plot((xlow, xhigh),(san_norm[i], san_norm[i]), color='k', linewidth=0.3)
+
 
 # layout
 ylim_low = np.array([0.2, 0.0, 0.0, 0.0, -6.0, 0.0])
@@ -607,7 +741,7 @@ ax6.xaxis.set_tick_params(labelsize=0*fontsize_axes)
 #ax6.plot(0, 0, color='k', label='pbad fixed from z bins')
 #ax6.legend(bbox_to_anchor=(0.0, 1.0), loc=2, frameon=False, fontsize=fontsize_legend)
 
-
+plt.show()
 
 
 

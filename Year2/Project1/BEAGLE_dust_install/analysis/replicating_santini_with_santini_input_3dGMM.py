@@ -40,7 +40,7 @@ NOTE the -30s, -101s and -102s aren't strict as magnification was added to them!
 # SCENARIOS
 # =============================================================================
 
-scenarioA = 28
+scenarioA = 31
 
 # =============================================================================
 # get data
@@ -606,11 +606,11 @@ if scenarioA == 29:
     z_lower = [1.25, 1.25, 2.0, 3.0, 4.0, 5.0, 1.25, 1.25, 2.0, 3.0, 4.0, 5.0]
     z_upper = [6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0]
 
-    fields = ['clusters']
-    z_bins = ['z3p0-6p0']
-    idx_clusters_parallels = [2.0]
-    z_lower = [3.0]
-    z_upper = [6.0]
+#    fields = ['clusters']
+#    z_bins = ['z3p0-6p0']
+#    idx_clusters_parallels = [2.0]
+#    z_lower = [3.0]
+#    z_upper = [6.0]
     
     for s in range(len(fields)):
         print(s, len(data['field_AD']))
@@ -631,11 +631,15 @@ if scenarioA == 29:
 
         idx5_z1 = (data['redshift_BEAGLE'] > z_lower[s]) & (data['redshift_BEAGLE'] < z_upper[s])
         idx5_z2 = (abs(data['redshift_BEAGLE']-data['redshift_AD']) < 1.0) & (data['redshift_BEAGLE'] < 3.5) & (data['redshift_AD'] < 3.5)
-        vis = np.genfromtxt('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/visual_inspection/vis4/vis4_selection.csv', delimiter=",", skip_header=1)
+        # vis = np.genfromtxt('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/visual_inspection/vis4/vis4_selection.csv', delimiter=",", skip_header=1)
+        vis = np.genfromtxt('/Users/lester/Documents/Project1/BEAGLE_dust_install/analysis/visual_inspection/vis4/vis4_selection.csv', delimiter=",", skip_header=1)        
+        
+        
         idx5_z3 = np.full(len(data['id_AD']), False)
         for i in range(len(data['id_AD'])):
-            idx5_z3_temp = np.isin(data['id_AD'][i],vis[:,1][(vis[:,0]==data['field_AD'][i])&(vis[:,3]==1)])
-
+            idx5_z3_temp = np.isin(data['id_AD'][i],vis[:,1][(vis[:,0]==data['field_AD'][i])&(vis[:,3]==1)]) # prior to z3 above MS visual inspection
+#            idx5_z3_temp = np.isin(data['id_AD'][i],vis[:,1][(vis[:,0]==data['field_AD'][i])&(vis[:,4]==1)])
+            
             if idx5_z3_temp:
                 idx5_z3[i] = True
         idx5_z = (idx5_z1) & (idx5_z2 | idx5_z3)
@@ -675,7 +679,7 @@ if scenarioA == 29:
         for key in data_new.keys():
             data_new[key] = data_new[key][idx] 
         
-        
+        print('FINAL: {}'.format(len(data_new[key])))
 #        pickle.dump(data_new, open('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_{}_{}_{}.p'.format(scenarioA, fields[s], z_bins[s], ),'w')) 
         
 
@@ -706,7 +710,94 @@ if scenarioA == 30:
     
 #    pickle.dump(data_new, open('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/vis5_low_slope_issue.p','w')) 
     
+
+#same as 29, but with 16 objects removed from z3 bin by further visual inspection of objects above MS (4/8/21)
+if scenarioA == 31:
     
+    fields = ['clusters', 'clusters', 'clusters', 'clusters', 'clusters', 'clusters', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels', 'clusters+parallels']
+    z_bins = ['z1p25-6p0', 'z1p25-2p0', 'z2p0-3p0', 'z3p0-4p0', 'z4p0-5p0', 'z5p0-6p0', 'z1p25-6p0', 'z1p25-2p0', 'z2p0-3p0', 'z3p0-4p0', 'z4p0-5p0', 'z5p0-6p0']
+    idx_clusters_parallels = [2.0,2.0,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0]
+    z_lower = [1.25, 1.25, 2.0, 3.0, 4.0, 5.0, 1.25, 1.25, 2.0, 3.0, 4.0, 5.0]
+    z_upper = [6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+
+#    fields = ['clusters']
+#    z_bins = ['z3p0-6p0']
+#    idx_clusters_parallels = [2.0]
+#    z_lower = [3.0]
+#    z_upper = [6.0]
+    
+    for s in range(len(fields)):
+        print(s, len(data['field_AD']))
+        idx1 = (data['field_AD']%idx_clusters_parallels[s]==0.0) # 2 == 0 clusters, 2 == 1 parallels, 1 == 0 both
+        print(len(idx1))
+        idx2 = (data['relflag_AD']==1.0) # relflag
+        idx3 = (-2.5*np.log10(AD['b_H160']*1e-6) + 8.90 < 27.5) # H band cut
+        
+        MCLmassLow = np.empty(data['redshift_BEAGLE'].shape)
+        for i in range(len(MCLmassLow)):
+            if data['redshift_BEAGLE'][i] <2.1789654:
+                MCLmassLow[i] = 8.0
+            elif data['redshift_BEAGLE'][i] > 4.195:
+                MCLmassLow[i] = 9.0
+            else:
+                MCLmassLow[i] = 6.91926521 + 0.49598529*data['redshift_BEAGLE'][i]
+        idx4 = (data['mass_BEAGLE_stellar'] + data['mag_AD'] > (MCLmassLow) )
+
+        idx5_z1 = (data['redshift_BEAGLE'] > z_lower[s]) & (data['redshift_BEAGLE'] < z_upper[s])
+        idx5_z2 = (abs(data['redshift_BEAGLE']-data['redshift_AD']) < 1.0) & (data['redshift_BEAGLE'] < 3.5) & (data['redshift_AD'] < 3.5)
+        # vis = np.genfromtxt('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/visual_inspection/vis4/vis4_selection.csv', delimiter=",", skip_header=1)
+        vis = np.genfromtxt('/Users/lester/Documents/Project1/BEAGLE_dust_install/analysis/visual_inspection/vis4/vis4_selection.csv', delimiter=",", skip_header=1)        
+        
+        
+        idx5_z3 = np.full(len(data['id_AD']), False)
+        for i in range(len(data['id_AD'])):
+#            idx5_z3_temp = np.isin(data['id_AD'][i],vis[:,1][(vis[:,0]==data['field_AD'][i])&(vis[:,3]==1)]) # prior to z3 above MS visual inspection
+            idx5_z3_temp = np.isin(data['id_AD'][i],vis[:,1][(vis[:,0]==data['field_AD'][i])&(vis[:,4]==1)])
+            
+            if idx5_z3_temp:
+                idx5_z3[i] = True
+        idx5_z = (idx5_z1) & (idx5_z2 | idx5_z3)
+    
+        TmassHigh = 9.244 + (0.753*np.minimum(data['redshift_BEAGLE'], 4.0)) - (0.090*(np.minimum(data['redshift_BEAGLE'], 4.0)**2)) # all galaxies
+        idx6 = (data['mass_BEAGLE_stellar'] < (TmassHigh)) 
+        
+        idx7 = (data['min_chi2_BEAGLE']>0) & (data['min_chi2_BEAGLE']<13.28) # chi-squared
+        idx8 = (data['sfr_BEAGLE_instant']>-5.0) & (data['sfr_BEAGLE_instant']<10.0) # arbitrary upper and lower sfr cuts
+        idx9 = (data['xsig_GMM_3d'][:,0]>-100.0) # GMM 3d not fitted are assigned x y z sig of -103
+        
+        # clusters, relflag and H<27.5
+        print(sum(idx1))
+        idx = np.logical_and(idx1,idx2) #clusters+relflag
+        print(sum(idx))
+        idx = np.logical_and(idx,idx3) #H<27.5
+        print(sum(idx))
+        
+        # redshift bin 
+        idx = np.logical_and(idx,idx5_z) #redshift bin
+        print(sum(idx))
+        
+        # upper and lower mass, chi2, arbitrary sfr & 3d GMM
+        idx = np.logical_and(idx,idx6) #higher
+        print(sum(idx))
+        idx = np.logical_and(idx,idx4) #lower
+        print(sum(idx))
+        idx = np.logical_and(idx,idx7) #chi2
+        print(sum(idx))
+        idx = np.logical_and(idx,idx8) #arbitrary sfr
+        print(sum(idx))
+        idx = np.logical_and(idx,idx9) #3d GMM
+        print(sum(idx))
+        
+
+        data_new = copy.deepcopy(data)
+        for key in data_new.keys():
+            data_new[key] = data_new[key][idx] 
+        
+        print('FINAL: {}'.format(len(data_new[key])))
+        pickle.dump(data_new, open('/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/BEAGLE_dust_install/analysis/kelly_input/scenario_{}_{}_{}.p'.format(scenarioA, fields[s], z_bins[s], ),'w')) 
+        
+
+
 
 #    print(data['field_AD'], data['id_AD'], data['id_BEAGLE'], data['redshift_BEAGLE'], data['redshift_AD'])
 

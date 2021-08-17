@@ -26,14 +26,6 @@
 "tauV_eff": {
   "range": [0.0, 6.0],
   "label": "$\\log \\hat{\\tau}_V$"
-},
-
-"sfr": {
-  "range": [1.0E0, 1.0E+04],
-  "label": "$\\log (\\psi / \\textnormal{M}_\\odot) \\, \\textnormal{yr}^{-1})$",
-  "extName" : "STAR FORMATION",
-  "colName" : "SFR",
-  "log" : true
 }
 
 }
