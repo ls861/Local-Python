@@ -219,7 +219,7 @@ def get_medians(chain_MS):
     
 if load:
     
-    folder = "/Users/lester/Documents/linmix_files/100000_sample_chains/"
+    folder = "/Users/lester/Documents/linmix_files/1000_sample_chains/"
 
 
     ### ON WINDOWS MACHINE
