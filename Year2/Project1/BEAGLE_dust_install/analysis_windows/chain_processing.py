@@ -201,7 +201,7 @@ filenames = ['lm_chain_scenario_31_clusters_z4p0-5p0_4x50000_20_001.p']
 filenames = ['lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p']
 
 # filenames = ['lm_chain_scenario_33_clusters_z1p25-6p0_4x20000_24_005.p']
-# filenames = ['lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
+filenames = ['lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
 
 
 # PBAD = 0
@@ -209,7 +209,7 @@ filenames = ['lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p']
 # filenames = ['lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_28_005.p']
 # filenames = ['lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_28_005.p']
 # filenames = ['lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_28_005.p']
-filenames = ['lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_28_005.p']
+# filenames = ['lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_28_005.p']
 
 
 # PBAD = 0, + sigma clipping
@@ -220,23 +220,23 @@ filenames = ['lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_28_005.p']
 # filenames = ['lm_chain_scenario_35_clusters_z5p0-6p0_4x20000_28_006.p']
 
 
-filenames = ['lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_26_005.p',
-             'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_26_005.p',
-             'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_26_005.p',
-             'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_26_005.p',
-             'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p',
-             'lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_28_005.p',
-             'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_28_005.p',
-             'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_28_005.p',
-             'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_28_005.p',
-             'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_28_005.p',
-             'lm_chain_scenario_35_clusters_z1p25-2p0_4x20000_28_006.p',
-             'lm_chain_scenario_35_clusters_z2p0-3p0_4x20000_28_006.p',
-             'lm_chain_scenario_35_clusters_z3p0-4p0_4x20000_28_006.p',
-             'lm_chain_scenario_35_clusters_z4p0-5p0_4x20000_28_006.p',
-             'lm_chain_scenario_35_clusters_z5p0-6p0_4x20000_28_006.p',
-             'lm_chain_scenario_33_clusters_z1p25-6p0_4x20000_24_005.p',
-             'lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
+# filenames = ['lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_26_005.p',
+#              'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_26_005.p',
+#              'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_26_005.p',
+#              'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_26_005.p',
+#              'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p',
+#              'lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_28_005.p',
+#              'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_28_005.p',
+#              'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_28_005.p',
+#              'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_28_005.p',
+#              'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_28_005.p',
+#              'lm_chain_scenario_35_clusters_z1p25-2p0_4x20000_28_006.p',
+#              'lm_chain_scenario_35_clusters_z2p0-3p0_4x20000_28_006.p',
+#              'lm_chain_scenario_35_clusters_z3p0-4p0_4x20000_28_006.p',
+#              'lm_chain_scenario_35_clusters_z4p0-5p0_4x20000_28_006.p',
+#              'lm_chain_scenario_35_clusters_z5p0-6p0_4x20000_28_006.p',
+#              'lm_chain_scenario_33_clusters_z1p25-6p0_4x20000_24_005.p',
+#              'lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
              
              
 
@@ -524,9 +524,9 @@ for filename in filenames:
         arr_medians5000[name] = medians5000   
         
         
-    pickle.dump(arr_means, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/means_{}'.format(filename),'wb'))
-    pickle.dump(arr_medians, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians_{}'.format(filename),'wb'))
-    pickle.dump(arr_medians5000, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians5000_{}'.format(filename),'wb'))
+    # pickle.dump(arr_means, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/means_{}'.format(filename),'wb'))
+    # pickle.dump(arr_medians, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians_{}'.format(filename),'wb'))
+    # pickle.dump(arr_medians5000, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians5000_{}'.format(filename),'wb'))
 
 
 #%%
@@ -633,7 +633,129 @@ for filename in filenames:
 
 
 
+#%%
 
+# =============================================================================
+# converged mass distribution parameters
+# =============================================================================
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pickle
+import corner
+
+
+filenames = ['lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z1p25-6p0_4x20000_24_005.p',
+         'lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
+
+
+# filenames = ['lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_26_005.p']
+
+for filename in filenames:
+    with open("/Users/lester/Documents/linmix_files/PROCESSED_{}".format(filename), 'rb') as f:
+        processed = pickle.load(f, encoding='latin1')          
+    
+    # print(processed.dtype.names)
+    
+    
+    names = ['pi', 'mu', 'tausqr']
+    
+    sample_chain = {}
+    for name in names:
+        sample_chain[name] = processed[name]
+        
+    for name in names:            
+        plt.figure(figsize=(16, 4))
+        plt.title('{}\n{}'.format(filename, name).replace('_',' '))
+        plt.plot(sample_chain[name])
+        plt.show()
+    
+    
+    pi1 = []
+    pi2 = []
+    pi3 = []
+    mu1 = []
+    mu2 = []
+    mu3 = []
+    tausqr1 = []
+    tausqr2 = []
+    tausqr3 = []
+    
+
+    for i in range(len(sample_chain['pi'][:,0])):   
+        # plt.figure(figsize=(16, 4))
+        # plt.title('{}\n{} {} {:.2f} {:.2f}'.format(filename, name, i, np.mean(sample_chain[name][:,i]), np.median(sample_chain[name][:,i])).replace('_',' '))
+        # plt.plot(sample_chain[name][:,i])
+        # plt.show()       
+             
+        
+        mn = np.argmin(sample_chain['pi'][i])
+        mx = np.argmax(sample_chain['pi'][i])
+        mm = 3 - (mn + mx)
+        
+        pi1.append(sample_chain['pi'][i,mn])
+        pi2.append(sample_chain['pi'][i,mm])
+        pi3.append(sample_chain['pi'][i,mx])
+        mu1.append(sample_chain['mu'][i,mn])
+        mu2.append(sample_chain['mu'][i,mm])
+        mu3.append(sample_chain['mu'][i,mx])
+        tausqr1.append(sample_chain['tausqr'][i,mn])
+        tausqr2.append(sample_chain['tausqr'][i,mm])
+        tausqr3.append(sample_chain['tausqr'][i,mx])
+
+    
+    plt.figure(figsize=(16, 4))
+    plt.title('{}\n{}'.format(filename, name).replace('_',' '))
+
+    plt.plot(pi1)
+    plt.plot(pi2)
+    plt.plot(pi3)
+    plt.show()
+    
+    plt.figure(figsize=(16, 4))
+    plt.title('{}\n{}'.format(filename, name).replace('_',' '))
+
+    plt.plot(mu1)
+    plt.plot(mu2)
+    plt.plot(mu3)
+    plt.show()
+    
+    plt.figure(figsize=(16, 4))
+    plt.title('{}\n{}'.format(filename, name).replace('_',' '))
+    plt.ylim(0, 5)
+    plt.plot(tausqr1)
+    plt.plot(tausqr2)
+    plt.plot(tausqr3)
+    plt.show()
+    
+    
+    pi1 = np.median(pi1)
+    pi2 = np.median(pi2)
+    pi3 = np.median(pi3)
+    mu1 = np.median(mu1)
+    mu2 = np.median(mu2)
+    mu3 = np.median(mu3)
+    tausqr1 = np.median(tausqr1)
+    tausqr2 = np.median(tausqr2)
+    tausqr3 = np.median(tausqr3)
+    
+    print('')
+    print(filename)
+    print('prob: {:.2f} {:.2f} {:.2f}'.format(pi1, pi2, pi3))
+    print('mean: {:.2f} {:.2f} {:.2f}'.format(mu1, mu2, mu3))
+    print('sigma: {:.2f} {:.2f} {:.2f}'.format(tausqr1**0.5, tausqr2**0.5, tausqr3**0.5))
+
+    # pickle.dump(arr_means, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/means_{}'.format(filename),'wb'))
+    # pickle.dump(arr_medians, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians_{}'.format(filename),'wb'))
+    # pickle.dump(arr_medians5000, open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians5000_{}'.format(filename),'wb'))
+    
+    
+    
 
 
 

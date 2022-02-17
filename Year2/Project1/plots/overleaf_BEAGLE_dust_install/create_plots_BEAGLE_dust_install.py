@@ -105,16 +105,17 @@ string_ssfrPower = r'$\gamma$'
 # string_redshift = r'$z$'
 string_redshift = r'$\mathrm{Redshift}$'
 
-string_mass = r'$\log(M/ \, \mathrm{M_{\odot}})$'
+string_mass = r'$\log(M \, / \, \mathrm{M_{\odot}})$'
 string_sfr = r'$\log(\psi \, / \, \mathrm{M_{\odot} \, yr^{-1}})$'
 string_ssfr = r'$\log(\mathrm{sSFR} \, / \, \mathrm{yr}^{-1})$'
+# string_ssfr = r'$\log(\psi \, M^{-1} \, / \, \mathrm{yr}^{-1})$'
 
 # string_mass = r'$\mathrm{M_{\star}}$'
 # string_sfr = r'${\Psi}$'
 # string_ssfr = r'${\Psi_\mathrm{s}}$'
 
 string_deltaMS = r'$\Delta_{MS}$'
-string_prob_ratio = r'$\log(\mathrm{p}_{MS} \, / \, \mathrm{p}_{OL})$'
+string_prob_ratio = r'$\log(\mathrm{P}_{MS} \, / \, \mathrm{P}_{OL})$'
 string_bias_test = r'$\Delta \mathrm{Parameter}$'
 
 
@@ -518,6 +519,7 @@ from redshift_bins_5 import redshift_bins_5
 from full_run import full_run
 from full_run_2 import full_run_2
 from full_run_3 import full_run_3
+from full_run_4 import full_run_4
 from corner_full_run import corner_full_run
 from redshift_vs_redshift import redshift_vs_redshift
 from redshift_histogram import redshift_histogram
@@ -529,6 +531,7 @@ from deltaMS_probability import deltaMS_probability
 from corner_scatter import corner_scatter
 from heatplot_scatter import heatplot_scatter
 from redshift_bins_MS import redshift_bins_MS
+from redshift_bins_MS_panels import redshift_bins_MS_panels
 
 # redshift_bins_1(rc_29_19_c1, rc_31_19_c2, rc_31_19_c3, rc_31_19_c4, rc_29_20_c1, rc_29_20_c2, rc_31_20_c3, rc_31_20_c4, rc_31_21_c1, rc_31_21_c2, rc_31_21_c3, rc_31_21_c4, figuresize, fontsize_legend, fontsize_axes, string_slope, string_normalisation, string_scatter, string_pbad, string_outlier_mean, string_outlier_sigma, string_redshift, save)
 
@@ -558,6 +561,17 @@ from redshift_bins_MS import redshift_bins_MS
 
 # full_run(rc_34_24_c14, rc_34_24_c14, rc_34_24_c25, rc_34_24_c25, rc_34_24_c, normalisation, figuresize, fontsize_legend, fontsize_axes, string_slope, string_normalisation, string_ssfr, save)
 
+
+
+# redshift_bins_MS(chain_MS_33_26_c1, 1, 1.25, 2.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
+
+# redshift_bins_MS(chain_MS_33_26_c2, 2, 2.0, 3.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
+
+# redshift_bins_MS(chain_MS_33_26_c3, 3, 3.0, 4.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
+
+# redshift_bins_MS(chain_MS_33_26_c4, 4, 4.0, 5.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
+
+# redshift_bins_MS(chain_MS_33_26_c5, 5, 5.0, 6.0, normalisation, figuresize, 14, fontsize_axes, string_mass, string_sfr, string_prob_ratio, True, save)
 
 
 # EAS POSTER
@@ -600,15 +614,7 @@ redshift_vs_redshift(AD, ADx, s34, figuresize, 14, fontsize_axes, save)
 lower_mass_limit(mass_completeness_limits_0p90_new, s34, figuresize, 14, fontsize_axes, string_mass, save)
 
 # fig 5
-redshift_bins_MS(chain_MS_33_26_c1, 1, 1.25, 2.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
-
-redshift_bins_MS(chain_MS_33_26_c2, 2, 2.0, 3.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
-
-redshift_bins_MS(chain_MS_33_26_c3, 3, 3.0, 4.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
-
-redshift_bins_MS(chain_MS_33_26_c4, 4, 4.0, 5.0, normalisation, figuresize, fontsize_legend, fontsize_axes, string_mass, string_sfr, string_prob_ratio, False, save)
-
-redshift_bins_MS(chain_MS_33_26_c5, 5, 5.0, 6.0, normalisation, figuresize, 14, fontsize_axes, string_mass, string_sfr, string_prob_ratio, True, save)
+redshift_bins_MS_panels(chain_MS_33_26_c1, chain_MS_33_26_c2, chain_MS_33_26_c3, chain_MS_33_26_c4, chain_MS_33_26_c5, normalisation, figuresize, 20, fontsize_axes, string_mass, string_sfr, string_prob_ratio, save)
 
 # fig 6
 redshift_bins_2(rc_33_28_c1, rc_33_28_c2, rc_33_28_c3, rc_33_28_c4, rc_33_28_c5, rc_33_26_c1, rc_33_26_c2, rc_33_26_c3, rc_33_26_c4, rc_33_26_c5, rc_35_28_c1, rc_35_28_c2, rc_35_28_c3, rc_35_28_c4, rc_35_28_c5, figuresize, 14, fontsize_axes, string_slope, string_normalisation, string_scatter, string_pbad, string_outlier_mean, string_outlier_sigma, string_redshift, save)
@@ -627,14 +633,20 @@ deltaMS_probability(s34, medians_34_24_c, normalisation, figuresize, fontsize_ax
 # fig 8 and 10
 full_run_3(chain_MS_33_26_c1, chain_MS_33_26_c2, chain_MS_33_26_c3, chain_MS_33_26_c4, chain_MS_33_26_c5, s33z1, s33z2, s33z3, s33z4, s33z5, rc_33_26_c1, rc_33_26_c2, rc_33_26_c3, rc_33_26_c4, rc_33_26_c5, rc_34_24_c, normalisation, figuresize, 10, fontsize_axes, string_slope, string_normalisation, string_scatter, string_ssfr, string_redshift, save)
 
+full_run_4(chain_MS_33_26_c1, chain_MS_33_26_c2, chain_MS_33_26_c3, chain_MS_33_26_c4, chain_MS_33_26_c5, s33z1, s33z2, s33z3, s33z4, s33z5, rc_33_26_c1, rc_33_26_c2, rc_33_26_c3, rc_33_26_c4, rc_33_26_c5, rc_34_24_c, normalisation, figuresize, 8, fontsize_axes, string_slope, string_normalisation, string_scatter, string_ssfr, string_redshift, save)
+
+
+
+
 # fig 9
 corner_full_run(chain_MS_34_24_c, '24', fontsize_axes, string_slope, string_normalisation, string_scatter, string_pbad, string_outlier_mean, string_outlier_sigma, string_ssfrNorm, string_ssfrPower, save)
 
-# fig 11
-import create_prior_heatplot
-
-# fig 12 and 13
+# fig 11 and 13
 import create_scatter_plots
+import create_scatter_plots33
+
+# fig 12
+import create_prior_heatplot
 
 # fig 14
 import create_panels
@@ -646,12 +658,95 @@ import create_emission_lines_plot
 
 
 
+'''
+for 11 and 13
+
+from astropy.io import fits
+import numpy as np
+matchedCat=fits.open("/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/plots/overleaf_BEAGLE_dust_install/scatter_plots/matchedCatalogue_scenario_29.fits")
+
+
+matchedCat33=fits.open("/Users/lester/Documents/GitHub/Local-Python/Year2/Project1/plots/overleaf_BEAGLE_dust_install/scatter_plots/matchedCatalogue_scenario_33.fits")
+
+print(len(matchedCat[1].data['redshiftOrig']), len(matchedCat33[1].data['redshiftOrig']),)
+
+tempIdx = np.where((matchedCat[1].data['redshiftOrig'] > 1.25) & (matchedCat[1].data['redshiftOrig'] < 2) & (matchedCat[1].data['massBurst'] > 0))[0]
+tempIdx33 = np.where((matchedCat[1].data['redshiftOrig'] > 1.25) & (matchedCat[1].data['redshiftOrig'] < 2) & (matchedCat[1].data['massBurst'] > 0))[0]
+
+
+print(len(tempIdx), len(tempIdx33))
+
+
+
+print(sum((matchedCat[1].data['redshiftOrig'] > 1.25)))
+print('FEST', len(tempIdx), len(matchedCat[1].data['redshiftOrig']), len(matchedCat[1].data['massBurst']), sum((matchedCat[1].data['redshiftOrig'] > 1.25)), sum((matchedCat[1].data['redshiftOrig'] < 2)), sum((matchedCat[1].data['massBurst'] > 0)))
+
+print(sum((matchedCat33[1].data['redshiftOrig'] > 1.25)))
+print('FEST', len(tempIdx), len(matchedCat[1].data['redshiftOrig']), len(matchedCat[1].data['massBurst']), sum((matchedCat[1].data['redshiftOrig'] > 1.25)), sum((matchedCat[1].data['redshiftOrig'] < 2)), sum((matchedCat[1].data['massBurst'] > 0)))
+
+print(matchedCat[1].data['redshiftOrig'].flatten())
+print(matchedCat33[1].data['redshiftOrig'].shape)
+print(matchedCat[1].data['redshiftOrig'].shape)
+
+
+
+names = ['UID','redshiftOrig','massOrig','sfrOrig','redshiftBurst','redshiftErrBurstLow','redshiftErrBurstHigh','massBurst','massErrBurstLow','massErrBurstHigh','sfrBurst','sfrErrBurstLow','sfrErrBurstHigh','redshiftTau','redshiftErrTauLow','redshiftErrTauHigh','massTau','massErrTauLow','massErrTauHigh','sfrTau','sfrErrTauLow','sfrErrTauHigh']
+for i in range(len(names)):
+    print(matchedCat[1].data[names[i]].shape, matchedCat33[1].data[names[i]].shape)
+
+'''
 
 
 
 
 
+#%%
 
+
+# =============================================================================
+# checking z limits in full run...
+# =============================================================================
+'''
+filenames = ['lm_chain_scenario_33_clusters_z1p25-2p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z2p0-3p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z3p0-4p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z4p0-5p0_4x20000_26_005.p',
+         'lm_chain_scenario_33_clusters_z5p0-6p0_4x20000_26_005.p']
+
+filenames = ['lm_chain_scenario_34_clusters_z1p25-6p0_4x20000_24_005.p']
+
+i=0
+filename = filenames[i]
+with open('/Users/lester/Documents/linmix_files/mass_sfr_z_chains/medians_{}'.format(filename), 'rb') as f:
+    med = pickle.load(f, encoding='latin1')
+
+
+plt.hist(med['zeta'], bins=50)
+plt.show()
+
+print(min(med['zeta']), max(med['zeta']))
+print(med['zeta'])
+
+#THIS WASN'T CHAINS
+
+
+
+
+from random import randrange
+
+print(randrange(10, 3))
+t = np.exp(-0) + np.random.random(5)*(np.exp(-0)-np.exp(-6))
+print(t)
+
+x = np.linspace(0, 6, 100)
+y = np.exp(-x)
+
+
+plt.plot(x, y)
+plt.hist(t)
+plt.show()
+
+'''
 
 #%%
 # =============================================================================
