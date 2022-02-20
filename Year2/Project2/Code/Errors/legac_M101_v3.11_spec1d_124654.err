@@ -1,0 +1,63 @@
+2022-02-18 00:11:43.728526
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 45, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 149, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 10:33:06.579347
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 47, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 146, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 10:34:16.602295
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 47, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 149, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 10:36:35.461141
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 47, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 151, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 11:02:05.617471
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 151, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 11:03:09.539192
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 151, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+
+2022-02-18 11:10:29.469506
+('index 0 is out of bounds for axis 0 with size 0',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 151, in ppxf_fit
+    self.lwave[[0, -1]], self.lspec) # Pixel scale in km/s
+IndexError: index 0 is out of bounds for axis 0 with size 0
+

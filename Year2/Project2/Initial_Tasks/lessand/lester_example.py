@@ -19,10 +19,23 @@ import ppxf
 from ppxf import ppxf_util, miles_util
 
 myspec = legac.spec1d.from_filename('legac_M32_v3.11_spec1d_54311.fits')
+
+print(myspec.pp)
+
 myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+print(myspec.pp)
+
+import pickle
+print(myspec)
+print(myspec.pp.__dict__['templates'])
+
+test = myspec
+
+with open('test.pickle', 'wb') as output_file:
+    pickle.dump(test, output_file)
 
 
-
+#%%
 wave_overlap=(3540., 7409.)*units.Angstrom
 wave_overlap = (myspec.wave>wave_overlap[0]) & (myspec.wave<wave_overlap[1])
 
@@ -36,6 +49,8 @@ myspec.spec_norm = np.nanmedian(myspec.lspec[~mask])
 myspec.lspec /= myspec.spec_norm
 myspec.lnoise /= myspec.spec_norm
 myspec.spec_norm *= myspec.spec.unit # Save units of spec_norm.
+
+print(os.listdir())
 
 #%%
 plt.scatter(myspec.wave[~wave_overlap], np.full(len(myspec.wave[~wave_overlap]),1), s=1, marker='.')

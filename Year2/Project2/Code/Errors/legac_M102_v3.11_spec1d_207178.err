@@ -1,0 +1,33 @@
+2022-02-18 11:02:04.982033
+('COMPONENT must range from 0 to NCOMP-1',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 236, in ppxf_fit
+    self.pp = ppxf.ppxf.ppxf(
+  File "/Users/lester/opt/anaconda3/envs/spyder-env/lib/python3.9/site-packages/ppxf/ppxf.py", line 1446, in __init__
+    assert np.array_equal(tmp, np.arange(self.ncomp)), \
+AssertionError: COMPONENT must range from 0 to NCOMP-1
+
+2022-02-18 11:03:08.901214
+('COMPONENT must range from 0 to NCOMP-1',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 236, in ppxf_fit
+    self.pp = ppxf.ppxf.ppxf(
+  File "/Users/lester/opt/anaconda3/envs/spyder-env/lib/python3.9/site-packages/ppxf/ppxf.py", line 1446, in __init__
+    assert np.array_equal(tmp, np.arange(self.ncomp)), \
+AssertionError: COMPONENT must range from 0 to NCOMP-1
+
+2022-02-18 11:10:28.887293
+('COMPONENT must range from 0 to NCOMP-1',)
+Traceback (most recent call last):
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/save_myspec_local.py", line 50, in <module>
+    myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
+  File "/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Initial_Tasks/lessand/legac_utils.py", line 237, in ppxf_fit
+    self.pp = ppxf.ppxf.ppxf(
+  File "/Users/lester/opt/anaconda3/envs/spyder-env/lib/python3.9/site-packages/ppxf/ppxf.py", line 1446, in __init__
+    assert np.array_equal(tmp, np.arange(self.ncomp)), \
+AssertionError: COMPONENT must range from 0 to NCOMP-1
+

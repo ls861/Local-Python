@@ -1,0 +1,231 @@
+# **** Object Identification Information ****
+#      (legac_dr3_210313.cat, Arjen van der Wel)
+#
+# ID_LEGAC 		Object number in the LEGA-C catalog
+# ID			UltraVISTA ID from Muzzin et al (2013) v4.1 UltraVISTA Catalog
+# MASK			LEGA-C mask number
+# PRIMARY		primary sample flag (primary = 1)
+# RA DEC			[deg] position from Muzzin et al (2013) v4.1 UltraVISTA Catalog
+# Z_SPEC			spectroscopic redshift
+#
+#
+# **** Spectroscopic Quality ****
+#      (legac_dr3_210313.cat, PPXF, Rachel Bezanson)
+#
+# SN			overall median S/N per pixel of the LEGA-C spectrum
+# SN_RF_4000		median S/N per pixel of the LEGA-C spectrum (4000 <= rest frame lambda <= 4300\AA)
+# SN_OBS_8030		median S/N per pixel of the LEGA-C spectrum (8030 <= lambda <= 8270 \AA)
+# FLAG_SPEC		Flag for poor quality spectra
+# L_MIN, L_MAX		Minimum and Maximum wavelengths (observed, Angstroms)
+# RFL_MIN, RFL_MAX	Minimum and Maximum rest-frame wavelengths (Angstroms)
+#
+#
+# **** Sample Population Correction Factors ****
+#      (dr3_completeness_corr_python.cat, Arjen van der Wel)
+#
+# TCOR			Vcor * Scor: total correction to properly describe the galaxy population
+# VCOR			Vmax correction to total volume 0.6<z<1.0 for LEGA-C parent sample
+# SCOR			sampling correction (LEGA-C observed sample vs parent sample)
+# 
+#
+# **** Velocity Dispersions Measured using an optimally combined sum of Conroy+ R~10,000 theoretical templates ****
+#      (legac_dr3_210313.cat, Rachel Bezanson -- errors corrected by Arjen van der Wel)     
+#
+# SIGMA_STARS, SIGMA_STARS_ERR 	[km/s] (velocity dispersion and error of stellar continuum)
+# SIGMA_GAS, SIGMA_GAS_ERR 	[km/s] (velocity dispersion and error of gaussian emission lines)
+#
+#  
+# **** LICK INDICES measured from the emission line subtracted spectra (from Conroy+ templates) ****
+#      (legac_dr3_210313.cat, Anna Gallazzi)
+#
+# LICK_HD_A, LICK_HD_A_ERR, LICK_HD_F, LICK_HD_F_ERR 
+# LICK_HG_A, LICK_HG_A_ERR, LICK_HG_F, LICK_HG_F_ERR 
+# LICK_HB, LICK_HB_ERR, LICK_CN1, LICK_CN1_ERR, 
+# LICK_CN2, LICK_CN2_ERR, LICK_CA4227, LICK_CA4227_ERR
+# LICK_G4300, LICK_G4300_ERR, LICK_FE4383, LICK_FE4383_ERR
+# LICK_CA4455, LICK_CA4455_ERR, LICK_FE4531, LICK_FE4531_ERR 
+# LICK_C4668, LICK_C4668_ERR, LICK_FE5015, LICK_FE5015_ERR 
+# LICK_MG1, LICK_MG1_ERR, LICK_MG2, LICK_MG2_ERR 
+# LICK_MGB, LICK_MGB_ERR, LICK_FE5270, LICK_FE5270_ERR 
+# LICK_FE5335, LICK_FE5335_ERR, LICK_FE5406, LICK_FE5406_ERR 
+# D4000_N, D4000_N_ERR 
+#
+#
+# **** Platefit Emission line fits (on continuum-subtracted spectra) ****
+#      (legac_dr3_210313.cat, Michael Maseda)
+# 
+# OII_3727_FLUX, OII_3727_FLUX_ERR, OII_3727_EW, OII_3727_EW_ERR 
+# NEIII_3869_FLUX, NEIII_3869_FLUX_ERR, NEIII_3869_EW, NEIII_3869_EW_ERR 
+# HEI_3890_FLUX, HEI_3890_FLUX_ERR, HEI_3890_EW, HEI_3890_EW_ERR 
+# H_DELTA_FLUX, H_DELTA_FLUX_ERR, H_DELTA_EW, H_DELTA_EW_ERR
+# H_GAMMA_FLUX, H_GAMMA_FLUX_ERR, H_GAMMA_EW, H_GAMMA_EW_ERR 
+# OIII_4363_FLUX, OIII_4363_FLUX_ERR, OIII_4363_EW, OIII_4363_EW_ERR 
+# H_BETA_FLUX, H_BETA_FLUX_ERR, H_BETA_EW, H_BETA_EW_ERR 
+# OIII_4959_FLUX, OIII_4959_FLUX_ERR, OIII_4959_EW, OIII_4959_EW_ERR 
+# OIII_5007_FLUX, OIII_5007_FLUX_ERR, OIII_5007_EW, OIII_5007_EW_ERR 
+#
+#
+# **** Galfit Measurements from ACS F814W imaging (10/7/2019 DR3 catalog) ****
+#      (legac_dr3_210313.cat, Arjen van der Wel)
+#
+# SERSIC_RE SERSIC_RE_ERR 	Semi-major axis radius and error ['']
+# SERSIC_N SERSIC_N_ERR 		Sersic index
+# SERSIC_Q SERSIC_Q_ERR 		Sersic axis ratio (b/a)
+# SERSIC_PA SERSIC_PA_ERR 	Position angle
+# SERSIC_MAG SERSIC_MAG_ERR 	Total Magnitude of the Sersic model
+# SERSIC_LIMIT			Flag for galfit fit to ACS F814W imaging (ran into parameter limits)
+# SERSIC_RE_KPC, GALFIT_REC_KPC	effective radius and circularized effective radius in kpc 
+#				using FlatLambdaCDM(H0=70, Om0=0.3) 
+#
+# 
+# **** Dynamical Modeling Parameters (van Houdt+2021) ****
+#      (legac_dr3_210313.cat, Josha van Houdt, contact Arjen van der Wel)
+#
+# FLAG_MORPH		Flag to identify severe deviation from virial equilibrium (mergers) or 
+#			smooth M/L variations (dust, SF clumps, point-source AGN)
+# SIGMA_STARS_VIR SIGMA_STARS_VIR_ERR 
+# LOG_MVIR LOG_MVIR_ERR 
+#
+# 
+# **** Photometry (AB magnitude from Muzzin et al (2013) v4.1 UltraVISTA Catalog) ****
+#      (UVISTA_final_v4.1_LEGAC.cat, Adam Muzzin)
+#
+# IP_MAG, ZP_MAG, KS_MAG, CH1_TOT, CH2_TOT, CH3_TOT, CH4_TOT, TOT_APER
+#
+# **** Other UltraVISTA Muzzin et al (2013) catalog parameters
+#      (UVISTA_final_v4.1.zout, dr3_sfr_uvir.cat, Arjen/Ivana Barisic)
+#
+# Z_PEAK 				z_peak photometric redshift
+# LSFR_UV_IR - [log(sfr/(Msun/year))] 	log SFR from UV+IR luminosities
+# LLUV - [log (Luminosity/Lsun)] 		log UV luminosity
+# LLIR - [log (Luminosity/Lsun)] 		log IR luminosity
+# LSFR_UV - [log(sfr/(Msun/year))] 	log SFR from UV luminosity
+# LSFR_IR - [log(sfr/(Msun/year))] 	log SFR from IR luminosity
+#
+#
+# **** Rest-frame colors calculated from UVISTA photometry by EAZY using z_spec ****
+#      (legac_dr3_bc03_photometry_v2.fits, Josha van Houdt/Arjen van der Wel)
+# 
+# UV, VJ 
+# UVJ_SFQ - UV-VJ Star Forming (==0) and Quiescent (==1) cuts from Muzzin+2013 (mass function paper)
+#
+#
+# **** FAST fits to UltraVISTA Muzzin et al (2013) photometry ****
+#     (LEGA-C z_spec, UltraVISTA photometry, BC03 models, and Muzzin+2013 parameters, Josha van Houdt)
+#
+# FAST_LTAU 				[log(tau/yr)]
+# FAST_METAL				
+# FAST_LMASS 				[log(mass/Msun)]
+# FAST_LAGE 				[log(age/year)]
+# FAST_AV
+# FAST_LSFR 				[log(sfr/(Msun/year))]
+#
+#
+# **** Prospector Stellar Populations fits (UltraVISTA photometry + LEGA-C z_spec) ****
+#      (legac_dr3_prospector.cat, Joel Leja?)
+#
+# LOGM_MEDIAN LOGM_ERRUP LOGM_ERRDOWN
+# LOGSFR_MEDIAN, LOGSFR_ERRUP, LOGSFR_ERRDOWN 
+# LOGSSFR_MEDIAN, LOGSSFR_ERRUP, LOGSSFR_ERRDOWN
+# 
+# **** MAGPHYS Stellar Populations fits, median/50th percentile values (UltraVISTA photometry + LEGA-C z_spec) ****
+#      (magphys_legac_dr3_galfit.fits, Anna de Graaff)
+#      (Detailed description of the MAGPHYS output in https://www.dropbox.com/s/jg3dn8zjo56ucyr/magphys_description.txt.txt?dl=1)
+#
+# MAGPHYS_F_MU_SFH, MAGPHYS_F_MU_IR, MAGPHYS_MU, MAGPHYS_TAU_V, MAGPHYS_SSFR_0.1GYR, 
+# MAGPHYS_M_STARS, MAGPHYS_L_DUST, MAGPHYS_T_C_ISM, MAGPHYS_T_W_BC, MAGPHYS_XI_C_TOT, 
+# MAGPHYS_XI_PAH_TOT, MAGPHYS_XI_MIR_TOT, MAGPHYS_XI_W_TOT, MAGPHYS_TAU_V_ISM, 
+# MAGPHYS_M_DUST, MAGPHYS_SFR_0.1GYR, MAGPHYS_AGE_MW, MAGPHYS_AGE_RW, MAGPHYS_T_FORM, 
+# MAGPHYS_GAMMA, MAGPHYS_Z_STARS, MAGPHYS_N_BURST, MAGPHYS_M_TOT, MAGPHYS_T_LASTBURST, 
+# MAGPHYS_L_HA, MAGPHYS_L_HB, MAGPHYS_SSFR_0.001GYR, MAGPHYS_SSFR_0.01GYR, 
+# MAGPHYS_SSFR_1GYR, MAGPHYS_SSFR_2GYR, MAGPHYS_SFR_0.001GYR, MAGPHYS_SFR_0.01GYR, 
+# MAGPHYS_SFR_1GYR, MAGPHYS_SFR_2GYR, MAGPHYS_F_BURST_0.001GYR, MAGPHYS_F_BURST_0.01GYR, 
+# MAGPHYS_F_BURST_0.1GYR, MAGPHYS_F_BURST_1GYR, MAGPHYS_F_BURST_2GYR, 
+# 
+#
+# **** XMM data from XMM cosmos point source catalog ****
+#      (xmm_cosmos_point_source.cat, matched by Rachel Bezanson)
+#
+# XMM_S0520		[1e-17W/m^2] XMM flux 0.5-2.0 keV
+# XMM_S_ERR0520		[1e-17W/m^2] XMM error in flux 0.5-2.0 keV
+# XMM_L_0520		XMM detection likelihood 0.5-2.0 keV
+# XMM_S210		[1e-17W/m^2] XMM flux 2-10 keV
+# XMM_S_ERR210		[1e-17W/m^2] XMM error in flux 2-10 keV
+# XMM_L_210		XMM detection likelihood 2-10 keV
+# XMM_S510		[1e-17W/m^2] XMM flux 5-10 keV
+# XMM_S_ERR510		[1e-17W/m^2] XMM error in flux 5-10 keV
+# XMM_L_510		XMM detection likelihood 5-10 keV
+#
+# **** Chandra data from Chandra COSMOS Legacy Survey (Civano et al. 2016, Marchesi et al. 2016) ****
+#      (Chandra_COSMOS_Legacy_20151120_4d.fits, matched by Rachel Bezanson)
+#
+# CHANDRA_FLUX_F		[1e-16 erg/cm^2/s] Chandra flux in Full range 0.5-10 keV
+# CHANDRA_FLUX_F_ERR	[1e-16 erg/cm^2/s] Chandra error in flux over Full range 0.5-10 keV
+# CHANDRA_FLUX_S		[1e-16 erg/cm^2/s] Chandra flux in soft range 0.5-2 keV
+# CHANDRA_FLUX_S_ERR	[1e-16 erg/cm^2/s] Chandra error in flux over soft range 0.5-2 keV
+# CHANDRA_FLUX_H 	[1e-16 erg/cm^2/s] Chandra flux in hard range 2-10 keV
+# CHANDRA_FLUX_H_ERR 	[1e-16 erg/cm^2/s] Chandra error in flux over hard range 2-10 keV
+#
+# 
+# **** matches to the 3dhst v4.1.5 catalogs within 1'' ****
+#
+# ID_3DHST
+#
+#
+# **** 3GHz EVLA Data (REF XXXXX) ****
+#      (dr3_evla_3ghz.cat, Ivana Barisic)
+# 
+# FLUX_3GHZ, EFLUX_3GHZ 		micro Jansky
+# SFR_3GHZ, ESFR_3GHZ		Msol/year
+#
+#
+# **** Group Catalog information from Darvish et al. 2017, ApJ, 837, 16 ****
+#     (cite: Darvish et al. 2017, ApJ, 837, 16 and Darvish et al. 2015, ApJ, 805, 121 if you use this catalog)
+#     (Darvish_Mobasher_Sobral_DENSITY_COSMOS.fits, Environment_value_added.fits)
+#
+# LOGDELTA, LOGDELTA_MATCH_RADIUS
+# DARVISH_ID, DARVISH_RA, DARVISH_DEC, DARVISH_PHOTO_Z (from COSMOS2015 catalog, Laigle et al. 2016)
+# DARVISH_DENSITY		(Mpc^-2)
+# DARVISH_OVERDENSITY		(density divided by median density at the redshift of the source)
+# DARVISH_S_CLUSTER		(cluster signal, resemblance of the local geometry to a cluster, a value between 0 and 1)
+# DARVISH_S_FILAMENT		(filament signal, resemblance of the local geometry to a filament, a value between 0 and 1)
+# DARVISH_ENVIRONMENT		(cluster, filament, field)
+# DARVISH_GROUP_ID		(-99 if isolated)
+# DARVISH_N_G			(number of group members, -99 if isolated)
+# DARVISH_GALAXY_TYPE		(central, satellite, isolated)
+# DARVISH_FLAG			(0 = good, 1 = bad - close to the survey edge and/or large masked regions. Avoid Flag=1)
+#
+#
+# **** Empirical Spatially-Resolved Stellar Kinematics (Bezanson+2018) ****
+#      (Vrot_rachel_conroy_v3.11.cat, Rachel Bezanson)
+#
+# VROT_2RE, VROT_5KPC, VROT_10KPC, VROT_MAX		V at (2Re, 5kpc, 10kpc, maximum extent of rotation curve)
+# SIGMA0							central pixel stellar velocity dispersion
+# E_VROT_2RE, E_VROT_5KPC, E_VROT_10KPC, E_VROT_MAX	Associated errors
+#
+#
+# **** Dynamical Parameters from Best-fitting Jeans Models ****
+#                 (legac_jeans_210311.cat, Josha van Houdt)
+#
+# RMAX_KPC 
+# LOGM_1KPC LOGM_1KPC_ERRUP LOGM_1KPC_ERRDOWN 
+# LOGM_5KPC LOGM_5KPC_ERRUP LOGM_5KPC_ERRDOWN 
+# LOGM_10KPC LOGM_10KPC_ERRUP LOGM_10KPC_ERRDOWN 
+# LOGM_RE LOGM_RE_ERRUP LOGM_RE_ERRDOWN 
+# LOGM_2RE LOGM_2RE_ERRUP LOGM_2RE_ERRDOWN 
+# KAPPA KAPPA_ERRUP KAPPA_ERRDOWN BETA BETA_ERRUP BETA_ERRDOWN 
+# V_RE V_RE_ERRUP V_RE_ERRDOWN 
+# SIG_RE SIG_RE_ERRUP SIG_RE_ERRDOWN 
+#
+#
+# **** Galfit Measurements from WFC3 F160 imaging (10/29/2019 catalog) ****
+#      (dr3_galfit_160.cat, Arjen van der Wel + Lamiya Mowla)
+#
+# 	GALFIT160_LIMIT - Flag for galfit fit to WFC3 F160 imaging (ran into parameter limits)
+# 	GALFIT160_MAG, GALFIT160_MAG_ERR, GALFIT160_RE [''], GALFIT160_RE_ERR [''], GALFIT160_N, GALFIT160_N_ERR,
+#       GALFIT160_Q, GALFIT160_Q_ERR, GALFIT160_PA [deg], GALFIT160_PA_ERR [deg], GALFIT160_SN 
+#
+#
+# *********************************************************************************************************
+#
+# Latest Update on: 2022-02-14

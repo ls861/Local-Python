@@ -97,6 +97,8 @@ class spec1d():
 
         wave /= (1. + z)
 
+        print(z)        
+
         mask = (wht==0.) | (~np.isfinite(wht))
 
         with np.errstate(divide='ignore'):
@@ -128,13 +130,13 @@ class spec1d():
             any other valid pPXF keyword that is not included already in the
             pPXF call.
         """
-
+        
         wave_overlap = (self.wave>wave_overlap[0]) & (self.wave<wave_overlap[1])
-        
-        
-        
         self.lspec  = self.spec[wave_overlap].value  # Dimensionless
         self.lwave  = self.wave[wave_overlap].value  # Dimensionless
+        
+        print(self.wave, self.lwave)
+        
         self.lnoise = self.noise[wave_overlap].value # Dimensionless
         mask = self.mask[wave_overlap]
         self.spec_norm = np.nanmedian(self.lspec[~mask])
@@ -216,6 +218,7 @@ class spec1d():
         # Assign component=0 to the stellar templates, component=1 to the Balmer
         # gas emission lines templates and component=2 to the forbidden lines.
         component = [0]*n_temps + [1]*n_balmer + [2]*n_forbidden
+        print(component)
         gas_component = np.array(component) > 0  # gas_component=True for gas templates
 
         # Fit (V, sig, h3, h4) moments=4 for the stars
@@ -263,7 +266,8 @@ class spec1d():
             dwave *= self.wave.unit
 
             print(name, flux*dwave*self.spec_norm)
-            
+
+
     def continuum_subtraction(self):
 
         if not hasattr(self, 'pp'):
