@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import legac_utils as legac
 import numpy as np
 import pickle
@@ -19,7 +21,9 @@ from os import getcwd, listdir, path
 # =============================================================================
 
 
+# directory = '/Users/lester/Documents/GitHub/Local-Python/Year2/Project2/Code/myspec/'
 directory = './myspec/'
+
 filenames_complete = []
 for filename in listdir(directory):
     if 'myspec' in filename and '.pickle' in filename:
@@ -30,8 +34,11 @@ filenames_todo = []
 for filename in listdir(directory):
     if '_spec1d_' in filename and filename not in filenames_complete:
         filenames_todo.append(filename)
-        
-print(filenames_todo) 
+    
+print('ALREADY COMPLETE: {}'.format(len(filenames_complete)))
+print('TODO: {}'.format(len(filenames_todo)))
+
+# print(filenames_todo) 
 
 del_attrs = ['templates', 'templates_rfft', 'A_eq_templ', 'b_eq_templ', 'A_ineq_templ', 'b_ineq_templ', 'A_ineq_kinem', 'b_ineq_kinem', 'A_eq_kinem', 'b_eq_kinem', 'matrix']
 
@@ -39,6 +46,7 @@ del_attrs = ['templates', 'templates_rfft', 'A_eq_templ', 'b_eq_templ', 'A_ineq_
 for i in range(len(filenames_todo)):
     
     try:
+        
         myspec = legac.spec1d.from_filename(directory+filenames_todo[i])
         myspec.ppxf_fit(plot=True, clean=False) # clean=True is better but takes a long time.
 
@@ -62,13 +70,6 @@ for i in range(len(filenames_todo)):
         plt.show()
 
 # print(myspec.pp.__dict__['matrix'])
-
-
-
-    
-    
-    
-    
 
 
 

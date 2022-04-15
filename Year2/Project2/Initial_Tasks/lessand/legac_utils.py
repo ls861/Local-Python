@@ -15,7 +15,7 @@ from time import perf_counter as clock
 import ppxf
 from ppxf import ppxf_util, miles_util
 
-__LEGAC_CATALOGUE__ = 'legac_team_DR3.fits'
+__LEGAC_CATALOGUE__ = 'legac_team.fits'
 
 def get_id_mask(filename):
     mask = re.findall(r'M[0-9]{1,3}', filename)[0]
@@ -25,21 +25,18 @@ def get_id_mask(filename):
 
     return legacid, mask
 
-
-
 def get_redshift(legacid, mask):
 
     catalogue = table.Table.read(__LEGAC_CATALOGUE__)
 
-    match = np.where((catalogue['id']==legacid) & (catalogue['mask']==mask))[0]
+
+    match = np.where((catalogue['ID']==legacid) & (catalogue['MASK']==mask))[0]
 
     if len(match)==1:
-        return catalogue[match]['z_spec'][0]
+        return catalogue[match]['Z_SPEC'][0]
     else:
         raise ValueError(
             f'{legacid} M{mask} must match 1 file, but found {match}')
-
-    
 
 class spec1d():
 
@@ -97,7 +94,7 @@ class spec1d():
 
         wave /= (1. + z)
 
-        print(z)        
+        # print(z)        
 
         mask = (wht==0.) | (~np.isfinite(wht))
 
@@ -135,7 +132,7 @@ class spec1d():
         self.lspec  = self.spec[wave_overlap].value  # Dimensionless
         self.lwave  = self.wave[wave_overlap].value  # Dimensionless
         
-        print(self.wave, self.lwave)
+        # print(self.wave, self.lwave)
         
         self.lnoise = self.noise[wave_overlap].value # Dimensionless
         mask = self.mask[wave_overlap]
@@ -189,7 +186,7 @@ class spec1d():
         # lines can be included by editing the function in the file ppxf_ppxf_util.py.
         self.gas_templates, gas_names, line_wave = ppxf_util.emission_lines(
             templlib.log_lam_temp, np.exp(self.lwave[[0, -1]]), FWHM_gal,
-            tie_balmer=False, limit_doublets=False)
+            tie_balmer=True, limit_doublets=False)
 
         # Combines the stellar and gaseous templates into a single array.
         # During the PPXF fit they will be assigned a different kinematic
@@ -218,7 +215,7 @@ class spec1d():
         # Assign component=0 to the stellar templates, component=1 to the Balmer
         # gas emission lines templates and component=2 to the forbidden lines.
         component = [0]*n_temps + [1]*n_balmer + [2]*n_forbidden
-        print(component)
+        # print(component)
         gas_component = np.array(component) > 0  # gas_component=True for gas templates
 
         # Fit (V, sig, h3, h4) moments=4 for the stars
@@ -240,7 +237,7 @@ class spec1d():
             vsyst=dv, clean=clean,
             lam=np.exp(self.lwave), goodpixels=goodpixels,
             component=component, gas_component=gas_component,
-            gas_names=gas_names, **ppxf_kwargs)#, gas_reddening=gas_reddening)
+            gas_names=gas_names, gas_reddening=0, **ppxf_kwargs)#, gas_reddening=gas_reddening)
         
         # When the two Delta Chi^2 below are the same, the solution
         # is the smoothest consistent with the observed spectrum.

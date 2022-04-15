@@ -21,7 +21,7 @@ log10_mass = np.log10(mass)
 log10_msa = np.log10(msa)
 log10_tau = np.log10(tau)
 log10_tau_i = np.log10(tau_i)
-'''
+
 plt.hist(log10_mass, histtype='step')
 plt.hist(log10_msa, histtype='step')
 plt.hist(log10_tau, histtype='step')
@@ -31,7 +31,7 @@ plt.hist(log10_tau, histtype='step', density='True', label='uniform on log tau',
 plt.hist(log10_tau_i, histtype='step', density='True', label='uniform on 1/tau', color='b')
 plt.legend()
 plt.show()
-'''
+
 x_tmp = np.array((10**5, 10**12))
 log10_x_tmp = np.log10(x_tmp)
 
